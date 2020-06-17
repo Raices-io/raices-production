@@ -1,16 +1,115 @@
 import TopNav from "../components/Navigation/TopNav";
 import BottomNav from "../components/Navigation/BottomNav";
-import LocationCard from "../components/Cards/LocationCard";
 import Features from "../components/LandingPage/Features";
-// test for vercel
-const locations = [
-  {
-    name: "Medellin",
-    image:
-      "https://res.cloudinary.com/dvqw5uhrr/image/upload/v1575403683/Raices/Envigado/envigado.png",
-    subtitle: "Greenery and food",
-  },
-];
+import styled from "styled-components";
+
+import algoliasearch from "algoliasearch/lite";
+import {
+  InstantSearch,
+  Hits,
+  SearchBox,
+  Pagination,
+  Highlight,
+  ClearRefinements,
+  RefinementList,
+  Configure,
+  connectHighlight,
+} from "react-instantsearch-dom";
+
+const searchClient = algoliasearch(
+  process.env.ALGOLIA_APP_ID,
+  process.env.ALGOLIA_SEARCH_ID
+);
+
+const SearchBoxStyle = styled.div`
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(${(props) => props.image});
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 0 1rem 0 1rem;
+  min-height: 612px;
+
+  @media (max-width: 640px) {
+    min-height: 300px;
+  }
+  .ais-Hits {
+    background: white;
+  }
+  .ais-SearchBox-form {
+    position: relative;
+    border: 1px solid red;
+    display: block;
+  }
+  .ais-SearchBox-input {
+    padding: 0.3rem 1.7rem;
+    width: 100%;
+    position: relative;
+    border: 1px solid #c4c8d8;
+  }
+  .ais-SearchBox-submit {
+    position: absolute;
+    left: 0.3rem;
+    right: 0.3rem;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+  }
+  .ais-SearchBox-submitIcon {
+    width: 14px;
+    height: 14px;
+  }
+  .searchHeader {
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  .input-box {
+    padding-left: 3rem;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    justify-content: flex-start;
+    height: 100%;
+  }
+  input {
+    border-radius: 0.25rem;
+    height: 2.5rem;
+    padding-left: 1rem;
+    width: 100%;
+  }
+`;
+
+const Hit = ({ hit }) => (
+  <p>
+    <CustomHighlight attribute="addressLineOne" hit={hit} />
+  </p>
+);
+
+const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
+  const parsedHit = highlight({
+    highlightProperty: "_highlightResult",
+    attribute,
+    hit,
+  });
+
+  return (
+    <div>
+      <h3>{hit.username}</h3>
+      <img src={hit.avatar} alt={hit.username} />
+      {parsedHit.map((part) =>
+        part.isHighlighted ? <mark>{part.value}</mark> : part.value
+      )}
+    </div>
+  );
+});
 
 const Explore = () => {
   return (
@@ -20,14 +119,28 @@ const Explore = () => {
       </div>
       <div className="sm:py-6 pb-12 flex flex-col overflow-y-scroll h-full flex-grow mx-0 flex-grow sm:mt-8">
         {/* Features section */}
+        <SearchBoxStyle image="/homePage/homePageImage.jpg">
+          <div className="input-box">
+            <span className="searchHeader">
+              Una mejor forma de comprar una propiedad
+            </span>
+            {/* <input type="text" placeholder="Medellin, Antioquia" /> */}
+            <InstantSearch indexName="prod_HOMES" searchClient={searchClient}>
+              <div className="left-panel">
+                <ClearRefinements />
+                <h2>Brands</h2>
+                <RefinementList attribute="brand" />
+                <Configure hitsPerPage={8} />
+              </div>
+              <div className="right-panel">
+                <SearchBox />
+                <Hits hitComponent={Hit} />
+              </div>
+            </InstantSearch>
+          </div>
+        </SearchBoxStyle>
         <div className="flex px-5 flex flex-grow flex-shrink-0 justify-center items-center sm:px-12 pb-6 sm:pb-0">
           <Features />
-        </div>
-        {/* Location cards */}
-        <div className="flex flex-col flex-grow flex-shrink-0 justify-center items-center sm:flex-row px-4">
-          {locations.map((location, index) => {
-            return <LocationCard location={location} key={index} />;
-          })}
         </div>
       </div>
       <div className="flex w-full md:hidden">

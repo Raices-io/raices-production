@@ -4,11 +4,12 @@ import { stringParser } from "../../../util/utilityFunctions";
 import TopNav from "../../../components/Navigation/TopNav";
 import BottomNav from "../../../components/Navigation/BottomNav";
 // get in firebase
-import firebase from "../../../util/firebase";
+import { firebase } from "../../../util/firebase";
 import HomeListCard from "../../../components/Cards/HomeListCard";
 import PaginationButton from "../../../components/Pagination/PaginationButton";
 import LoadingPage from "../../../components/LoadingSpinner/LoadingPage";
 import Link from "next/link";
+import { last } from "lodash";
 
 const Index = () => {
   const perPage = 20;

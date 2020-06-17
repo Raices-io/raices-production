@@ -6,7 +6,7 @@ const BackgroundImage = styled.div`
 	background-image: url("${props => props.image}");
 	height: 100%;
 	width: 100%;
-	object-fit: cover;
+	background-size: cover;
 	background-position: center center;
 `;
 const SmallMediumImageHeader = ({ images, setShowImageModal }) => {

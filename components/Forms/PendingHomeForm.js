@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import firebase from '../../util/firebase';
+import { firebase } from '../../util/firebase';
 import { useAuth } from '../../util/auth';
 import WarningModal from '../Modals/WarningModal';
 const PendingHomeForm = ({ pendingHomes }) => {
@@ -130,7 +130,7 @@ const PendingHomeForm = ({ pendingHomes }) => {
 										<div class="mt-6 flex flex-col">
 											<div class="rounded-md  shadow">
 												<a
-													class="flex items-center justify-center px-5 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
+													class="flex items-center justify-center px-5 py-3 cursor-pointer border border-transparent text-base leading-6 font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out"
 													onClick={createNewPendingHome}>
 													Enviar una nueva propiedad
 												</a>

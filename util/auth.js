@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import queryString from 'query-string';
-import firebase from './firebase';
+import { firebase } from './firebase';
 import { createOrFindUser } from './db';
 import { useRouter } from 'next/router';
 
@@ -97,7 +97,12 @@ function useProvideAuth() {
 		return firebase
 			.auth()
 			.signOut()
-			.then(() => handleUser(false));
+			.then(() => {
+				handleUser(false);
+				setIsAdmin(false);
+				setIsAgent(false);
+				setIsCustomer(false);
+			});
 	};
 
 	const sendPasswordResetEmail = email => {

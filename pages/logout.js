@@ -1,4 +1,4 @@
-import firebase from '../util/firebase';
+import { firebase } from '../util/firebase';
 import { useRouter } from 'next/router';
 
 const Logout = () => {

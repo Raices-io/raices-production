@@ -1,7 +1,7 @@
 import React from 'react';
 import LargeShowingCard from '../Cards/LargeShowingCard';
 
-import firebase from '../../util/firebase';
+import { firebase } from '../../util/firebase';
 
 const EmptyInbox = ({ user }) => {
 	const firestore = firebase.firestore();

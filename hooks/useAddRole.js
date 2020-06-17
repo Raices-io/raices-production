@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import firebase from '../util/firebase';
+import { firebase } from '../util/firebase';
 
 const ADD_ROLE_REQUEST = 'ADD_ROLE_REQUEST';
 const ADD_ROLE_SUCCESS = 'ADD_ROLE_SUCCESS';

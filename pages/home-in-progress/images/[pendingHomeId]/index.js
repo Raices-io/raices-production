@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../../../util/auth';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import firebase from '../../../../util/firebase';
+import { firebase } from '../../../../util/firebase';
 
 import WizardProgressHeader from '../../../../components/FormElements/WizardProgressHeader';
 import Uploader from '../../../../components/ImageUploader/Uploader';

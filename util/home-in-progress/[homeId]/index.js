@@ -7,7 +7,7 @@
 // import MobileWizardNavigation from "../../../components/FormElements/MobileWizardNavigation";
 // import WizardProgressHeader from "../../../components/FormElements/WizardProgressHeader";
 // import HomeComponent from "../../../components/Home/HomeComponent.js";
-// import firebase from "../../firebase";
+// import { firebase } from "../../firebase";
 
 // const Add = () => {
 //   // ****

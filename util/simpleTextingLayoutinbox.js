@@ -11,7 +11,7 @@ import { useRouter } from 'next/router';
 import Spinner from '../components/LoadingSpinner/Spinner';
 import LoadingPage from '../components/LoadingSpinner/LoadingPage';
 // get in firebase
-import firebase from './firebase';
+import { firebase } from './firebase';
 
 const Inbox = () => {
 	const auth = useAuth();

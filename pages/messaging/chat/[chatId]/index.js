@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useAuth } from '../../../../util/auth';
 import { useRouter } from 'next/router';
 import Router from 'next/router';
-import firebase from '../../../../util/firebase';
+import { firebase } from '../../../../util/firebase';
 import ChatInput from '../../../../components/Chat/ChatInput';
 import moment from 'moment';
 import styled from 'styled-components';

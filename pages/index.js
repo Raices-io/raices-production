@@ -8,14 +8,12 @@ import {
   InstantSearch,
   Hits,
   SearchBox,
-  Pagination,
-  Highlight,
-  ClearRefinements,
   RefinementList,
   Configure,
   connectHighlight,
 } from "react-instantsearch-dom";
-
+// allows us to not show results before a
+import { connectStateResults } from "react-instantsearch/connectors";
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
   process.env.ALGOLIA_SEARCH_ID
@@ -42,7 +40,6 @@ const SearchBoxStyle = styled.div`
   }
   .ais-SearchBox-form {
     position: relative;
-    border: 1px solid red;
     display: block;
   }
   .ais-SearchBox-input {
@@ -57,8 +54,7 @@ const SearchBoxStyle = styled.div`
     right: 0.3rem;
     width: 20px;
     height: 20px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0.6rem;
     font-size: 1rem;
   }
   .ais-SearchBox-submitIcon {
@@ -87,10 +83,12 @@ const SearchBoxStyle = styled.div`
   }
 `;
 
-const Hit = ({ hit }) => (
-  <p>
-    <CustomHighlight attribute="addressLineOne" hit={hit} />
-  </p>
+const Hit = connectStateResults(({ hit, searchState }) =>
+  searchState.query ? (
+    <p>
+      <CustomHighlight attribute="addressLineOne" hit={hit} />
+    </p>
+  ) : null
 );
 
 const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
@@ -127,8 +125,6 @@ const Explore = () => {
             {/* <input type="text" placeholder="Medellin, Antioquia" /> */}
             <InstantSearch indexName="prod_HOMES" searchClient={searchClient}>
               <div className="left-panel">
-                <ClearRefinements />
-                <h2>Brands</h2>
                 <RefinementList attribute="brand" />
                 <Configure hitsPerPage={8} />
               </div>

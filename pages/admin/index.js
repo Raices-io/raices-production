@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../util/auth';
 import { useRouter } from 'next/router';
-import firebase from '../../util/firebase';
+import { firebase } from '../../util/firebase';
 
 const Admin = () => {
 	// ****

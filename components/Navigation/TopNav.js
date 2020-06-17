@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import ProfileDropdownMenu from './ProfileDropdownMenu';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -9,6 +9,7 @@ const TopNav = ({ inbox = false, fixed = false }) => {
 	const auth = useAuth();
 	const user = auth.user;
 	const [navOpen, setNavOpen] = useState(false);
+
 	return (
 		<Fragment>
 			<header
@@ -82,6 +83,19 @@ const TopNav = ({ inbox = false, fixed = false }) => {
 									Agregar casa
 								</a>
 							</Link>
+							{auth.isAgent && (
+								<Link href="/agent/property-list">
+									<a
+										href="#"
+										className={`inline-flex items-center px-1 pt-1 border-b-2 ${
+											router.pathname == '/agent/property-list'
+												? 'border-indigo-500'
+												: 'border-transparent'
+										} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out`}>
+										Mis propiedades
+									</a>
+								</Link>
+							)}
 						</div>
 						<div className="relative px-5 py-5 sm:py-0 sm:ml-4 sm:px-0">
 							<div className="flex items-center sm:hidden">

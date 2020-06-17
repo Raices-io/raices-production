@@ -14,7 +14,7 @@ const BackgroundImage = styled.div`
 	width: 100%;
 	display: block;
 	min-height: 150px;
-	object-fit: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
 `;
@@ -29,7 +29,7 @@ const ImageGalleryModal = ({ images = [], setShowImageModal }) => {
 				<div className="w-1/2 sm:w-1/12 flex justify-center items-center">
 					<div
 						onClick={() => setShowImageModal(false)}
-						className="bg-white rounded px-4 py-2 border border-gray-500">
+						className="bg-white rounded px-4 py-2 border border-gray-500 cursor-pointer">
 						Close
 					</div>
 				</div>
@@ -48,7 +48,7 @@ const ImageGalleryModal = ({ images = [], setShowImageModal }) => {
 							setPosition(p => position - 1);
 						}
 					}}
-					className="flex w-1/12 items-center justify-center bg-white ">
+					className="flex w-1/12 items-center justify-center bg-white cursor-pointer">
 					<div className="w-8 h-8 border border-gray-500 rounded-full flex justify-center items-center">
 						<svg
 							className="w-6 h-6 fill-current text-gray-500"
@@ -68,7 +68,7 @@ const ImageGalleryModal = ({ images = [], setShowImageModal }) => {
 							setPosition(p => position + 1);
 						}
 					}}
-					className="flex w-1/12 items-center justify-center bg-white ">
+					className="flex w-1/12 items-center justify-center bg-white cursor-pointer">
 					<div className="w-8 h-8 border border-gray-500 rounded-full flex justify-center items-center">
 						<svg
 							className="w-6 h-6 fill-current text-gray-500"

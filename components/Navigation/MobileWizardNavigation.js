@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Filled from '../Buttons/Filled';
 import MinimalIcon from '../Buttons/MinimalIcon';
 import { useRouter } from 'next/router';
-import firebase from '../../util/firebase';
+import { firebase } from '../../util/firebase';
 
 const MobileWizardNavigation = ({
 	setPercentage,

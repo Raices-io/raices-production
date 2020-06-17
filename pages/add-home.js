@@ -6,7 +6,7 @@ import { useAuth } from '../util/auth';
 import { useRouter } from 'next/router';
 import TopNav from '../components/Navigation/TopNav';
 import BottomNav from '../components/Navigation/BottomNav';
-import firebase from '../util/firebase';
+import { firebase } from '../util/firebase';
 import PendingHomeForm from '../components/Forms/PendingHomeForm';
 import LoadingPage from '../components/LoadingSpinner/LoadingPage';
 const Add = () => {

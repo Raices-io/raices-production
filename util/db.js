@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import firebase from './firebase';
+import { firebase } from './firebase';
 
 export const firestore = firebase.firestore();
 
@@ -27,6 +27,8 @@ export async function createOrFindUser(uid, data) {
 	} else {
 		// no -> create the user with userType = new
 		try {
+			data.createdAt = firebase.firestore.Timestamp.now();
+			data.optedOut = false;
 			await firestore
 				.collection('users')
 				.doc(uid)

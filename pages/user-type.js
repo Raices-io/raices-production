@@ -6,7 +6,7 @@ import useAddRole from '../hooks/useAddRole';
 import useAsyncState from '../hooks/useAsyncState';
 import LoadingPage from '../components/LoadingSpinner/LoadingPage';
 // get in firebase
-import firebase from '../util/firebase';
+import { firebase } from '../util/firebase';
 
 const UserType = () => {
 	const [role, setRole] = useAsyncState(null);
@@ -42,20 +42,20 @@ const UserType = () => {
 		<Container className="min-h-screen bg-gray-50 flex flex-col flex-grow justify-center items-center py-12 px-6 lg:px-8 text-center">
 			<Form className="mt-8 mx-auto w-full max-w-md">
 				<h2 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl leading-10">
-					Favor de indicar tu tipo de cuenta
+					Favor de indicar su tipo de cuenta
 				</h2>
 				<InputGroup className="mt-8 flex-col justify-center bg-white py-8 px-4 shadow-xl rounded-lg px-10 rounded-lg">
 					<Button
 						className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
 						onClick={onSubmit}
 						name="customer">
-						Cliente
+						En busca de propiedad
 					</Button>
 					<Button
 						className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out"
 						onClick={onSubmit}
 						name="agent">
-						Agente
+						Soy un Agente
 					</Button>
 				</InputGroup>
 			</Form>

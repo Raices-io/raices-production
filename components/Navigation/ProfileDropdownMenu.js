@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import Img from 'react-image';
-import firebase from '../../util/firebase';
+import { firebase } from '../../util/firebase';
 import { useRouter } from 'next/router';
+import { useAuth } from '../../util/auth';
 
 const ProfileDropdownMenu = ({ user, className = '' }) => {
 	const [navOpen, setNavOpen] = useState(false);
 
-	const auth = firebase.auth();
+	const { signout } = useAuth();
 	const router = useRouter();
-	const logout = e => {
+	const logout = async e => {
 		e.preventDefault();
-		return auth.signOut().then(() => router.push('/'));
+		await signout();
+		router.push('/');
 	};
 
 	useEffect(() => {

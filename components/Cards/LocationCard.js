@@ -13,7 +13,7 @@ const BackgroundImage = styled.div`
 const LocationCard = ({ location: { name, image, subtitle } }) => {
 	return (
 		<Link href={`/homes/${name}`}>
-			<div className="w-full first:mt-0 mt-4 sm:mt-0 first:ml-0 ml-0 sm:ml-4 max-w-sm overflow-hidden rounded-md border bg-white shadow">
+			<div className="w-full first:mt-0 mt-4 sm:mt-0 first:ml-0 ml-0 sm:ml-4 max-w-sm overflow-hidden rounded-md border bg-white shadow cursor-pointer">
 				<div className="relative">
 					<div className="h-48 bg-cover bg-no-repeat bg-center">
 						<BackgroundImage image={image} />

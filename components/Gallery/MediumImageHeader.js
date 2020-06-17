@@ -8,7 +8,7 @@ const BackgroundImage = styled.div`
 	width: 100%;
 	display: block;
 	min-height: 150px;
-	object-fit: cover;
+	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
 `;

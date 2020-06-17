@@ -2,23 +2,39 @@ import TopNav from "../components/Navigation/TopNav";
 import BottomNav from "../components/Navigation/BottomNav";
 import Features from "../components/LandingPage/Features";
 import styled from "styled-components";
-
+import NumberFormat from "react-number-format";
 import algoliasearch from "algoliasearch/lite";
 import {
   InstantSearch,
-  Hits,
   SearchBox,
   RefinementList,
   Configure,
   connectHighlight,
+  Highlight,
+  connectHits,
 } from "react-instantsearch-dom";
 // allows us to not show results before a
 import { connectStateResults } from "react-instantsearch/connectors";
+
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
   process.env.ALGOLIA_SEARCH_ID
 );
 
+const SearchDropdown = styled.ol`
+  background: white;
+  display: ${(props) => (props.empty ? "hidden" : "flex")};
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  .hit:first-child {
+    padding-top: 0.5rem;
+  }
+`;
 const SearchBoxStyle = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(${(props) => props.image});
@@ -31,13 +47,17 @@ const SearchBoxStyle = styled.div`
   background-position: center center;
   padding: 0 1rem 0 1rem;
   min-height: 612px;
-
+  z-index: 10;
   @media (max-width: 640px) {
     min-height: 300px;
+    .searchHeader {
+      font-size: 12px;
+    }
   }
-  .ais-Hits {
-    background: white;
+  .ais-SearchBox-reset {
+    display: none;
   }
+
   .ais-SearchBox-form {
     position: relative;
     display: block;
@@ -65,6 +85,7 @@ const SearchBoxStyle = styled.div`
     color: white;
     font-size: 35px;
     font-weight: bold;
+    height: 250px;
   }
   .input-box {
     padding-left: 3rem;
@@ -74,6 +95,12 @@ const SearchBoxStyle = styled.div`
     width: 50%;
     justify-content: flex-start;
     height: 100%;
+    @media (max-width: 640px) {
+      height: 250px;
+      width: 100%;
+      padding-left: 0;
+      border: 1px solid red;
+    }
   }
   input {
     border-radius: 0.25rem;
@@ -83,11 +110,96 @@ const SearchBoxStyle = styled.div`
   }
 `;
 
+const StyledHit = styled.div`
+  display: flex;
+  margin-top: 0.5rem;
+  width: 350px;
+  .media-heading {
+    display: block;
+    width: 250.5px;
+    text-overflow: ellipsis;
+
+    /* Required for text-overflow to do anything */
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .infos {
+    margin-left: 0.3rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .picture {
+    background-image: url(${(props) => props.homeImage});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 90%;
+    min-height: 70px;
+    border-radius: 5px;
+  }
+  .profile {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    position: absolute;
+    right: 0.3rem;
+    bottom: 0.3rem;
+  }
+  .pictures-wrapper {
+    width: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const Hits = connectStateResults(({ searchState, hits }) =>
+  searchState.query ? (
+    <SearchDropdown>
+      {hits.map((hit) => (
+        <Hit hit={hit} />
+      ))}
+    </SearchDropdown>
+  ) : (
+    <SearchDropdown empty></SearchDropdown>
+  )
+);
+const CustomHits = connectHits(Hits);
+
 const Hit = connectStateResults(({ hit, searchState }) =>
   searchState.query ? (
-    <p>
-      <CustomHighlight attribute="addressLineOne" hit={hit} />
-    </p>
+    <div className="hit col-sm-3">
+      <StyledHit homeImage={hit.defaultPic}>
+        <div className="pictures-wrapper">
+          <div className="picture"></div>
+          <img
+            className="profile"
+            alt={hit.agent.displayName}
+            src={hit.agent.profilePic}
+          />
+        </div>
+        <div className="infos">
+          <h4 className="media-heading">{hit.title}</h4>
+          <p>
+            {hit.bedrooms} hab.- {hit.bathrooms} baños{" "}
+            <Highlight attribute="country" hit={hit} />
+          </p>
+          <span>
+            {
+              <NumberFormat
+                thousandSeparator={true}
+                thousandsGroupStyle="wan"
+                displayType="text"
+                prefix={"$"}
+                value={hit.price}
+              />
+            }
+          </span>
+        </div>
+      </StyledHit>
+    </div>
   ) : null
 );
 
@@ -125,12 +237,11 @@ const Explore = () => {
             {/* <input type="text" placeholder="Medellin, Antioquia" /> */}
             <InstantSearch indexName="prod_HOMES" searchClient={searchClient}>
               <div className="left-panel">
-                <RefinementList attribute="brand" />
                 <Configure hitsPerPage={8} />
               </div>
               <div className="right-panel">
                 <SearchBox />
-                <Hits hitComponent={Hit} />
+                <CustomHits hitComponent={Hit} />
               </div>
             </InstantSearch>
           </div>

@@ -32,6 +32,7 @@
     "react-infinite-scroll-component": "^5.0.4",
     "react-instantsearch": "^6.6.0",
     "react-instantsearch-dom": "^6.6.0",
+    "react-number-format": "^4.4.1",
     "react-swipeable": "^5.5.1",
     "styled-components": "^5.0.1",
     "tailwindcss-pseudo-elements": "^1.1.2"

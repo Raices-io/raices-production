@@ -56,8 +56,8 @@ const SearchDropdown = styled.ol`
 const SearchBoxStyle = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(${(props) => props.image});
-  min-height: 612px;
-  height: 100%;
+  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -118,7 +118,7 @@ const SearchBoxStyle = styled.div`
   }
   .input-box {
     padding-left: 3rem;
-    padding-top: 3rem;
+    padding-top: 12rem;
     display: flex;
     flex-direction: column;
     width: 75%;
@@ -128,6 +128,7 @@ const SearchBoxStyle = styled.div`
       height: 250px;
       width: 100%;
       padding-left: 0;
+      padding-top: 2rem;
     }
   }
   input[type="text"] {

@@ -5,6 +5,7 @@ import Features from "../components/LandingPage/Features";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
 import algoliasearch from "algoliasearch/lite";
+import Link from "next/link";
 import {
   InstantSearch,
   SearchBox,
@@ -183,36 +184,38 @@ const CustomHits = connectHits(Hits);
 
 const Hit = connectStateResults(({ hit, searchState }) =>
   searchState.query ? (
-    <div className="hit col-sm-3">
-      <StyledHit homeImage={hit.defaultPic}>
-        <div className="pictures-wrapper">
-          <div className="picture"></div>
-          <img
-            className="profile"
-            alt={hit.agent.displayName}
-            src={hit.agent.profilePic}
-          />
-        </div>
-        <div className="infos">
-          <h4 className="media-heading">{hit.title}</h4>
-          <p>
-            {hit.bedrooms} hab.- {hit.bathrooms} baños{" "}
-            <Highlight attribute="country" hit={hit} />
-          </p>
-          <span>
-            {
-              <NumberFormat
-                thousandSeparator={true}
-                thousandsGroupStyle="wan"
-                displayType="text"
-                prefix={"$"}
-                value={hit.price}
-              />
-            }
-          </span>
-        </div>
-      </StyledHit>
-    </div>
+    <Link href={`/home/${hit.city}/${hit.objectID}`}>
+      <div className="hit col-sm-3">
+        <StyledHit homeImage={hit.defaultPic}>
+          <div className="pictures-wrapper">
+            <div className="picture"></div>
+            <img
+              className="profile"
+              alt={hit.agent.displayName}
+              src={hit.agent.profilePic}
+            />
+          </div>
+          <div className="infos">
+            <h4 className="media-heading">{hit.title}</h4>
+            <p>
+              {hit.bedrooms} hab.- {hit.bathrooms} baños{" "}
+              <Highlight attribute="country" hit={hit} />
+            </p>
+            <span>
+              {
+                <NumberFormat
+                  thousandSeparator={true}
+                  thousandsGroupStyle="wan"
+                  displayType="text"
+                  prefix={"$"}
+                  value={hit.price}
+                />
+              }
+            </span>
+          </div>
+        </StyledHit>
+      </div>
+    </Link>
   ) : null
 );
 

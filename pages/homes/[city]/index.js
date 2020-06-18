@@ -9,7 +9,6 @@ import HomeListCard from "../../../components/Cards/HomeListCard";
 import PaginationButton from "../../../components/Pagination/PaginationButton";
 import LoadingPage from "../../../components/LoadingSpinner/LoadingPage";
 import Link from "next/link";
-import { last } from "lodash";
 
 const Index = () => {
   const perPage = 20;

@@ -6,14 +6,18 @@ import styled from "styled-components";
 import NumberFormat from "react-number-format";
 import algoliasearch from "algoliasearch/lite";
 import Link from "next/link";
+
 import {
   InstantSearch,
   SearchBox,
-  RefinementList,
+  ToggleRefinement,
   Configure,
   connectHighlight,
+  RefinementList,
+  connectRefinementList,
   Highlight,
   connectHits,
+  CurrentRefinements,
 } from "react-instantsearch-dom";
 // allows us to not show results before a
 import { connectStateResults } from "react-instantsearch/connectors";
@@ -38,6 +42,7 @@ const SearchDropdown = styled.ol`
   border-radius: 0.25rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
   .hit:first-child {
     padding-top: 0.2rem;
   }
@@ -51,6 +56,7 @@ const SearchDropdown = styled.ol`
 const SearchBoxStyle = styled.div`
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     url(${(props) => props.image});
+  min-height: 612px;
   height: 100%;
   width: 100%;
   display: flex;
@@ -59,16 +65,20 @@ const SearchBoxStyle = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   padding: 0 1rem 0 1rem;
-  min-height: 612px;
   z-index: 10;
   @media (max-width: 640px) {
-    min-height: 300px;
+    min-height: 100vh;
+    height: 100%;
     .searchHeader {
-      font-size: 12px;
+      display: none;
     }
   }
   .right-panel {
     position: relative;
+    margin-top: 2rem;
+    @media (max-width: 640px) {
+      margin-top: 5rem;
+    }
   }
   .ais-SearchBox-reset {
     display: none;
@@ -77,12 +87,14 @@ const SearchBoxStyle = styled.div`
   .ais-SearchBox-form {
     position: relative;
     display: block;
+    margin-top: 1rem;
   }
   .ais-SearchBox-input {
     padding: 0.3rem 1.7rem;
     width: 100%;
     position: relative;
     border: 1px solid #c4c8d8;
+    height: 60px;
   }
   .ais-SearchBox-submit {
     position: absolute;
@@ -90,7 +102,7 @@ const SearchBoxStyle = styled.div`
     right: 0.3rem;
     width: 20px;
     height: 20px;
-    top: 0.6rem;
+    top: 35%;
     font-size: 1rem;
   }
   .ais-SearchBox-submitIcon {
@@ -102,14 +114,13 @@ const SearchBoxStyle = styled.div`
     color: white;
     font-size: 35px;
     font-weight: bold;
-    height: 250px;
   }
   .input-box {
     padding-left: 3rem;
     padding-top: 3rem;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 75%;
     justify-content: flex-start;
     height: 100%;
     @media (max-width: 640px) {
@@ -118,7 +129,7 @@ const SearchBoxStyle = styled.div`
       padding-left: 0;
     }
   }
-  input {
+  input[type="text"] {
     border-radius: 0.25rem;
     height: 2.5rem;
     padding-left: 1rem;
@@ -197,11 +208,6 @@ const Hit = connectStateResults(({ hit, searchState }) =>
         <StyledHit homeImage={hit.defaultPic}>
           <div className="pictures-wrapper">
             <div className="picture"></div>
-            <img
-              className="profile"
-              alt={hit.agent.displayName}
-              src={hit.agent.profilePic}
-            />
           </div>
           <div className="infos">
             <h4 className="media-heading">{hit.title}</h4>
@@ -227,24 +233,74 @@ const Hit = connectStateResults(({ hit, searchState }) =>
   ) : null
 );
 
-// const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
-//   const parsedHit = highlight({
-//     highlightProperty: "_highlightResult",
-//     attribute,
-//     hit,
-//   });
+const StyledTab = styled.div`
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: ${(props) => (props.selected ? "white" : "transparent")};
+  color: ${(props) => (props.selected ? "#5A67D8" : "white")};
+  @media (min-width: 640px) {
+    &:hover {
+      background: white;
+      color: #5a67d8;
+    }
+  }
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+`;
 
-//   return (
-//     <div>
-//       <h3>{hit.username}</h3>
-//       <img src={hit.avatar} alt={hit.username} />
-//       {parsedHit.map((part) =>
-//         part.isHighlighted ? <mark>{part.value}</mark> : part.value
-//       )}
-//     </div>
-//   );
-// });
+const StyledTabs = styled.div`
+  background-color: rgba(59, 65, 68, 0.6);
+  display: flex;
+  height: 50px;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 5px;
+  justify-content: space-between;
+  max-width: 200px;
+`;
 
+const TabButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const RoomType = connectRefinementList(
+  ({ items, refine, currentRefinement }) => {
+    const sortedItems = items.sort((i1, i2) =>
+      i1.label.localeCompare(i2.label)
+    );
+    const hitComponents = sortedItems.map((item) => {
+      const selectedClassName = item.isRefined
+        ? " ais-refinement-list--item__active"
+        : "";
+      const itemClassName = `ais-refinement-list--item col-sm-3 ${selectedClassName}`;
+      return (
+        <div className={itemClassName} key={item.label}>
+          <StyledTab selected={currentRefinement.includes(item.label)}>
+            <TabButton
+              className="ais-refinement-list--label"
+              onClick={(e) => {
+                e.preventDefault();
+                refine(item.value);
+              }}
+            >
+              <span>{item.label == "rent" ? "Alquilar" : "Comprar"} </span>
+            </TabButton>
+          </StyledTab>
+        </div>
+      );
+    });
+
+    return (
+      <div className="row aisdemo-filter">
+        <StyledTabs id="room_types col-sm-3">{hitComponents}</StyledTabs>
+      </div>
+    );
+  }
+);
 const Explore = () => {
   // stop scroll at page level is query is not empty
 
@@ -278,7 +334,11 @@ const Explore = () => {
                 <Configure hitsPerPage={8} />
               </div>
               <div className="right-panel">
+                <RoomType attribute="sale_type" operator="or" limit={2} />
                 <SearchBox
+                  translations={{
+                    placeholder: "Medellin, Antioquia",
+                  }}
                   onClick={(e) => {
                     setInput(true);
                     e.stopPropagation();

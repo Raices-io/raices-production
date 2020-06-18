@@ -90,7 +90,8 @@ const SearchBoxStyle = styled.div`
     margin-top: 1rem;
   }
   .ais-SearchBox-input {
-    padding: 0.3rem 1.7rem;
+    padding: 0.3rem 1.7rem 0.3rem 2.3rem;
+    border-radius: 5px;
     width: 100%;
     position: relative;
     border: 1px solid #c4c8d8;
@@ -98,7 +99,7 @@ const SearchBoxStyle = styled.div`
   }
   .ais-SearchBox-submit {
     position: absolute;
-    left: 0.3rem;
+    left: 0.8rem;
     right: 0.3rem;
     width: 20px;
     height: 20px;

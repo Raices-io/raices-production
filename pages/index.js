@@ -315,7 +315,7 @@ const Explore = () => {
         !input ? "overflow-y-scroll" : "overflow-hidden"
       } antialiased`}
     >
-      <div className="z-40 hidden md:block px-12 mt-12">
+      <div className="z-40 hidden md:block px-12">
         <TopNav fixed />
       </div>
       <div

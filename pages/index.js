@@ -1,3 +1,4 @@
+import { useState, useEffect, useLayoutEffect } from "react";
 import TopNav from "../components/Navigation/TopNav";
 import BottomNav from "../components/Navigation/BottomNav";
 import Features from "../components/LandingPage/Features";
@@ -23,10 +24,15 @@ const searchClient = algoliasearch(
 
 const SearchDropdown = styled.ol`
   background: white;
-  display: ${(props) => (props.empty ? "hidden" : "flex")};
+  position: absolute;
+  top: 5;
+  overflow-y: scroll;
+  height: 400px;
+  z-index: 20;
+  width: 100%;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   margin-top: 0.5rem;
   border-radius: 0.25rem;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -53,6 +59,9 @@ const SearchBoxStyle = styled.div`
     .searchHeader {
       font-size: 12px;
     }
+  }
+  .right-panel {
+    position: relative;
   }
   .ais-SearchBox-reset {
     display: none;
@@ -99,7 +108,6 @@ const SearchBoxStyle = styled.div`
       height: 250px;
       width: 100%;
       padding-left: 0;
-      border: 1px solid red;
     }
   }
   input {
@@ -155,17 +163,22 @@ const StyledHit = styled.div`
   }
 `;
 
-const Hits = connectStateResults(({ searchState, hits }) =>
-  searchState.query ? (
-    <SearchDropdown>
+const Hits = connectStateResults(({ searchState, hits, input, setInput }) => {
+  useEffect(() => {
+    if (searchState.query) {
+      setInput(true);
+    } else {
+      setInput(false);
+    }
+  }, [searchState]);
+  return searchState.query && input ? (
+    <SearchDropdown onClick={(e) => e.stopPropagation()}>
       {hits.map((hit) => (
         <Hit hit={hit} />
       ))}
     </SearchDropdown>
-  ) : (
-    <SearchDropdown empty></SearchDropdown>
-  )
-);
+  ) : null;
+});
 const CustomHits = connectHits(Hits);
 
 const Hit = connectStateResults(({ hit, searchState }) =>
@@ -203,31 +216,45 @@ const Hit = connectStateResults(({ hit, searchState }) =>
   ) : null
 );
 
-const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
-  const parsedHit = highlight({
-    highlightProperty: "_highlightResult",
-    attribute,
-    hit,
-  });
+// const CustomHighlight = connectHighlight(({ highlight, attribute, hit }) => {
+//   const parsedHit = highlight({
+//     highlightProperty: "_highlightResult",
+//     attribute,
+//     hit,
+//   });
 
-  return (
-    <div>
-      <h3>{hit.username}</h3>
-      <img src={hit.avatar} alt={hit.username} />
-      {parsedHit.map((part) =>
-        part.isHighlighted ? <mark>{part.value}</mark> : part.value
-      )}
-    </div>
-  );
-});
+//   return (
+//     <div>
+//       <h3>{hit.username}</h3>
+//       <img src={hit.avatar} alt={hit.username} />
+//       {parsedHit.map((part) =>
+//         part.isHighlighted ? <mark>{part.value}</mark> : part.value
+//       )}
+//     </div>
+//   );
+// });
 
 const Explore = () => {
+  // stop scroll at page level is query is not empty
+
+  const [input, setInput] = useState(false);
   return (
-    <div className=" relative flex flex-col w-screen h-full flex-grow bg-white overflow-y-scroll antialiased">
+    <div
+      onClick={() => {
+        setInput(false);
+      }}
+      className={`relative flex flex-col w-screen h-full flex-grow bg-white ${
+        !input ? "overflow-y-scroll" : "overflow-hidden"
+      } antialiased`}
+    >
       <div className="z-40 hidden md:block px-12 mt-12">
         <TopNav fixed />
       </div>
-      <div className="sm:py-6 pb-12 flex flex-col overflow-y-scroll h-full flex-grow mx-0 flex-grow sm:mt-8">
+      <div
+        className={`sm:py-6 pb-12 flex flex-col ${
+          input ? "overflow-hidden" : "overflow-y-scroll"
+        } h-full flex-grow mx-0 flex-grow sm:mt-8`}
+      >
         {/* Features section */}
         <SearchBoxStyle image="/homePage/homePageImage.jpg">
           <div className="input-box">
@@ -240,8 +267,18 @@ const Explore = () => {
                 <Configure hitsPerPage={8} />
               </div>
               <div className="right-panel">
-                <SearchBox />
-                <CustomHits hitComponent={Hit} />
+                <SearchBox
+                  onClick={(e) => {
+                    setInput(true);
+                    e.stopPropagation();
+                  }}
+                />
+                {/* dropdown menu */}
+                <CustomHits
+                  input={input}
+                  setInput={setInput}
+                  hitComponent={Hit}
+                />
               </div>
             </InstantSearch>
           </div>

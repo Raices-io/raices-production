@@ -39,7 +39,13 @@ const SearchDropdown = styled.ol`
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
   .hit:first-child {
-    padding-top: 0.5rem;
+    padding-top: 0.2rem;
+  }
+  .hit {
+    flex: 1 1 auto; /* formerly flex: 1 0 auto; */
+    width: 97%;
+    overflow: hidden; /* new */
+    min-height: min-content;
   }
 `;
 const SearchBoxStyle = styled.div`
@@ -90,6 +96,7 @@ const SearchBoxStyle = styled.div`
   .ais-SearchBox-submitIcon {
     width: 14px;
     height: 14px;
+    margin: auto;
   }
   .searchHeader {
     color: white;
@@ -121,13 +128,13 @@ const SearchBoxStyle = styled.div`
 
 const StyledHit = styled.div`
   display: flex;
+  flex: 1;
+  width: 100%;
   margin-top: 0.5rem;
-  width: 350px;
   .media-heading {
     display: block;
-    width: 250.5px;
     text-overflow: ellipsis;
-
+    min-width: 0;
     /* Required for text-overflow to do anything */
     white-space: nowrap;
     overflow: hidden;
@@ -136,13 +143,14 @@ const StyledHit = styled.div`
     margin-left: 0.3rem;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
   .picture {
     background-image: url(${(props) => props.homeImage});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    width: 100%;
+    min-width: 100%;
     height: 90%;
     min-height: 70px;
     border-radius: 5px;
@@ -156,7 +164,7 @@ const StyledHit = styled.div`
     bottom: 0.3rem;
   }
   .pictures-wrapper {
-    width: 100px;
+    min-width: 100px;
     position: relative;
     display: flex;
     flex-direction: column;

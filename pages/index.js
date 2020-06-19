@@ -4,7 +4,7 @@ import BottomNav from "../components/Navigation/BottomNav";
 import Features from "../components/LandingPage/Features";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
-import algoliasearch from "algoliasearch/lite";
+import algoliasearch from "algoliasearch";
 import Link from "next/link";
 
 import {
@@ -337,6 +337,17 @@ const Explore = () => {
               </div>
               <div className="right-panel">
                 <RoomType attribute="sale_type" operator="or" limit={2} />
+                {/* Note, the below refinement list isn't styled, but is a more concise component we can use = the sort function in transform Items disables the former issue of order changing on filter selection. */}
+                {/* Using RefinementList as opposed to RoomType would significantly reduce code */}
+
+                {/* <RefinementList
+                  attribute="sale_type"
+                  transformItems={function (items) {
+                    return items.sort((i1, i2) =>
+                      i1.label.localeCompare(i2.label)
+                    );
+                  }}
+                /> */}
                 <SearchBox
                   translations={{
                     placeholder: "Medellin, Antioquia",

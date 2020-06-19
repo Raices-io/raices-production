@@ -4841,6 +4841,18 @@ normalize.css@^8.0.1:
   resolved "https://registry.yarnpkg.com/normalize.css/-/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
   integrity sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==
 
+nouislider-react@^3.3.8:
+  version "3.3.8"
+  resolved "https://registry.yarnpkg.com/nouislider-react/-/nouislider-react-3.3.8.tgz#224540f39848e1a52070127f16460ef8f03152a7"
+  integrity sha512-Le0kUs29iaUEdaO3cdZcc7EXteFNpXVuasxz4F8Z520PUI17sJJAoggiScPu+Nz6vMx0o9SgK0v8bMXcePF20A==
+  dependencies:
+    nouislider "^14.5.0"
+
+nouislider@^14.5.0:
+  version "14.5.0"
+  resolved "https://registry.yarnpkg.com/nouislider/-/nouislider-14.5.0.tgz#36f9c30be39ff687deda42fd98ec36a5bfc45221"
+  integrity sha512-EzI2Y0pO+x20c8yHLvhmT9HXexkbncXHKcnNb6abN48a3F8QEGb73v2W6aPolQytoyjCalUrozSeHBTlpz2jfg==
+
 nth-check@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nth-check/-/nth-check-1.0.2.tgz#b2bd295c37e3dd58a3bf0700376663ba4d9cf05c"
@@ -6052,6 +6064,15 @@ react-instantsearch-core@^6.6.0:
     prop-types "^15.5.10"
     react-fast-compare "^3.0.0"
 
+react-instantsearch-dom-maps@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/react-instantsearch-dom-maps/-/react-instantsearch-dom-maps-6.6.0.tgz#c9b210bfdb00bba410da06c7bce6dc83ab395184"
+  integrity sha512-DE7rtirjBMOtyuv6pZj1Zw/SrAZ7CWhM238NbO6wj4DJqdCTA/nJ5nIljSMxlX7cbLIq/jHO4zLg/s9CioMqIw==
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    prop-types "^15.5.10"
+    scriptjs "^2.5.8"
+
 react-instantsearch-dom@^6.6.0:
   version "6.6.0"
   resolved "https://registry.yarnpkg.com/react-instantsearch-dom/-/react-instantsearch-dom-6.6.0.tgz#ed153aaedcc466e0ceed50860d9008a4ab7e714c"
@@ -6433,6 +6454,11 @@ schema-utils@^2.6.1, schema-utils@^2.6.5, schema-utils@^2.6.6:
     "@types/json-schema" "^7.0.4"
     ajv "^6.12.2"
     ajv-keywords "^3.4.1"
+
+scriptjs@^2.5.8:
+  version "2.5.9"
+  resolved "https://registry.yarnpkg.com/scriptjs/-/scriptjs-2.5.9.tgz#343915cd2ec2ed9bfdde2b9875cd28f59394b35f"
+  integrity sha512-qGVDoreyYiP1pkQnbnFAUIS5AjenNwwQBdl7zeos9etl+hYKWahjRTfzAZZYBv5xNHx7vNKCmaLDQZ6Fr2AEXg==
 
 semver@7.0.0:
   version "7.0.0"

@@ -17,7 +17,7 @@ const Explore = () => {
 			</div>
 			<HeroContainer>
 				{/* Features section */}
-				<SearchBar input={input} setInput={setInput} />
+				<SearchBar input={input} setInput={setInput}/>
 			</HeroContainer>
 			<div className="flex px-5 flex flex-grow flex-shrink-0 justify-center items-center sm:px-12 pb-6 sm:pb-0">
 				<Features />
@@ -34,7 +34,13 @@ const HeroContainer = styled.div`
 	width: min(1440px, 90vw);
 	margin: 0 auto;
 	margin-top: 96px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
 	border-radius: 10px;
+
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
 		url('/homePage/homePageImage.jpg');
 	background-size: cover;

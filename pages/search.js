@@ -105,7 +105,7 @@ const Container = styled.div`
   flex-direction: column;
   flex-grow: 1;
   .header {
-    height: 200px;
+    height: 400px;
   }
   .filters {
     display: flex;
@@ -113,32 +113,32 @@ const Container = styled.div`
     .sale_or_rent {
       border: 1px solid red;
       width: 200px;
-      height: 100px;
+      height: 200px;
     }
     .city {
       border: 1px solid blue;
       width: 200px;
-      height: 100px;
+      height: 200px;
     }
     .price {
       border: 1px solid purple;
       width: 400px;
-      height: 100px;
+      height: 200px;
     }
     .beds {
       border: 1px solid yellow;
       width: 100px;
-      height: 100px;
+      height: 200px;
     }
     .baths {
       border: 1px solid cyan;
       width: 100px;
-      height: 100px;
+      height: 200px;
     }
     .clear {
       border: 1px solid cyan;
       width: 100px;
-      height: 100px;
+      height: 200px;
     }
   }
   .results {
@@ -725,6 +725,7 @@ const Search = (props) => {
               <Price />
             </div>
             <div className="beds">
+              <span>Bedrooms</span>
               <RefinementList
                 attribute="bedrooms"
                 transformItems={function (items) {
@@ -735,6 +736,7 @@ const Search = (props) => {
               />{" "}
             </div>
             <div className="baths">
+              <span>Bathrooms</span>
               <NumericMenu
                 attribute="bathrooms"
                 items={[

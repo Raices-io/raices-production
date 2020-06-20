@@ -2,7 +2,7 @@ import React from 'react';
 
 const Features = () => {
 	return (
-		<div className="pb-12 mt-12 bg-white">
+		<div className="pb-12 mt-12 mb-6 bg-white">
 			<div className="max-w-screen-xl mx-auto">
 				<div className="lg:text-center flex flex-col items-start sm:items-center">
 					<p className="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">
@@ -11,7 +11,7 @@ const Features = () => {
 					<h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
 						Una mejor forma de comprar una casa
 					</h3>
-					<p className="mt-4 text-center max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">
+					<p className="mt-4 sm:text-center max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">
 						Encuentra tu próxima casa. Conecta directamente con agentes. Sin contratiempos.
 					</p>
 				</div>

@@ -18,7 +18,7 @@ const Explore = () => {
 			</TopNavContainer>
 			<HeroContainer input={input}>
 				{/* Features section */}
-				<SearchBar input={input} setInput={setInput} />
+				<SearchBar input={input} setInput={setInput}/>
 			</HeroContainer>
 			<div className="flex px-5 flex flex-grow flex-shrink-0 justify-center items-center sm:px-12 pb-6 sm:pb-0">
 				<Features />

@@ -35,7 +35,6 @@ const Index = () => {
     setLoading(true);
     // If no last doc, this is the first query
     if (!lastDoc) {
-      console.log("no last doc");
       homesRef = await firestore
         .collection("homes")
         .orderBy("updated", "desc")

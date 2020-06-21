@@ -1,4 +1,4 @@
-import { Fragment, Component, useState } from "react";
+import { Fragment, Component, useState, useEffect } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import algoliasearch from "algoliasearch/lite";
@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import Nouislider from "nouislider-react";
 
 // plugin that creates slider
-import Slider from "nouislider";
+import InfiniteHits from "../components/InfiniteHits/InfiniteHits";
 
 import {
   InstantSearch,
@@ -17,12 +17,14 @@ import {
   Highlight,
   Configure,
   connectHits,
+  connectInfiniteHits,
   connectNumericMenu,
   connectRefinementList,
   connectRange,
   connectStateResults,
   RefinementList,
   NumericMenu,
+  Stats,
 } from "react-instantsearch-dom";
 
 import {
@@ -100,12 +102,20 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   min-height: 100%;
-  background: gray;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  .search {
+    height: 60px;
+    min-height: 60px;
+    background: gray;
+  }
   .header {
-    height: 400px;
+    height: 10vh;
+    min-height: 10vh;
+    @media (max-width: 600px) {
+      display: none;
+    }
   }
   .filters {
     display: flex;
@@ -143,13 +153,21 @@ const Container = styled.div`
   }
   .results {
     flex-grow: 1;
-    background: blue;
     overflow: auto;
   }
   .footer {
-    min-height: 60px;
-    height: 60px;
-    background: red;
+    max-width: 800px;
+    height: 50px;
+    min-height: 50px;
+    overflow-y: hidden;
+    bottom: 0;
+    min-width: 100%;
+    background-color: red;
+    -webkit-transition: all 0.3s ease-out, bottom 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out, bottom 0.3s ease-out;
+    -o-transition: all 0.3s ease-out, bottom 0.3s ease-out;
+    transition: all 0.3s ease-out, bottom 0.3s ease-out;
+    ${(props) => props.hideNav && `min-height: 0; height: 0`}
   }
   /* Pagination */
   .ais-Pagination {
@@ -684,12 +702,124 @@ class Range extends Component {
   }
 }
 const ConnectedRange = connectRange(Range);
+
+const FiltersButton = styled.button`
+  background: red;
+  padding: 0.5rem;
+  border-radius: 5px;
+  @media (min-width: 640px) {
+    display: none;
+  }
+`;
+const FiltersModal = styled.div`
+  position: absolute;
+  bottom: -100%;
+  min-width: 100%;
+  height: calc(100vh - 60px);
+  background-color: white;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  -moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  -o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  ${(props) =>
+    props.fadeIn &&
+    `bottom: 0;
+  opacity: 1;`}
+  .bottom-buttons {
+    background: gray;
+    height: 100px;
+    ${(props) => props.fadeIn && "position: fixed;"}
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+`;
 const Search = (props) => {
+  const [modal, setModal] = useState(false);
+  const [hideBottomNav, setHideBottomNav] = useState(false);
+  const toggleModal = () => {
+    setModal((p) => !p);
+  };
   return (
-    <Container>
+    <Container hideNav={hideBottomNav}>
       <InstantSearch indexName="prod_HOMES" searchClient={searchClient}>
+        <FiltersModal fadeIn={modal}>
+          {/* Filters */}
+          <div className="sale_or_rent">
+            <span>Sale or rent</span>
+            <RefinementList
+              attribute="sale_type"
+              transformItems={function (items) {
+                return items.sort((i1, i2) => i1.label.localeCompare(i2.label));
+              }}
+            />{" "}
+          </div>
+          <div className="city">
+            <span>City</span>
+            <RefinementList
+              attribute="city"
+              transformItems={function (items) {
+                return items.sort((i1, i2) => i1.label.localeCompare(i2.label));
+              }}
+            />{" "}
+          </div>
+          <div className="price">
+            <Price />
+          </div>
+          <div className="beds">
+            <span>Bedrooms</span>
+            <RefinementList
+              attribute="bedrooms"
+              transformItems={function (items) {
+                return items.sort((i1, i2) => i1.label.localeCompare(i2.label));
+              }}
+            />{" "}
+          </div>
+          <div className="baths">
+            <span>Bathrooms</span>
+            <NumericMenu
+              attribute="bathrooms"
+              items={[
+                { label: "1+", start: 0 },
+                { label: "2+", start: 2 },
+                { label: "3+", start: 3 },
+                { label: "4+", start: 4 },
+              ]}
+              transformItems={function (items) {
+                return items.sort((i1, i2) => i1.label.localeCompare(i2.label));
+              }}
+            />
+          </div>
+          {/* Bottom attached clear all and button to go to search */}
+          <div className="bottom-buttons">
+            <ClearRefinements />
+            <FiltersButton onClick={toggleModal}>
+              <Stats
+                translations={{
+                  stats(nbHits, timeSpentMS) {
+                    return `${nbHits} propiedades`;
+                  },
+                }}
+              />
+            </FiltersButton>
+          </div>
+        </FiltersModal>
+        <div className="search">
+          {" "}
+          <SearchBox
+            translations={{
+              placeholder: "Medellin, Antioquia",
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              setHideBottomNav((p) => true);
+            }}
+            onBlur={() => setHideBottomNav((p) => false)}
+          />
+        </div>
         <div className="header">
-          <Configure hitsPerPage={16} />
           <SearchBox
             translations={{
               placeholder: "Medellin, Antioquia",
@@ -758,10 +888,17 @@ const Search = (props) => {
           </div>
         </div>
         <div className="results">
-          {" "}
-          <CustomHits hitComponent={Hit} />
-          <Pagination />
+          <FiltersButton
+            onClick={() => {
+              toggleModal();
+            }}
+          >
+            Filters
+          </FiltersButton>{" "}
+          {/* <CustomHits hitComponent={Hit} /> */}
+          <InfiniteHits minHitsPerPage={16} />
         </div>
+        {/* bottom nav */}
         <div className="footer"></div>
       </InstantSearch>
     </Container>

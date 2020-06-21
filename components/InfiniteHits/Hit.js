@@ -1,0 +1,17 @@
+import React from "react";
+import { Highlight } from "react-instantsearch-dom";
+
+const Hit = ({ hit }) => (
+  <div>
+    <img src={hit.image} align="left" alt={hit.name} />
+    <div className="hit-name">
+      <Highlight attribute="name" hit={hit} />
+    </div>
+    <div className="hit-description">
+      <Highlight attribute="description" hit={hit} />
+    </div>
+    <div className="hit-price">${hit.price}</div>
+  </div>
+);
+
+export default Hit;

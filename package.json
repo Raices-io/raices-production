@@ -38,6 +38,7 @@
     "react-instantsearch-dom": "^6.6.0",
     "react-instantsearch-dom-maps": "^6.6.0",
     "react-number-format": "^4.4.1",
+    "react-rangeslider": "^2.2.0",
     "react-swipeable": "^5.5.1",
     "reactrangeslider": "^3.0.6",
     "rheostat": "^4.1.1",

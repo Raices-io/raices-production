@@ -260,6 +260,7 @@ const StyledTabs = styled.div`
   width: 50%;
   margin: 0 auto;
   border-radius: 5px;
+  align-self: flex-start;
   justify-content: space-between;
   max-width: 200px;
 `;

@@ -27,6 +27,7 @@
     "nouislider": "^14.5.0",
     "nouislider-react": "^3.3.8",
     "react": "^16.7.0",
+    "react-compound-slider": "^2.5.0",
     "react-div-100vh": "^0.3.8",
     "react-dom": "^16.7.0",
     "react-hook-form": "^5.7.2",
@@ -38,6 +39,8 @@
     "react-instantsearch-dom-maps": "^6.6.0",
     "react-number-format": "^4.4.1",
     "react-swipeable": "^5.5.1",
+    "reactrangeslider": "^3.0.6",
+    "rheostat": "^4.1.1",
     "styled-components": "^5.0.1",
     "tailwindcss-pseudo-elements": "^1.1.2"
   },

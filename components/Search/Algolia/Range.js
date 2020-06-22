@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
 import Nouislider from "nouislider-react";
+import RangeSlider from "reactrangeslider";
 
 const StyledSlider = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
+  width: 75%;
+  align-self: center;
 `;
 
 class Range extends Component {
@@ -29,6 +33,8 @@ class Range extends Component {
   }
 
   onValuesUpdated = (sliderState) => {
+    console.log("values updated!");
+    console.log(sliderState);
     this.setState({
       currentValues: { min: sliderState.values[0], max: sliderState.values[1] },
     });
@@ -57,7 +63,7 @@ class Range extends Component {
           onChange={this.onChange}
           onValuesUpdated={this.onValuesUpdated}
           range={{ min: min, max: max }}
-          start={[20, 80]}
+          start={[min, max]}
           connect
           step={1000}
         />

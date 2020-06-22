@@ -13,6 +13,7 @@ import PriceFilters from "../components/Search/Styles/PriceFilters";
 // Custom Algolia components
 import Range from "../components/Search/Algolia/Range";
 import RoomType from "../components/Search/Algolia/RoomType";
+import CityType from "../components/Search/Algolia/CityType";
 import InfiniteHits from "../components/Search/Algolia/InfiniteHits";
 
 import {
@@ -23,6 +24,7 @@ import {
   RefinementList,
   NumericMenu,
   Stats,
+  CurrentRefinements,
 } from "react-instantsearch-dom";
 
 import {
@@ -59,6 +61,7 @@ const Search = (props) => {
         <FiltersModal fadeIn={modal}>
           <div className="filters-div">
             {/* Filters */}
+
             <span className="title">Filtros</span>
             <div className="sale_or_rent">
               <RoomType

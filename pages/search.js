@@ -106,10 +106,31 @@ const Container = styled.div`
   flex-direction: column;
   flex-grow: 1;
   .search {
+    display: flex;
+    justify-content: space-between;
     height: 60px;
     min-height: 60px;
-    background: gray;
+    align-items: center;
+    width: 95%;
+    align-self: center;
+    .ais-SearchBox {
+      width: 75%;
+    }
+    .ais-SearchBox-reset,
+    .ais-SearchBox-submit {
+      display: none;
+    }
+    form {
+      input {
+        border: 1px solid gray;
+        border-radius: 5px;
+        width: calc(100% - 10px);
+        outline: none;
+        padding: 0.5rem;
+      }
+    }
   }
+
   .header {
     height: 10vh;
     min-height: 10vh;
@@ -661,7 +682,6 @@ class Range extends Component {
   };
 
   onChange = (sliderState) => {
-    console.log(sliderState);
     if (
       this.props.currentRefinement.min !== sliderState.values[0] ||
       this.props.currentRefinement.max !== sliderState.values[1]
@@ -670,11 +690,6 @@ class Range extends Component {
         min: sliderState[0],
         max: sliderState[1],
       });
-      // this.props.refine({
-      //   min: 400000,
-      //   max: 60000000,
-      // });
-      console.log(this.state.currentValues);
     }
   };
 
@@ -698,14 +713,20 @@ class Range extends Component {
           <div>{currentRefinement.max}</div>
         </div>
       </StyledSlider>
-    ) : null;
+    ) : (
+      <span>Please select more than one property</span>
+    );
   }
 }
 const ConnectedRange = connectRange(Range);
 
 const FiltersButton = styled.button`
-  background: red;
+  background: white;
+  border: 1px solid red;
+  color: red;
   padding: 0.5rem;
+  height: 75%;
+
   border-radius: 5px;
   @media (min-width: 640px) {
     display: none;
@@ -735,7 +756,11 @@ const FiltersModal = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  .filters-div {
+    overflow-y: auto;
+  }
 `;
+
 const Search = (props) => {
   const [modal, setModal] = useState(false);
   const [hideBottomNav, setHideBottomNav] = useState(false);
@@ -746,51 +771,64 @@ const Search = (props) => {
     <Container hideNav={hideBottomNav}>
       <InstantSearch indexName="prod_HOMES" searchClient={searchClient}>
         <FiltersModal fadeIn={modal}>
-          {/* Filters */}
-          <div className="sale_or_rent">
-            <span>Sale or rent</span>
-            <RefinementList
-              attribute="sale_type"
-              transformItems={function (items) {
-                return items.sort((i1, i2) => i1.label.localeCompare(i2.label));
-              }}
-            />{" "}
-          </div>
-          <div className="city">
-            <span>City</span>
-            <RefinementList
-              attribute="city"
-              transformItems={function (items) {
-                return items.sort((i1, i2) => i1.label.localeCompare(i2.label));
-              }}
-            />{" "}
-          </div>
-          <div className="price">
-            <Price />
-          </div>
-          <div className="beds">
-            <span>Bedrooms</span>
-            <RefinementList
-              attribute="bedrooms"
-              transformItems={function (items) {
-                return items.sort((i1, i2) => i1.label.localeCompare(i2.label));
-              }}
-            />{" "}
-          </div>
-          <div className="baths">
-            <span>Bathrooms</span>
-            <NumericMenu
-              attribute="bathrooms"
-              items={[
-                { label: "1+", start: 0 },
-                { label: "2+", start: 2 },
-                { label: "3+", start: 3 },
-                { label: "4+", start: 4 },
-              ]}
-              transformItems={function (items) {
-                return items.sort((i1, i2) => i1.label.localeCompare(i2.label));
-              }}
-            />
+          <div className="filters-div">
+            {/* Filters */}
+            <div className="sale_or_rent">
+              <span>Sale or rent</span>
+              <RefinementList
+                attribute="sale_type"
+                transformItems={function (items) {
+                  return items.sort((i1, i2) =>
+                    i1.label.localeCompare(i2.label)
+                  );
+                }}
+              />{" "}
+            </div>
+            <div className="city">
+              <span>City</span>
+              <RefinementList
+                attribute="city"
+                searchable={true}
+                showMore={true}
+                limit={2}
+                transformItems={function (items) {
+                  return items.sort((i1, i2) =>
+                    i1.label.localeCompare(i2.label)
+                  );
+                }}
+              />{" "}
+            </div>
+            <div className="price">
+              <Price />
+            </div>
+            <div className="beds">
+              <span>Bedrooms</span>
+              <RefinementList
+                attribute="bedrooms"
+                transformItems={function (items) {
+                  return items.sort((i1, i2) =>
+                    i1.label.localeCompare(i2.label)
+                  );
+                }}
+              />{" "}
+            </div>
+            <div className="baths">
+              <span>Bathrooms</span>
+              <NumericMenu
+                attribute="bathrooms"
+                items={[
+                  { label: "1+", start: 0 },
+                  { label: "2+", start: 2 },
+                  { label: "3+", start: 3 },
+                  { label: "4+", start: 4 },
+                ]}
+                transformItems={function (items) {
+                  return items.sort((i1, i2) =>
+                    i1.label.localeCompare(i2.label)
+                  );
+                }}
+              />
+            </div>
           </div>
           {/* Bottom attached clear all and button to go to search */}
           <div className="bottom-buttons">
@@ -818,6 +856,13 @@ const Search = (props) => {
             }}
             onBlur={() => setHideBottomNav((p) => false)}
           />
+          <FiltersButton
+            onClick={() => {
+              toggleModal();
+            }}
+          >
+            Filters
+          </FiltersButton>{" "}
         </div>
         <div className="header">
           <SearchBox
@@ -828,6 +873,7 @@ const Search = (props) => {
               e.stopPropagation();
             }}
           />
+
           <div className="filters">
             <div className="sale_or_rent">
               <span>Sale or rent</span>
@@ -888,14 +934,6 @@ const Search = (props) => {
           </div>
         </div>
         <div className="results">
-          <FiltersButton
-            onClick={() => {
-              toggleModal();
-            }}
-          >
-            Filters
-          </FiltersButton>{" "}
-          {/* <CustomHits hitComponent={Hit} /> */}
           <InfiniteHits minHitsPerPage={16} />
         </div>
         {/* bottom nav */}

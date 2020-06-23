@@ -138,7 +138,7 @@ const FiltersModal = styled.div`
     display: flex;
     justify-content: space-between;
     background: white;
-    padding: 1rem;
+    padding: 1rem 2rem;
     button {
       padding: 12px;
       text-align: center;

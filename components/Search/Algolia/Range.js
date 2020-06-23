@@ -10,6 +10,24 @@ const StyledSlider = styled.div`
   margin-top: 1rem;
   width: 75%;
   align-self: center;
+  .noUi-origin {
+    .noUi-tooltip {
+      border: none;
+      background: transparent;
+      cursor: grab;
+      width: 40px;
+      font-size: 0.75rem;
+    }
+    &:nth-child(2) {
+      .noUi-tooltip {
+        bottom: -120%;
+      }
+    }
+    &:nth-child(3) {
+      .noUi-tooltip {
+      }
+    }
+  }
 `;
 
 class Range extends Component {
@@ -75,29 +93,28 @@ class Range extends Component {
           range={{ min: 0, max: 1000000000 }}
           start={[0, 1000000000]}
           connect
-          tooltips={[true, true]}
+          tooltips={[
+            {
+              to: function (value) {
+                if (value < 1000000) {
+                  return "< 1 mil COP";
+                } else {
+                  return `${parseInt(value / 1000000)} millones COP`;
+                }
+              },
+            },
+            {
+              to: function (value) {
+                if (value < 1000000) {
+                  return "< 1 mil COP";
+                } else {
+                  return `${parseInt(value / 1000000)} millones COP`;
+                }
+              },
+            },
+          ]}
           step={1000}
         />
-        <div className="rheostat-values">
-          <div>
-            <NumberFormat
-              thousandSeparator={true}
-              thousandsGroupStyle="thousand"
-              displayType="text"
-              prefix={"$"}
-              value={0}
-            />
-          </div>
-          <div>
-            <NumberFormat
-              thousandSeparator={true}
-              thousandsGroupStyle="thousand"
-              displayType="text"
-              prefix={"$"}
-              value={10000000}
-            />
-          </div>
-        </div>
       </StyledSlider>
     ) : (
       <span>Please select more than one property</span>

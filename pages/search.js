@@ -12,9 +12,11 @@ import PriceFilters from "../components/Search/Styles/PriceFilters";
 
 // Custom Algolia components
 import Range from "../components/Search/Algolia/Range";
+import PriceSlider from "../components/Search/Algolia/PriceSlider";
 import RoomType from "../components/Search/Algolia/RoomType";
 import CityType from "../components/Search/Algolia/CityType";
 import InfiniteHits from "../components/Search/Algolia/InfiniteHits";
+import ResultsNumberMobile from "../components/Search/Algolia/ResultsNumberMobile";
 
 import {
   InstantSearch,
@@ -24,6 +26,7 @@ import {
   RefinementList,
   NumericMenu,
   Stats,
+  Panel,
   CurrentRefinements,
 } from "react-instantsearch-dom";
 
@@ -32,6 +35,7 @@ import {
   GeoSearch,
   Marker,
 } from "react-instantsearch-dom-maps";
+import { firestore } from "../util/firebase";
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,
@@ -61,10 +65,12 @@ const Search = (props) => {
         <FiltersModal fadeIn={modal}>
           <div className="filters-div">
             {/* Filters */}
-
-            <span className="title">Filtros</span>
+            <div className="results">
+              <span className="title">Filtros</span>
+              <ResultsNumberMobile />
+            </div>
             <div className="sale_or_rent">
-              <RoomType
+              {/* <RoomType
                 className="list"
                 attribute="sale_type"
                 transformItems={function (items) {
@@ -72,32 +78,40 @@ const Search = (props) => {
                     i1.label.localeCompare(i2.label)
                   );
                 }}
-              />{" "}
+              />{" "} */}
+              <Panel header="Tipo">
+                <RefinementList
+                  attribute="sale_type"
+                  transformItems={(items) =>
+                    items.map((item) => {
+                      if (item.label !== "sale") {
+                        item.label = "Alquilar";
+                      } else {
+                        item.label = "Vender";
+                      }
+                      return item;
+                    })
+                  }
+                />
+              </Panel>
             </div>
+
             <CheckboxFilters>
-              <span>Ciudad</span>
-              <RefinementList
-                attribute="city"
-                searchable={true}
-                showMore={true}
-                limit={2}
-                transformItems={function (items) {
-                  return items.sort((i1, i2) =>
-                    i1.label.localeCompare(i2.label)
-                  );
-                }}
-                translations={{
-                  showMore(expanded) {
-                    return expanded ? "Menos" : "Mas";
-                  },
-                  placeholder: "Busca...",
-                }}
-              />{" "}
+              <Panel header="Cities">
+                <RefinementList
+                  className="grid"
+                  attribute="city"
+                  searchable={true}
+                  translations={{
+                    placeholder: "Search for brands…",
+                  }}
+                />
+              </Panel>
             </CheckboxFilters>
-            <PriceFilters>
-              <span>Precio</span>
+            <Panel header="Price">
               <Price />
-            </PriceFilters>
+            </Panel>
+
             <CheckboxFilters beds>
               <span>Bedrooms</span>
               <RefinementList
@@ -170,7 +184,6 @@ const Search = (props) => {
               e.stopPropagation();
             }}
           />
-
           <div className="filters">
             <div className="sale_or_rent">
               <span>Sale or rent</span>

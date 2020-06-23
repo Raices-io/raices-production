@@ -11,6 +11,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+
   .search {
     display: flex;
     justify-content: space-between;
@@ -96,46 +97,7 @@ const Container = styled.div`
     transition: all 0.3s ease-out, bottom 0.3s ease-out;
     ${(props) => props.hideNav && `min-height: 0; height: 0`}
   }
-  /* Pagination */
-  .ais-Pagination {
-    text-align: center;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-  }
 
-  .ais-Pagination .ais-Pagination-item {
-    display: inline-block;
-    border: 1px solid;
-    border-radius: 4px;
-    padding: 3px;
-    margin: 1px;
-    border-color: #ddd;
-    background: transparent;
-  }
-
-  .ais-Pagination-item .ais-Pagination-link {
-    display: block;
-    color: #ff585b;
-    line-height: 30px;
-    width: 30px;
-    height: 30px;
-  }
-
-  .ais-Pagination-item.ais-Pagination-item--selected.ais-Pagination-item--page {
-    background: #ff585b;
-  }
-
-  .ais-Pagination-item.ais-Pagination-item--selected.ais-Pagination-item--page
-    .ais-Pagination-link {
-    color: #ffffff;
-    border-color: #ff585b;
-  }
-
-  .ais-Pagination-item--disabled {
-    visibility: hidden;
-  }
-  /* Rheostat */
   .rheostat-container {
     display: flex;
     flex-direction: column;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const FiltersModal = styled.div`
+const FiltersModalStyles = styled.div`
   position: absolute;
   z-index: 10;
   bottom: -100%;
@@ -516,4 +516,4 @@ const FiltersModal = styled.div`
   }
 `;
 
-export default FiltersModal;
+export default FiltersModalStyles;

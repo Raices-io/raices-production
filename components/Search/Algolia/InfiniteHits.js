@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connectInfiniteHits } from "react-instantsearch-dom";
 import Hit from "./Hit";
+import styled from "styled-components";
 
+const InfiniteHitsStyles = styled.div`
+  padding: 0 2rem;
+`;
 class InfiniteHits extends Component {
   sentinel = null;
 
@@ -29,7 +33,7 @@ class InfiniteHits extends Component {
     const { hits } = this.props;
 
     return (
-      <div className="ais-InfiniteHits">
+      <InfiniteHitsStyles>
         <ul className="ais-InfiniteHits-list">
           {hits.map((hit) => (
             <li key={hit.objectID} className="ais-InfiniteHits-item">
@@ -41,7 +45,7 @@ class InfiniteHits extends Component {
             ref={(c) => (this.sentinel = c)}
           />
         </ul>
-      </div>
+      </InfiniteHitsStyles>
     );
   }
 }

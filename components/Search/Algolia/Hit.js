@@ -5,7 +5,7 @@ import NumberFormat from "react-number-format";
 
 const StyledHit = styled.div`
   display: flex;
-  width: 95%;
+  width: 100%;
   margin: 0.5rem auto;
   .home-image {
     width: 30%;

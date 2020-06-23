@@ -89,6 +89,7 @@ const Container = styled.div`
     min-height: 50px;
     overflow-y: hidden;
     bottom: 0;
+    position: fixed;
     min-width: 100%;
     background-color: red;
     -webkit-transition: all 0.3s ease-out, bottom 0.3s ease-out;

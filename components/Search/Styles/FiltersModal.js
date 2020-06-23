@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const FiltersModal = styled.div`
   position: absolute;
+  z-index: 10;
   bottom: -100%;
   min-width: 100%;
   height: calc(100vh - 60px);
@@ -136,6 +137,7 @@ const FiltersModal = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    background: white;
     padding: 1rem;
     button {
       padding: 12px;

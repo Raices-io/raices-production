@@ -8,13 +8,9 @@ import Container from "../components/Search/Styles/Container";
 import FiltersModal from "../components/Search/Styles/FiltersModal";
 import FiltersButton from "../components/Search/Styles/FiltersButton";
 import CheckboxFilters from "../components/Search/Styles/CheckboxFilters";
-import PriceFilters from "../components/Search/Styles/PriceFilters";
 
 // Custom Algolia components
 import Range from "../components/Search/Algolia/Range";
-import PriceSlider from "../components/Search/Algolia/PriceSlider";
-import RoomType from "../components/Search/Algolia/RoomType";
-import CityType from "../components/Search/Algolia/CityType";
 import InfiniteHits from "../components/Search/Algolia/InfiniteHits";
 import ResultsNumberMobile from "../components/Search/Algolia/ResultsNumberMobile";
 
@@ -69,59 +65,52 @@ const Search = (props) => {
               <span className="title">Filtros</span>
               <ResultsNumberMobile />
             </div>
-            <div className="sale_or_rent">
-              {/* <RoomType
-                className="list"
+            <Panel header="Tipo">
+              <RefinementList
                 attribute="sale_type"
-                transformItems={function (items) {
-                  return items.sort((i1, i2) =>
-                    i1.label.localeCompare(i2.label)
-                  );
-                }}
-              />{" "} */}
-              <Panel header="Tipo">
-                <RefinementList
-                  attribute="sale_type"
-                  transformItems={(items) =>
-                    items.map((item) => {
-                      if (item.label !== "sale") {
-                        item.label = "Alquilar";
-                      } else {
-                        item.label = "Vender";
-                      }
-                      return item;
-                    })
-                  }
-                />
-              </Panel>
-            </div>
+                transformItems={(items) =>
+                  items.map((item) => {
+                    if (item.label !== "sale") {
+                      item.label = "Alquilar";
+                    } else {
+                      item.label = "Vender";
+                    }
+                    return item;
+                  })
+                }
+              />
+            </Panel>
 
-            <CheckboxFilters>
-              <Panel header="Cities">
-                <RefinementList
-                  className="grid"
-                  attribute="city"
-                  searchable={true}
-                  translations={{
-                    placeholder: "Search for brands…",
-                  }}
-                />
-              </Panel>
-            </CheckboxFilters>
+            <Panel header="Ciudades">
+              <RefinementList
+                className="grid"
+                attribute="city"
+                searchable={true}
+                translations={{
+                  placeholder: "Busca por ciudades…",
+                }}
+              />
+            </Panel>
             <Panel header="Price">
               <Price />
             </Panel>
 
             <CheckboxFilters beds>
               <span>Bedrooms</span>
-              <RefinementList
+              <NumericMenu
                 attribute="bedrooms"
+                items={[
+                  { label: "1+", start: 0 },
+                  { label: "2+", start: 2 },
+                  { label: "3+", start: 3 },
+                  { label: "4+", start: 4 },
+                ]}
                 transformItems={function (items) {
                   return items.sort((i1, i2) =>
                     i1.label.localeCompare(i2.label)
                   );
                 }}
-              />{" "}
+              />
             </CheckboxFilters>
             <div className="baths">
               <span>Bathrooms</span>
@@ -148,7 +137,7 @@ const Search = (props) => {
               <Stats
                 translations={{
                   stats(nbHits, timeSpentMS) {
-                    return `${nbHits} propiedades`;
+                    return `ver ${nbHits} resultados`;
                   },
                 }}
               />

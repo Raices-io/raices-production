@@ -19,6 +19,10 @@ const FiltersModal = styled.div`
     display: flex;
     align-items: center;
     min-height: 50px;
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
   }
   .number-hits {
     display: block;
@@ -31,7 +35,8 @@ const FiltersModal = styled.div`
     padding-top: 2rem;
   }
   .ais-Panel-header {
-    padding-bottom: 1rem;
+    padding-bottom: 1.5rem;
+    font-size: 1.4rem;
   }
   .ais-SearchBox {
     position: relative;
@@ -55,6 +60,7 @@ const FiltersModal = styled.div`
     }
     margin-bottom: 1rem;
     input {
+      background: rgba(65, 66, 71, 0.06);
       width: 100%;
       min-height: 48px;
       font-size: 1rem;
@@ -64,6 +70,9 @@ const FiltersModal = styled.div`
       padding: 0 48px;
       outline: none;
     }
+  }
+  .ais-RefinementList-labelText {
+    font-size: 1rem;
   }
   .ais-RefinementList-item--selected {
     .ais-RefinementList-labelText {
@@ -84,13 +93,17 @@ const FiltersModal = styled.div`
     align-items: center;
     display: flex;
   }
+  .ais-RefinementList-checkbox {
+    height: 1.5rem;
+    min-width: 1.5rem;
+  }
   .ais-RefinementList.grid {
     .ais-RefinementList-list {
       display: grid;
       grid-auto-flow: column;
       grid-template-columns: 1fr 1fr;
       grid-gap: 0 2rem;
-      grid-template-rows: repeat(5, 1fr);
+      grid-template-rows: repeat(3, 1fr);
     }
   }
   .ais-RefinementList-checkbox {
@@ -115,13 +128,29 @@ const FiltersModal = styled.div`
     }
   }
   .bottom-buttons {
-    background: gray;
-    height: 100px;
     ${(props) => props.fadeIn && "position: fixed;"}
     bottom: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    padding: 1rem;
+    button {
+      padding: 12px;
+      text-align: center;
+      display: block;
+      .ais-stats {
+        width: calc(50% - 0.5rem);
+      }
+    }
+    .ais-ClearRefinements {
+      width: calc(50% - 0.5rem);
+      text-align: center;
+      background-color: rgba(65, 66, 71, 0.08);
+      border-radius: 5px;
+      button {
+        margin: 0 auto;
+      }
+    }
   }
   .filters-div {
     overflow-y: auto;

@@ -221,7 +221,7 @@ const Hit = connectStateResults(({ hit, searchState }) =>
               {
                 <NumberFormat
                   thousandSeparator={true}
-                  thousandsGroupStyle="wan"
+                  thousandsGroupStyle="thousands"
                   displayType="text"
                   prefix={"$"}
                   value={hit.price}

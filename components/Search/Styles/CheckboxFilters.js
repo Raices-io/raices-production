@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const CheckboxFilters = styled.div`
   margin-top: 0.5rem;
+
   /* SearchBox */
 
   .header .ais-SearchBox {
@@ -21,13 +22,10 @@ const CheckboxFilters = styled.div`
   .ais-RefinementList .ais-SearchBox-input {
     font-size: 1rem;
   }
-
+  /* RefinementList */
   .ais-RefinementList .ais-SearchBox-input {
     min-height: 48px;
   }
-
-  /* RefinementList */
-
   .ais-RefinementList-list {
     display: grid;
     grid-auto-flow: column;

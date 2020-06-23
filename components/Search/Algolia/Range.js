@@ -10,6 +10,7 @@ const StyledSlider = styled.div`
   margin-top: 1rem;
   width: 75%;
   align-self: center;
+  margin: 0 auto;
   .noUi-origin {
     .noUi-tooltip {
       border: none;
@@ -25,6 +26,7 @@ const StyledSlider = styled.div`
     }
     &:nth-child(3) {
       .noUi-tooltip {
+        left: 0;
       }
     }
   }
@@ -67,48 +69,47 @@ class Range extends Component {
       this.props.currentRefinement.min !== sliderState.values[0] ||
       this.props.currentRefinement.max !== sliderState.values[1]
     ) {
-      if (parseInt(sliderState[0]) == 0) {
-        this.props.refine({
-          min: this.props.min,
-          max: parseInt(sliderState[1]),
-        });
-      } else {
-        this.props.refine({
-          min: parseInt(sliderState[0]),
-          max: parseInt(sliderState[1]),
-        });
-      }
+      this.props.refine({
+        min:
+          parseInt(sliderState[0]) <= this.props.min
+            ? this.props.min
+            : parseInt(sliderState[0]),
+        max:
+          parseInt(sliderState[1]) >= this.props.max
+            ? this.props.max
+            : parseInt(sliderState[1]),
+      });
     }
   };
 
   render() {
     const { min, max, currentRefinement } = this.props;
     const { currentValues } = this.state;
-    return this.state.min !== this.state.max ? (
+    return this.props.min !== this.props.max ? (
       <StyledSlider>
         {/* Styled Components Slider here */}
         <Nouislider
           onChange={this.onChange}
           onValuesUpdated={this.onValuesUpdated}
-          range={{ min: 0, max: 1000000000 }}
-          start={[0, 1000000000]}
+          range={{ min: this.props.min, max: this.props.max }}
+          start={[this.props.min, this.props.max]}
           connect
           tooltips={[
             {
               to: function (value) {
                 if (value < 1000000) {
-                  return "< 1 mil COP";
+                  return "< 1 M COP";
                 } else {
-                  return `${parseInt(value / 1000000)} millones COP`;
+                  return `${parseInt(value / 1000000)} M COP`;
                 }
               },
             },
             {
               to: function (value) {
                 if (value < 1000000) {
-                  return "< 1 mil COP";
+                  return "< 1 M COP";
                 } else {
-                  return `${parseInt(value / 1000000)} millones COP`;
+                  return `${parseInt(value / 1000000)} M COP`;
                 }
               },
             },
@@ -117,7 +118,7 @@ class Range extends Component {
         />
       </StyledSlider>
     ) : (
-      <span>Please select more than one property</span>
+      <span>Por favor ajuste su búsqueda</span>
     );
   }
 }

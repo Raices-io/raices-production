@@ -14,8 +14,8 @@ const Container = styled.div`
   .search {
     display: flex;
     justify-content: space-between;
-    height: 60px;
-    min-height: 60px;
+    height: 61px;
+    min-height: 61px;
     align-items: center;
     width: 100%;
     padding: 0 2rem;

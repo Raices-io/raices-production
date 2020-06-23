@@ -5,14 +5,15 @@ import algoliasearch from "algoliasearch/lite";
 
 // Styled imports
 import Container from "../components/Search/Styles/Container";
-import FiltersModal from "../components/Search/Styles/FiltersModal";
+import FiltersModalStyles from "../components/Search/Styles/FiltersModalStyles";
 import FiltersButton from "../components/Search/Styles/FiltersButton";
-import CheckboxFilters from "../components/Search/Styles/CheckboxFilters";
 
 // Custom Algolia components
 import Range from "../components/Search/Algolia/Range";
 import InfiniteHits from "../components/Search/Algolia/InfiniteHits";
-import ResultsNumberMobile from "../components/Search/Algolia/ResultsNumberMobile";
+
+// Other components
+import FiltersModal from "../components/Search/Other/FiltersModal";
 
 import {
   InstantSearch,
@@ -21,9 +22,6 @@ import {
   connectRange,
   RefinementList,
   NumericMenu,
-  Stats,
-  Panel,
-  CurrentRefinements,
 } from "react-instantsearch-dom";
 
 import {
@@ -43,9 +41,9 @@ const SearchDropdown = styled.ol`
   overflow-y: scroll;
 `;
 
-function Price() {
+const Price = () => {
   return <ConnectedRange attribute="price" />;
-}
+};
 
 const ConnectedRange = connectRange(Range);
 
@@ -58,99 +56,9 @@ const Search = (props) => {
   return (
     <Container hideNav={hideBottomNav}>
       <InstantSearch indexName="prod_HOMES" searchClient={searchClient}>
-        <FiltersModal fadeIn={modal}>
-          <div className="filters-div">
-            {/* Filters */}
-            <div className="results">
-              <span className="title">Filtros</span>
-              <ResultsNumberMobile />
-            </div>
-            <Panel header="Tipo">
-              <RefinementList
-                attribute="sale_type"
-                transformItems={(items) =>
-                  items.map((item) => {
-                    if (item.label !== "sale") {
-                      item.label = "Alquilar";
-                    } else {
-                      item.label = "Vender";
-                    }
-                    return item;
-                  })
-                }
-              />
-            </Panel>
-
-            <Panel header="Ciudades">
-              <RefinementList
-                className="grid"
-                attribute="city"
-                searchable={true}
-                translations={{
-                  placeholder: "Busca por ciudades…",
-                }}
-              />
-            </Panel>
-            <Panel header="Price">
-              <Price />
-            </Panel>
-            <Panel header="Beds">
-              <NumericMenu
-                attribute="bedrooms"
-                items={[
-                  { label: "1+", start: 0 },
-                  { label: "2+", start: 2 },
-                  { label: "3+", start: 3 },
-                  { label: "4+", start: 4 },
-                ]}
-                translations={{
-                  all: "Ver todos",
-                }}
-                transformItems={function (items) {
-                  return items.sort((i1, i2) =>
-                    i1.label.localeCompare(i2.label)
-                  );
-                }}
-              />
-            </Panel>
-            <Panel header="Baños">
-              <NumericMenu
-                attribute="bathrooms"
-                items={[
-                  { label: "1+", start: 0 },
-                  { label: "2+", start: 2 },
-                  { label: "3+", start: 3 },
-                  { label: "4+", start: 4 },
-                ]}
-                translations={{
-                  all: "Ver todos",
-                }}
-                transformItems={function (items) {
-                  return items.sort((i1, i2) =>
-                    i1.label.localeCompare(i2.label)
-                  );
-                }}
-              />
-            </Panel>
-          </div>
-          {/* Bottom attached clear all and button to go to search */}
-          <div className="bottom-buttons">
-            <ClearRefinements
-              translations={{
-                reset: "Borrar filtros",
-              }}
-            />
-            <FiltersButton onClick={toggleModal}>
-              <Stats
-                translations={{
-                  stats(nbHits, timeSpentMS) {
-                    return `ver ${nbHits} resultados`;
-                  },
-                }}
-              />
-            </FiltersButton>
-          </div>
-        </FiltersModal>
+        <FiltersModalStyles fadeIn={modal}>
+          <FiltersModal toggleModal={toggleModal} />
+        </FiltersModalStyles>
         <div className="search">
           {" "}
           <SearchBox

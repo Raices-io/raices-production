@@ -94,9 +94,7 @@ const Search = (props) => {
             <Panel header="Price">
               <Price />
             </Panel>
-
-            <CheckboxFilters beds>
-              <span>Bedrooms</span>
+            <Panel header="Beds">
               <NumericMenu
                 attribute="bedrooms"
                 items={[
@@ -105,15 +103,17 @@ const Search = (props) => {
                   { label: "3+", start: 3 },
                   { label: "4+", start: 4 },
                 ]}
+                translations={{
+                  all: "Ver todos",
+                }}
                 transformItems={function (items) {
                   return items.sort((i1, i2) =>
                     i1.label.localeCompare(i2.label)
                   );
                 }}
               />
-            </CheckboxFilters>
-            <div className="baths">
-              <span>Bathrooms</span>
+            </Panel>
+            <Panel header="Baños">
               <NumericMenu
                 attribute="bathrooms"
                 items={[
@@ -122,17 +122,24 @@ const Search = (props) => {
                   { label: "3+", start: 3 },
                   { label: "4+", start: 4 },
                 ]}
+                translations={{
+                  all: "Ver todos",
+                }}
                 transformItems={function (items) {
                   return items.sort((i1, i2) =>
                     i1.label.localeCompare(i2.label)
                   );
                 }}
               />
-            </div>
+            </Panel>
           </div>
           {/* Bottom attached clear all and button to go to search */}
           <div className="bottom-buttons">
-            <ClearRefinements />
+            <ClearRefinements
+              translations={{
+                reset: "Borrar filtros",
+              }}
+            />
             <FiltersButton onClick={toggleModal}>
               <Stats
                 translations={{

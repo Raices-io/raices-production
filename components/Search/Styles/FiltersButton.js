@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 const FiltersButton = styled.button`
   background: white;
-  border: 1px solid red;
-  color: red;
+  border: 1px solid ${(props) => props.theme.color500};
+  color: ${(props) => props.theme.color600};
   padding: 0.5rem;
   height: 75%;
 

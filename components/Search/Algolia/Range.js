@@ -8,9 +8,13 @@ const StyledSlider = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  width: 75%;
+  width: 100%;
   align-self: center;
   margin: 0 auto;
+  .noUi-target {
+    padding: 0 17px;
+  }
+
   .noUi-origin {
     .noUi-tooltip {
       border: none;
@@ -27,6 +31,17 @@ const StyledSlider = styled.div`
     &:nth-child(3) {
       .noUi-tooltip {
         left: 0;
+      }
+    }
+  }
+  .price-range-display {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    div {
+      span:first-child {
+        font-size: 0.8rem;
+        font-weight: bold;
       }
     }
   }
@@ -94,28 +109,30 @@ class Range extends Component {
           range={{ min: this.props.min, max: this.props.max }}
           start={[this.props.min, this.props.max]}
           connect
-          tooltips={[
-            {
-              to: function (value) {
-                if (value < 1000000) {
-                  return "< 1 M COP";
-                } else {
-                  return `${parseInt(value / 1000000)} M COP`;
-                }
-              },
-            },
-            {
-              to: function (value) {
-                if (value < 1000000) {
-                  return "< 1 M COP";
-                } else {
-                  return `${parseInt(value / 1000000)} M COP`;
-                }
-              },
-            },
-          ]}
           step={1000}
         />
+        <div className="price-range-display">
+          <div>
+            <NumberFormat
+              thousandSeparator={true}
+              thousandsGroupStyle="thousands"
+              displayType="text"
+              prefix={"$"}
+              value={currentRefinement.min}
+            />{" "}
+            COP
+          </div>
+          <div>
+            <NumberFormat
+              thousandSeparator={true}
+              thousandsGroupStyle="thousands"
+              displayType="text"
+              prefix={"$"}
+              value={currentRefinement.max}
+            />{" "}
+            COP
+          </div>
+        </div>
       </StyledSlider>
     ) : (
       <span>Por favor ajuste su búsqueda</span>

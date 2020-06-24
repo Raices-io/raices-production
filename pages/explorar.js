@@ -14,6 +14,7 @@ import InfiniteHits from "../components/Search/Algolia/InfiniteHits";
 
 // Other components
 import FiltersModal from "../components/Search/Other/FiltersModal";
+import BottomNav from "../components/Navigation/BottomNav";
 
 import {
   InstantSearch,
@@ -151,7 +152,9 @@ const Search = (props) => {
           <InfiniteHits minHitsPerPage={16} />
         </div>
         {/* bottom nav */}
-        <div className="footer"></div>
+        <div className="fixed bottom-0 w-full md:hidden">
+          <BottomNav />
+        </div>
       </InstantSearch>
     </Container>
   );

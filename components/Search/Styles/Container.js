@@ -11,6 +11,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  padding-bottom: 3rem;
   .search {
     display: flex;
     justify-content: space-between;

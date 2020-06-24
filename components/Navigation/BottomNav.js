@@ -8,7 +8,7 @@ const BottomNav = () => {
   const user = auth.user;
   return (
     <div
-      className={`flex px-7 bottom-0 justify-center w-full h-16 z-10 bg-white border-t border-gray-200 items-center`}
+      className={`flex px-7 bottom-0 justify-center w-full h-12 z-10 bg-white border-t border-gray-200 items-center`}
     >
       <div className="max-w-lg flex justify-between w-full">
         <Link href="/">

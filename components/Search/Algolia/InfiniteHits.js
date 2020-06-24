@@ -4,7 +4,7 @@ import Hit from "./Hit";
 import styled from "styled-components";
 
 const InfiniteHitsStyles = styled.div`
-  padding: 0 2rem;
+  padding: 0 1rem;
 `;
 class InfiniteHits extends Component {
   sentinel = null;

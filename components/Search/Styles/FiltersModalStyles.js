@@ -138,7 +138,7 @@ const FiltersModalStyles = styled.div`
     display: flex;
     justify-content: space-between;
     background: white;
-    padding: 1rem 2rem;
+    padding: 1rem 1rem;
     button {
       padding: 12px;
       text-align: center;
@@ -165,7 +165,7 @@ const FiltersModalStyles = styled.div`
     flex-grow: 1;
     width: 100;
     margin: 0 auto;
-    padding: 2rem 2rem 0 2rem;
+    padding: 2rem 1rem 0 1rem;
   }
   .title {
     font-size: 1.2rem;

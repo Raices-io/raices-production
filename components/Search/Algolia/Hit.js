@@ -5,63 +5,84 @@ import NumberFormat from "react-number-format";
 
 const StyledHit = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   margin: 0.5rem auto;
+  margin-top: 1rem;
+  /* 0 1px 2px 0 rgba(31,45,61,.15) */
+  -webkit-box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
+-moz-box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
+box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
   .home-image {
-    width: 30%;
-    height: 100px;
-    border-radius: 5px;
+    background-image: url("${(props) => props.image}");
+    height: 254px;
+    width: 100%;
+    min-width: 100%;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 4px;
+  }
+  .hit-price {
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin-top: .5rem;
+    padding: 0 0.5rem;
   }
   .details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 70%;
-    margin: 0.5rem 0.5rem;
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
     overflow: hidden;
   }
   .price-and-rooms {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+  }
+  .city {
+    font-size: 1.2rem;    
+    color: ${(props) => props.theme.color400};
+    margin-top: .2rem;
   }
   .rooms {
     display: flex;
+    margin-top: .2rem;
   }
   .hit-name {
     display: block;
     text-overflow: ellipsis;
     min-width: 0;
     /* Required for text-overflow to do anything */
-    white-space: nowrap;
+    /* Set to white-space nowrap if you want to truncate */
+    white-space: wrap;
     overflow: hidden;
     font-size: 1.2rem;
   }
 `;
 const Hit = ({ hit }) => (
-  <StyledHit>
-    <img
-      className="home-image"
-      src={hit.defaultPic}
-      align="left"
-      alt={hit.title}
-    />
+  <StyledHit image={hit.defaultPic}>
+    <div className="home-image"></div>
+    <div className="hit-price">
+      {" "}
+      <NumberFormat
+        thousandSeparator={true}
+        thousandsGroupStyle="wan"
+        displayType="text"
+        prefix={"$"}
+        value={hit.price}
+      />
+    </div>
     <div className="details">
       <div className="hit-name">
         <Highlight attribute="title" hit={hit} />
       </div>
       <div className="price-and-rooms">
+        <div className="city">{hit.city}</div>
         <div className="rooms">
           {hit.bedrooms} habs &#183; {hit.bathrooms} baños
-        </div>
-        <div className="hit-price">
-          {" "}
-          <NumberFormat
-            thousandSeparator={true}
-            thousandsGroupStyle="wan"
-            displayType="text"
-            prefix={"$"}
-            value={hit.price}
-          />
         </div>
       </div>
     </div>

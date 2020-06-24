@@ -71,7 +71,7 @@ const HomeComponent = ({ home, user, preview }) => {
       <div className="hidden md:block">
         <TopNav />
       </div>
-      <Link href={`/homes/${home.city}`}>
+      <Link href={`/explorar`}>
         <div className="ml-4 flex text-gray-600 items-center top-2 cursor-pointer">
           <svg
             className="h-5 w-5 flex justify-center items-center"

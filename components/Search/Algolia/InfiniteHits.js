@@ -6,10 +6,17 @@ import styled from "styled-components";
 const InfiniteHitsStyles = styled.div`
   padding: 0 1rem;
   display: grid;
+  height: 100%;
+  overflow-y: hidden;
   ul {
+    overflow-y: scroll;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
     grid-gap: 1rem;
+  }
+  .ais-InfiniteHits-sentinel {
+    padding-bottom: 0.5rem;
   }
 `;
 class InfiniteHits extends Component {

@@ -7,11 +7,11 @@ const Container = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
   flex-grow: 1;
-  padding-bottom: 3rem;
   @media (min-width: 768px) {
     padding-bottom: 0;
     padding-top: 80px;
@@ -86,7 +86,11 @@ const Container = styled.div`
   }
   .results {
     flex-grow: 1;
-    overflow: auto;
+    height: 100%;
+    overflow: hidden;
+    @media (max-width: 768px) {
+      margin-bottom: 3rem;
+    }
   }
   .footer {
     max-width: 800px;

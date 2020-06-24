@@ -77,7 +77,7 @@ const Search = (props) => {
               toggleModal();
             }}
           >
-            Filters
+            Filtros
           </FiltersButton>{" "}
         </div>
         <div className="header">

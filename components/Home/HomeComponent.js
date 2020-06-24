@@ -9,7 +9,7 @@ import BottomFloatingSeeButton from "../Buttons/BottomFloatingSeeButton";
 import TopNav from "../Navigation/TopNav";
 import ImageGalleryModal from "../Gallery/ImageGalleryModal";
 import LargeShowingCard from "../../components/Cards/LargeShowingCard";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Link from "next/link";
 // get firestore in for client side calls for now.
 // after MVP launched work on getting this logic to backend and pagination
@@ -71,19 +71,20 @@ const HomeComponent = ({ home, user, preview }) => {
       <div className="hidden md:block">
         <TopNav />
       </div>
-      <Link href={`/explorar`}>
-        <div className="ml-4 flex text-gray-600 items-center top-2 cursor-pointer">
-          <svg
-            className="h-5 w-5 flex justify-center items-center"
-            stroke="currentColor"
-            fill="text-grey-600"
-            viewBox="0 0 24 24"
-          >
-            <path d="M7.05 9.293L6.343 10 12 15.657l1.414-1.414L9.172 10l4.242-4.243L12 4.343z" />
-          </svg>
-          <span className=" text-xl text-center">Back</span>
-        </div>
-      </Link>
+      <div
+        onClick={() => Router.back()}
+        className="ml-4 flex text-gray-600 items-center top-2 cursor-pointer"
+      >
+        <svg
+          className="h-5 w-5 flex justify-center items-center"
+          stroke="currentColor"
+          fill="text-grey-600"
+          viewBox="0 0 24 24"
+        >
+          <path d="M7.05 9.293L6.343 10 12 15.657l1.414-1.414L9.172 10l4.242-4.243L12 4.343z" />
+        </svg>
+        <span className=" text-xl text-center">Atras</span>
+      </div>
       {showImageModal && (
         <ImageGalleryModal
           setShowImageModal={setShowImageModal}

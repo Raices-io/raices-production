@@ -6,12 +6,14 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  min-height: 100vh;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
   flex-grow: 1;
+  margin-bottom: 48px;
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
   @media (min-width: 768px) {
     padding-bottom: 0;
     padding-top: 80px;
@@ -50,47 +52,11 @@ const Container = styled.div`
       display: none;
     }
   }
-  .filters {
-    display: flex;
-    flex: 1;
-    .sale_or_rent {
-      border: 1px solid red;
-      width: 200px;
-      height: 200px;
-    }
-    .city {
-      border: 1px solid blue;
-      width: 200px;
-      height: 200px;
-    }
-    .price {
-      border: 1px solid purple;
-      width: 400px;
-      height: 200px;
-    }
-    .beds {
-      border: 1px solid yellow;
-      width: 100px;
-      height: 200px;
-    }
-    .baths {
-      border: 1px solid cyan;
-      width: 100px;
-      height: 200px;
-    }
-    .clear {
-      border: 1px solid cyan;
-      width: 100px;
-      height: 200px;
-    }
-  }
+
   .results {
     flex-grow: 1;
     height: 100%;
     overflow: hidden;
-    @media (max-width: 768px) {
-      margin-bottom: 3rem;
-    }
   }
   .footer {
     max-width: 800px;

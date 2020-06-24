@@ -16,7 +16,7 @@ const InfiniteHitsStyles = styled.div`
     grid-gap: 1rem;
   }
   .ais-InfiniteHits-sentinel {
-    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
   }
 `;
 class InfiniteHits extends Component {

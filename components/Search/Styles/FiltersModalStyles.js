@@ -6,6 +6,9 @@ const FiltersModalStyles = styled.div`
   bottom: -100%;
   min-width: 100%;
   height: calc(100vh - 60px);
+  @media (min-width: 640px) {
+    height: calc(100vh - 140px);
+  }
   background-color: white;
   opacity: 0;
   -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;

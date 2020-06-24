@@ -12,9 +12,13 @@ const Container = styled.div`
   flex-direction: column;
   flex-grow: 1;
   padding-bottom: 3rem;
+  @media (min-width: 768px) {
+    padding-bottom: 0;
+    padding-top: 80px;
+  }
   .search {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 61px;
     min-height: 61px;
     align-items: center;

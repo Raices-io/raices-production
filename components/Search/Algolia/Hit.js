@@ -2,9 +2,11 @@ import React from "react";
 import { Highlight } from "react-instantsearch-dom";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
+import Link from "next/link";
 
 const StyledHit = styled.div`
   display: flex;
+  cursor: pointer;
   flex-direction: column;
   width: 100%;
   margin: 0.5rem auto;
@@ -63,30 +65,32 @@ box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
   }
 `;
 const Hit = ({ hit }) => (
-  <StyledHit image={hit.defaultPic}>
-    <div className="home-image"></div>
-    <div className="hit-price">
-      {" "}
-      <NumberFormat
-        thousandSeparator={true}
-        thousandsGroupStyle="wan"
-        displayType="text"
-        prefix={"$"}
-        value={hit.price}
-      />
-    </div>
-    <div className="details">
-      <div className="hit-name">
-        <Highlight attribute="title" hit={hit} />
+  <Link href={`/home/${hit.city}/${hit.objectID}`}>
+    <StyledHit image={hit.defaultPic}>
+      <div className="home-image"></div>
+      <div className="hit-price">
+        {" "}
+        <NumberFormat
+          thousandSeparator={true}
+          thousandsGroupStyle="wan"
+          displayType="text"
+          prefix={"$"}
+          value={hit.price}
+        />
       </div>
-      <div className="price-and-rooms">
-        <div className="city">{hit.city}</div>
-        <div className="rooms">
-          {hit.bedrooms} habs &#183; {hit.bathrooms} baños
+      <div className="details">
+        <div className="hit-name">
+          <Highlight attribute="title" hit={hit} />
+        </div>
+        <div className="price-and-rooms">
+          <div className="city">{hit.city}</div>
+          <div className="rooms">
+            {hit.bedrooms} habs &#183; {hit.bathrooms} baños
+          </div>
         </div>
       </div>
-    </div>
-  </StyledHit>
+    </StyledHit>
+  </Link>
 );
 
 export default Hit;

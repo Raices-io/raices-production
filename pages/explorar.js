@@ -15,6 +15,7 @@ import InfiniteHits from "../components/Search/Algolia/InfiniteHits";
 // Other components
 import FiltersModal from "../components/Search/Other/FiltersModal";
 import BottomNav from "../components/Navigation/BottomNav";
+import TopNav from "../components/Navigation/TopNav";
 
 import {
   InstantSearch,
@@ -56,6 +57,9 @@ const Search = (props) => {
   };
   return (
     <Container hideNav={hideBottomNav}>
+      <div className="z-40 hidden md:block px-12">
+        <TopNav fixed />
+      </div>
       <InstantSearch indexName="prod_HOMES" searchClient={searchClient}>
         <FiltersModalStyles fadeIn={modal}>
           <FiltersModal toggleModal={toggleModal} />
@@ -79,74 +83,6 @@ const Search = (props) => {
           >
             Filtros
           </FiltersButton>{" "}
-        </div>
-        <div className="header">
-          <SearchBox
-            translations={{
-              placeholder: "Medellin, Antioquia",
-            }}
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          />
-          <div className="filters">
-            <div className="sale_or_rent">
-              <span>Sale or rent</span>
-              <RefinementList
-                attribute="sale_type"
-                transformItems={function (items) {
-                  return items.sort((i1, i2) =>
-                    i1.label.localeCompare(i2.label)
-                  );
-                }}
-              />{" "}
-            </div>
-            <div className="city">
-              <span>City</span>
-              <RefinementList
-                attribute="city"
-                transformItems={function (items) {
-                  return items.sort((i1, i2) =>
-                    i1.label.localeCompare(i2.label)
-                  );
-                }}
-              />{" "}
-            </div>
-            <div className="price">
-              <Price />
-            </div>
-            <div className="beds">
-              <span>Bedrooms</span>
-              <RefinementList
-                attribute="bedrooms"
-                transformItems={function (items) {
-                  return items.sort((i1, i2) =>
-                    i1.label.localeCompare(i2.label)
-                  );
-                }}
-              />{" "}
-            </div>
-            <div className="baths">
-              <span>Bathrooms</span>
-              <NumericMenu
-                attribute="bathrooms"
-                items={[
-                  { label: "1+", start: 0 },
-                  { label: "2+", start: 2 },
-                  { label: "3+", start: 3 },
-                  { label: "4+", start: 4 },
-                ]}
-                transformItems={function (items) {
-                  return items.sort((i1, i2) =>
-                    i1.label.localeCompare(i2.label)
-                  );
-                }}
-              />
-            </div>
-            <div className="clear">
-              <ClearRefinements />
-            </div>
-          </div>
         </div>
         <div className="results">
           <InfiniteHits minHitsPerPage={16} />

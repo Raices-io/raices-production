@@ -8,7 +8,7 @@ const InfiniteHitsStyles = styled.div`
   display: grid;
   ul {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
     grid-gap: 1rem;
   }
 `;

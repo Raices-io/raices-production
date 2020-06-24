@@ -5,59 +5,14 @@ import LoadingPage from "../../../../components/LoadingSpinner/LoadingPage";
 import { firebase } from "../../../../util/firebase";
 import Router from "next/router";
 import { useAuth } from "../../../../util/auth";
-
-const Home = () => {
+import { isEmpty } from "lodash";
+const Home = ({ home }) => {
   const auth = useAuth();
   const user = auth.user;
-  const router = useRouter();
-  let { id } = router.query;
-  const [home, setHome] = useState(null);
-  const [loading, setLoading] = useState(true);
-  // ****
-  // FIRESTORE
-  // ****
-  const firestore = firebase.firestore();
-  const getHome = async (id) => {
-    const homeRef = firestore.collection("homes").doc(id);
-    const imagesRef = firestore.collection("images").where("homeId", "==", id);
 
-    let home = {};
-    const [homeData, imagesData] = await Promise.all([
-      homeRef.get(),
-      imagesRef.get(),
-    ]);
-    if (homeData.exists) {
-      home = homeData.data();
-      home.id = homeData.id;
-    } else {
-      setHome(false);
-      setLoading(false);
-    }
-    if (!imagesData.empty) {
-      let images = [];
-      imagesData.forEach((image) => {
-        images.push({ id: image.id, ...image.data() });
-      });
-      home.images = images;
-    } else {
-      setHome(false);
-      setLoading(false);
-    }
-    setHome((p) => home);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    if (id) {
-      getHome(id);
-    }
-  }, [id]);
-
-  return (
-    <div className=" flex flex-col flex-grow flex-shrink-0 h-full bg-white antialiased">
-      {loading && <LoadingPage />}
-      {home && <HomeComponent home={home} user={user} />}
-      {!loading && !home && (
+  if (isEmpty(home)) {
+    return (
+      <div className=" flex flex-col flex-grow flex-shrink-0 h-full bg-white antialiased">
         <div className="flex flex-grow justify-center items-center">
           <div className="flex flex-col items-center">
             <span>Hmm - we didn't find a home.</span>
@@ -75,9 +30,39 @@ const Home = () => {
             </div>
           </div>
         </div>
-      )}
+      </div>
+    );
+  }
+  return (
+    <div className=" flex flex-col flex-grow flex-shrink-0 h-full bg-white antialiased">
+      {home && <HomeComponent home={home} user={user} />}
     </div>
   );
 };
 
+Home.getInitialProps = async (ctx) => {
+  const { id } = ctx.query;
+  const firestore = firebase.firestore();
+  const homeRef = firestore.collection("homes").doc(id);
+  const imagesRef = firestore.collection("images").where("homeId", "==", id);
+
+  let home = {};
+  const [homeData, imagesData] = await Promise.all([
+    homeRef.get(),
+    imagesRef.get(),
+  ]);
+  if (homeData.exists) {
+    home = homeData.data();
+    home.id = homeData.id;
+  }
+  if (!imagesData.empty) {
+    let images = [];
+    imagesData.forEach((image) => {
+      images.push({ id: image.id, ...image.data() });
+    });
+    home.images = images;
+  }
+
+  return { home };
+};
 export default Home;

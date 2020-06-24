@@ -18,7 +18,7 @@ const Container = styled.div`
     min-height: 61px;
     align-items: center;
     width: 100%;
-    padding: 0 2rem;
+    padding: 0 1rem;
     align-self: center;
     .ais-SearchBox {
       width: 75%;

@@ -18,9 +18,11 @@ const TopNav = ({ inbox = false, fixed = false }) => {
         }`}
       >
         <div className="flex justify-between py-2 xl:w-72">
-          <div>
-            <h2 className="text-2xl">Raíces</h2>
-          </div>
+          <Link href="/">
+            <div className="cursor-pointer">
+              <h2 className="text-2xl">Raíces</h2>
+            </div>
+          </Link>
           {/* The hamburger/close icon to open the menu. Hidden on screens larger than small*/}
           <div className="flex sm:hidden">
             <button
@@ -59,7 +61,7 @@ const TopNav = ({ inbox = false, fixed = false }) => {
             <div
               className={`${inbox ? "lg:hidden" : ""} hidden md:ml-6 md:flex`}
             >
-              <Link href="/">
+              <Link href="/explorar">
                 <a
                   href="#"
                   className={`inline-flex items-center px-1 pt-1 border-b-2 ${

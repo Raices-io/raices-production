@@ -5,6 +5,12 @@ import styled from "styled-components";
 
 const InfiniteHitsStyles = styled.div`
   padding: 0 1rem;
+  display: grid;
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 1rem;
+  }
 `;
 class InfiniteHits extends Component {
   sentinel = null;

@@ -5,9 +5,9 @@ const FiltersModalStyles = styled.div`
   z-index: 10;
   bottom: -100%;
   min-width: 100%;
-  height: calc(100vh - 60px);
+  height: calc(100% - 60px);
   @media (min-width: 768px) {
-    height: calc(100vh - 140px);
+    height: calc(100% - 140px);
   }
   background-color: white;
   opacity: 0;

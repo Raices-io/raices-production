@@ -9,7 +9,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 // Global style to prevent page scrolling while modal open
 const GlobalStyle = createGlobalStyle`
-  html, body {margin: 0; height: 100vh; overflow: hidden}
+  html, body {margin: 0; height: 100vh; overflow: auto; overscroll-behavior-y: none;}
 
 `;
 const theme = {

@@ -6,7 +6,7 @@ const FiltersModalStyles = styled.div`
   bottom: -100%;
   min-width: 100%;
   height: calc(100vh - 60px);
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     height: calc(100vh - 140px);
   }
   background-color: white;
@@ -18,6 +18,7 @@ const FiltersModalStyles = styled.div`
   ${(props) =>
     props.fadeIn &&
     `bottom: 0;
+    top: 61;
   opacity: 1;`}
   .stats {
     display: flex;

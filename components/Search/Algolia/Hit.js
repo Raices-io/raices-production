@@ -11,12 +11,10 @@ const StyledHit = styled.div`
   width: 100%;
   margin: 0.5rem auto;
   margin-top: 1rem;
-  /* 0 1px 2px 0 rgba(31,45,61,.15) */
-  -webkit-box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
--moz-box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
-box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
+  -webkit-box-shadow: 0px 1px 2px 0 rgba(31, 45, 61, 0.15);
+  -moz-box-shadow: 0px 1px 2px 0 rgba(31, 45, 61, 0.15);
+  box-shadow: 0px 1px 2px 0 rgba(31, 45, 61, 0.15);
   .home-image {
-    background-image: url("${(props) => props.image}");
     height: 254px;
     width: 100%;
     min-width: 100%;
@@ -24,10 +22,10 @@ box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
     background-position: center center;
     border-radius: 4px;
   }
-  .hit-price {
+  .price1234 {
     font-weight: bold;
     font-size: 1.4rem;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
     padding: 0 0.5rem;
   }
   .details {
@@ -45,13 +43,13 @@ box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
     justify-content: space-between;
   }
   .city {
-    font-size: 1.2rem;    
+    font-size: 1.2rem;
     color: ${(props) => props.theme.color400};
-    margin-top: .2rem;
+    margin-top: 0.2rem;
   }
   .rooms {
     display: flex;
-    margin-top: .2rem;
+    margin-top: 0.2rem;
   }
   .hit-name {
     display: block;
@@ -66,13 +64,12 @@ box-shadow: 0px 1px 2px 0 rgba(31,45,61,.15);
 `;
 const Hit = ({ hit }) => (
   <Link href={`/home/${hit.city}/${hit.objectID}`}>
-    <StyledHit image={hit.defaultPic}>
-      <div className="home-image"></div>
-      <div className="hit-price">
-        {" "}
+    <StyledHit>
+      <img className="home-image" src={hit.defaultPic} />
+      <div className="price1234">
         <NumberFormat
           thousandSeparator={true}
-          thousandsGroupStyle="wan"
+          thousandsGroupStyle="thousand"
           displayType="text"
           prefix={"$"}
           value={hit.price}

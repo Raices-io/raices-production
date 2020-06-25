@@ -19,7 +19,7 @@ const FiltersModalStyles = styled.div`
     props.fadeIn &&
     `bottom: 0;
   opacity: 1;`}
-  .results {
+  .stats {
     display: flex;
     align-items: center;
     min-height: 50px;

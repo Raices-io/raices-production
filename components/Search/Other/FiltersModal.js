@@ -22,7 +22,7 @@ const FiltersModal = ({ toggleModal }) => {
     <>
       <div className="filters-div">
         {/* Filters */}
-        <div className="results">
+        <div className="stats">
           <span className="title">Filtros</span>
           <ResultsNumberMobile />
         </div>

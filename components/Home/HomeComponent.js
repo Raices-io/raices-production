@@ -113,7 +113,7 @@ const HomeComponent = ({ home, user, preview }) => {
           />
         </div>
         {/* Small Image Header*/}
-        <div className="sm:flex sm:hidden">
+        <div className="block sm:hidden">
           <SmallImageHeader
             images={images}
             setShowImageModal={setShowImageModal}

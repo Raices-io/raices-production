@@ -66,7 +66,7 @@ const Page = (props) => {
 
   return (
     <div
-      className={`relative flex flex-col flex-grow items-center w-screen h-full flex-grow overflow-hidden antialiased`}
+      className={`relative flex flex-col flex-grow items-center w-screen h-full flex-grow flex-shrink-0 overflow-hidden antialiased`}
     >
       <div className="z-40 hidden md:block px-12">
         <TopNav fixed />

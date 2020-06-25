@@ -6,11 +6,13 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-shrink: 0;
   flex-direction: column;
   flex-grow: 1;
-  margin-bottom: 48px;
+  padding-bottom: 48px;
+  overflow: hidden;
   @media (min-width: 768px) {
     margin-bottom: 0;
   }
@@ -55,8 +57,10 @@ const Container = styled.div`
 
   .results {
     flex-grow: 1;
-    height: 100%;
-    overflow: hidden;
+    flex-shrink: 0;
+    height: calc(100% - 61px);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
   }
   .footer {
     max-width: 800px;

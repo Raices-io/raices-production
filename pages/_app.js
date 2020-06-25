@@ -9,11 +9,8 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 
 // Global style to prevent page scrolling while modal open
 const GlobalStyle = createGlobalStyle`
-  html, body {margin: 0; height: 100%; overflow: hidden}
-  /* Hide those nasty nasty scrollbars */
-  ::-webkit-scrollbar {
-    display: none;
-  }
+  html, body {margin: 0; height: 100vh; overflow: hidden}
+
 `;
 const theme = {
   color100: "#EBF4FF",

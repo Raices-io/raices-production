@@ -7,9 +7,7 @@ const InfiniteHitsStyles = styled.div`
   padding: 0 1rem;
   display: grid;
   height: 100%;
-  overflow-y: hidden;
   ul {
-    overflow-y: scroll;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));

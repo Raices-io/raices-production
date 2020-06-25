@@ -323,7 +323,7 @@ const Explore = () => {
       <div
         className={`sm:py-6 pb-12 flex flex-col ${
           input ? "overflow-hidden" : "overflow-y-scroll"
-        } h-full flex-grow mx-0 flex-grow sm:mt-8`}
+        } h-full flex-grow mx-0 sm:mt-8`}
       >
         {/* Features section */}
         <SearchBoxStyle image="/homePage/homePageImage.jpg">

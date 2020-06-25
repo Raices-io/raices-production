@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import NumberFormat from "react-number-format";
 import Nouislider from "nouislider-react";
-import RangeSlider from "reactrangeslider";
 
 const StyledSlider = styled.div`
   display: flex;
@@ -115,7 +114,7 @@ class Range extends Component {
           <div>
             <NumberFormat
               thousandSeparator={true}
-              thousandsGroupStyle="thousands"
+              thousandsGroupStyle="thousand"
               displayType="text"
               prefix={"$"}
               value={currentRefinement.min}
@@ -125,7 +124,7 @@ class Range extends Component {
           <div>
             <NumberFormat
               thousandSeparator={true}
-              thousandsGroupStyle="thousands"
+              thousandsGroupStyle="thousand"
               displayType="text"
               prefix={"$"}
               value={currentRefinement.max}

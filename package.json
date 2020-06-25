@@ -42,7 +42,7 @@
     "react-swipeable": "^5.5.1",
     "reactrangeslider": "^3.0.6",
     "rheostat": "^4.1.1",
-    "styled-components": "^5.0.1",
+    "styled-components": "^5.1.1",
     "tailwindcss-pseudo-elements": "^1.1.2"
   },
   "devDependencies": {

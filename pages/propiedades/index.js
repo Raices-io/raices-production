@@ -4,9 +4,9 @@ import { withRouter } from "next/router";
 import qs from "qs";
 import algoliasearch from "algoliasearch/lite";
 import { findResultsState } from "react-instantsearch-dom/server";
-import Search from "../components/Search/Algolia/Search";
-import TopNav from "../components/Navigation/TopNav";
-import BottomNav from "../components/Navigation/BottomNav";
+import Search from "../../components/Search/Algolia/Search";
+import TopNav from "../../components/Navigation/TopNav";
+import BottomNav from "../../components/Navigation/BottomNav";
 
 const searchClient = algoliasearch(
   process.env.ALGOLIA_APP_ID,

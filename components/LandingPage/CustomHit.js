@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Hit from './Hit';
 import { useEffect } from 'react';
 
@@ -14,7 +14,7 @@ const Hits = connectStateResults(({ searchState, hits, input, setInput }) => {
 	}, [searchState]);
 
 	return searchState.query && input ? (
-		<SearchDropdown onClick={e => e.stopPropagation()}>
+		<SearchDropdown onClick={e => e.stopPropagation()} input={input}>
 			{hits.map(hit => (
 				<Hit hit={hit} />
 			))}
@@ -46,6 +46,14 @@ const SearchDropdown = styled.ol`
 		overflow: hidden; /* new */
 		min-height: min-content;
 	}
+
+	${props =>
+		props.input &&
+		css`
+			@media (max-width: 768px) {
+				margin-top: 3rem;
+			}
+		`}
 `;
 
 const CustomHits = connectHits(Hits);

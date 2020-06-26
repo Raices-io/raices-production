@@ -2,7 +2,7 @@ import { useState } from 'react';
 import TopNav from '../components/Navigation/TopNav';
 import BottomNav from '../components/Navigation/BottomNav';
 import Features from '../components/LandingPage/Features';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import SearchBar from '../components/LandingPage/SearchBar';
 // allows us to not show results before a
 
@@ -12,17 +12,17 @@ const Explore = () => {
 
 	return (
 		<Container onClick={() => setInput(false)}>
-			<div className="z-40 hidden md:block px-12">
+			<TopNavContainer>
 				<TopNav fixed />
-			</div>
-			<HeroContainer>
+			</TopNavContainer>
+			<HeroContainer input={input}>
 				{/* Features section */}
-				<SearchBar input={input} setInput={setInput}/>
+				<SearchBar input={input} setInput={setInput} />
 			</HeroContainer>
 			<div className="flex px-5 flex flex-grow flex-shrink-0 justify-center items-center sm:px-12 pb-6 sm:pb-0">
 				<Features />
 			</div>
-			<BotNavContainer>
+			<BotNavContainer input={input}>
 				<BottomNav />
 			</BotNavContainer>
 		</Container>
@@ -38,6 +38,7 @@ const HeroContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 
 	border-radius: 10px;
 
@@ -51,11 +52,18 @@ const HeroContainer = styled.div`
 		width: 100%;
 		margin-top: 0;
 	}
+
+	${props =>
+		props.input &&
+		css`
+			@media (max-width: 768px) {
+				justify-content: flex-start;
+			}
+		`}
 `;
 
 const Container = styled.div`
 	overflow: auto;
-	border: 5px solid red;
 `;
 
 const BotNavContainer = styled.div`
@@ -65,6 +73,25 @@ const BotNavContainer = styled.div`
 	width: 100vw;
 
 	@media (min-width: 768px) {
+		display: none;
+	}
+
+	${props =>
+		props.input &&
+		css`
+			@media (max-width: 768px) {
+				display: none;
+			}
+		`}
+`;
+
+const TopNavContainer = styled.div`
+	position: fixed;
+	z-index: 10;
+	bottom: 0;
+	width: 100vw;
+
+	@media (max-width: 768px) {
 		display: none;
 	}
 `;

@@ -75,7 +75,7 @@ const BottomNav = () => {
             >
               <svg
                 className={`h-5 w-5 ${
-                  router.pathname == "/add-home"
+                  router.pathname == "/explorar"
                     ? "text-indigo-500"
                     : "text-gray-500"
                 } group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150 fill-current`}

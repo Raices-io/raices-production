@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import "../styles/index.css";
-import "../util/analytics";
-import Head from "next/head";
-import Router from "next/router";
-import { ProvideAuth } from "../util/auth.js";
-import "../styles/imageUploader.css";
+import React, { useEffect } from 'react';
+import '../styles/index.css';
+import '../util/analytics';
+import Head from 'next/head';
+import Router from 'next/router';
+import { ProvideAuth } from '../util/auth.js';
+import '../styles/imageUploader.css';
 // Div100vh helps solve the height issues I faced when developing across devices and screen sizes
 import Div100vh from "react-div-100vh";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
@@ -12,8 +12,6 @@ import Layout from '../components/Layout';
 
 // Global style to prevent page scrolling while modal open
 const GlobalStyle = createGlobalStyle`
-	@import url("https://use.typekit.net/hcg0pwq.css");
-
 	html, body {
 		margin: 0; 
 		height: 100%; 

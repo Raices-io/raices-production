@@ -5,32 +5,29 @@ import styled from 'styled-components';
 
 const Hit = connectStateResults(({ hit, searchState }) =>
 	searchState.query ? (
-		<Link href={`/home/${hit.city}/${hit.objectID}`}>
-			<div className="hit col-sm-3">
-				<StyledHit homeImage={hit.defaultPic}>
-					<div className="pictures-wrapper">
-						<div className="picture"></div>
-					</div>
-					<div className="infos">
-						<h4 className="media-heading">{hit.title}</h4>
-						<p>
-							{hit.bedrooms} hab.- {hit.bathrooms} baños{' '}
-							<Highlight attribute="country" hit={hit} />
-						</p>
-						<span>
-							{
-								<NumberFormat
-									thousandSeparator={true}
-									thousandsGroupStyle="wan"
-									displayType="text"
-									prefix={'$'}
-									value={hit.price}
-								/>
-							}
-						</span>
-					</div>
-				</StyledHit>
-			</div>
+		<Link href={`/propiedades/${hit.objectID}`}>
+			<StyledHit homeImage={hit.defaultPic}>
+				<div className="pictures-wrapper">
+					<div className="picture"></div>
+				</div>
+				<div className="infos">
+					<h4 className="media-heading">{hit.title}</h4>
+					<p>
+						{hit.bedrooms} hab.- {hit.bathrooms} baños <Highlight attribute="country" hit={hit} />
+					</p>
+					<span>
+						{
+							<NumberFormat
+								thousandSeparator={true}
+								thousandsGroupStyle="wan"
+								displayType="text"
+								prefix={'$'}
+								value={hit.price}
+							/>
+						}
+					</span>
+				</div>
+			</StyledHit>
 		</Link>
 	) : null,
 );
@@ -39,7 +36,8 @@ const StyledHit = styled.div`
 	display: flex;
 	flex: 1;
 	width: 100%;
-	margin-top: 0.5rem;
+	margin-top: 1rem;
+	padding: 0 1rem;
 	.media-heading {
 		display: block;
 		text-overflow: ellipsis;
@@ -49,7 +47,7 @@ const StyledHit = styled.div`
 		overflow: hidden;
 	}
 	.infos {
-		margin-left: 0.3rem;
+		margin-left: 1rem;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;

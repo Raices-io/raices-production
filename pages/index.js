@@ -4,6 +4,7 @@ import BottomNav from '../components/Navigation/BottomNav';
 import Features from '../components/LandingPage/Features';
 import styled, { css } from 'styled-components';
 import SearchBar from '../components/LandingPage/SearchBar';
+import Link from 'next/link';
 // allows us to not show results before a
 
 const Explore = () => {

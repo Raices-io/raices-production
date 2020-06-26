@@ -98,6 +98,18 @@ const SearchContainer = styled.div`
 				}
 			}
 		`}
+
+	.container {
+		display: flex;
+		align-items: center;
+		.link {
+			color: white;
+			margin-left: 0.25rem;
+		}
+		svg {
+			margin-left: 1rem;
+		}
+	}
 `;
 
 const Heading = styled.h1`
@@ -141,6 +153,7 @@ const StyledSearchBox = styled(SearchBox)`
 		border-radius: 5px;
 		width: min(550px, 95vw);
 		color: #4d4d4d;
+		margin-bottom: 1rem;
 		&:focus {
 			outline: none;
 		}

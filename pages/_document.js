@@ -1,5 +1,5 @@
 import React from 'react';
-import NextDocument from 'next/document';
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 // primary purpose of this is to preload css styles especially for styled components
@@ -26,5 +26,19 @@ export default class Document extends NextDocument {
 		} finally {
 			sheet.seal();
 		}
+	}
+
+	render() {
+		return (
+			<Html>
+				<Head>
+					<link rel="stylesheet" href="https://use.typekit.net/hcg0pwq.css" />
+				</Head>
+				<body>
+					<Main />
+					<NextScript />
+				</body>
+			</Html>
+		);
 	}
 }

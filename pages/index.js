@@ -1,39 +1,100 @@
-import TopNav from "../components/Navigation/TopNav";
-import BottomNav from "../components/Navigation/BottomNav";
-import LocationCard from "../components/Cards/LocationCard";
-import Features from "../components/LandingPage/Features";
-// test for vercel
-const locations = [
-  {
-    name: "Medellin",
-    image:
-      "https://res.cloudinary.com/dvqw5uhrr/image/upload/v1575403683/Raices/Envigado/envigado.png",
-    subtitle: "Greenery and food",
-  },
-];
+import { useState } from 'react';
+import TopNav from '../components/Navigation/TopNav';
+import BottomNav from '../components/Navigation/BottomNav';
+import Features from '../components/LandingPage/Features';
+import styled, { css } from 'styled-components';
+import SearchBar from '../components/LandingPage/SearchBar';
+import Link from 'next/link';
+// allows us to not show results before a
 
 const Explore = () => {
-  return (
-    <div className=" relative flex flex-col w-screen h-full flex-grow bg-white overflow-y-scroll antialiased">
-      <div className="z-40 hidden md:block px-12 mt-12">
-        <TopNav fixed />
-      </div>
-      <div className="sm:py-6 pb-12 flex flex-col overflow-y-scroll h-full flex-grow mx-0 flex-grow sm:mt-8">
-        {/* Features section */}
-        <div className="flex px-5 flex flex-grow flex-shrink-0 justify-center items-center sm:px-12 pb-6 sm:pb-0">
-          <Features />
-        </div>
-        {/* Location cards */}
-        <div className="flex flex-col flex-grow flex-shrink-0 justify-center items-center sm:flex-row px-4">
-          {locations.map((location, index) => {
-            return <LocationCard location={location} key={index} />;
-          })}
-        </div>
-      </div>
-      <div className="flex w-full md:hidden">
-        <BottomNav />
-      </div>
-    </div>
-  );
+	// stop scroll at page level is query is not empty
+	const [input, setInput] = useState(false);
+
+	return (
+		<Container onClick={() => setInput(false)}>
+			<TopNavContainer>
+				<TopNav fixed />
+			</TopNavContainer>
+			<HeroContainer input={input}>
+				{/* Features section */}
+				<SearchBar input={input} setInput={setInput} />
+			</HeroContainer>
+			<div className="flex px-5 flex flex-grow flex-shrink-0 justify-center items-center sm:px-12 pb-6 sm:pb-0">
+				<Features />
+			</div>
+			<BotNavContainer input={input}>
+				<BottomNav />
+			</BotNavContainer>
+		</Container>
+	);
 };
+
+const HeroContainer = styled.div`
+	height: 60vh;
+	width: min(1440px, 90vw);
+	margin: 0 auto;
+	margin-top: 96px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 10px;
+
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+		url('/homePage/homePageImage.jpg');
+	background-size: cover;
+	background-position: center;
+
+	@media (max-width: 768px) {
+		border-radius: 0;
+		width: 100%;
+		margin-top: 0;
+	}
+
+	${props =>
+		props.input &&
+		css`
+			@media (max-width: 768px) {
+				justify-content: flex-start;
+			}
+		`}
+`;
+
+const Container = styled.div`
+	overflow: auto;
+`;
+
+const BotNavContainer = styled.div`
+	position: fixed;
+	z-index: 10;
+	bottom: 0;
+	width: 100vw;
+
+	@media (min-width: 768px) {
+		display: none;
+	}
+
+	${props =>
+		props.input &&
+		css`
+			@media (max-width: 768px) {
+				display: none;
+			}
+		`}
+`;
+
+const TopNavContainer = styled.div`
+	position: fixed;
+	z-index: 10;
+	bottom: 0;
+	width: 100vw;
+
+	@media (max-width: 768px) {
+		display: none;
+	}
+`;
+
 export default Explore;

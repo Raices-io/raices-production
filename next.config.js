@@ -12,6 +12,9 @@ const nextConfig = {
     FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
     FIREBASE_FUNCTIONS_EMULATOR_URL:
       process.env.FIREBASE_FUNCTIONS_EMULATOR_URL,
+    ALGOLIA_APP_ID: process.env.ALGOLIA_APP_ID,
+    ALGOLIA_SEARCH_ID: process.env.ALGOLIA_SEARCH_ID,
+    ENV: process.env.ENV,
   },
 };
 module.exports = withImages(nextConfig);

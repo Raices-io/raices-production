@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import HomeComponent from "../../../../components/Home/HomeComponent";
-import LoadingPage from "../../../../components/LoadingSpinner/LoadingPage";
-import { firebase } from "../../../../util/firebase";
+import HomeComponent from "../../../components/Home/HomeComponent";
+import LoadingPage from "../../../components/LoadingSpinner/LoadingPage";
+import { firebase } from "../../../util/firebase";
 import Router from "next/router";
-import { useAuth } from "../../../../util/auth";
+import { useAuth } from "../../../util/auth";
 import { isEmpty } from "lodash";
 const Home = ({ home }) => {
   const auth = useAuth();

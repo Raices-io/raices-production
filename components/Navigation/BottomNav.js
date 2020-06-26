@@ -68,14 +68,14 @@ const BottomNav = () => {
             </div>
           </Link>
         ) : (
-          <Link href="/explorar">
+          <Link href="/propiedades">
             <div
               className="flex flex-col content-center items-center"
               style={{ cursor: "pointer" }}
             >
               <svg
                 className={`h-5 w-5 ${
-                  router.pathname == "/explorar"
+                  router.pathname == "/propiedades"
                     ? "text-indigo-500"
                     : "text-gray-500"
                 } group-hover:text-gray-500 group-focus:text-gray-600 transition ease-in-out duration-150 fill-current`}

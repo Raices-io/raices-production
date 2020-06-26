@@ -63,7 +63,7 @@ const StyledHit = styled.div`
   }
 `;
 const Hit = ({ hit }) => (
-  <Link href={`/home/${hit.city}/${hit.objectID}`}>
+  <Link href={`/propiedades/${hit.objectID}`}>
     <StyledHit>
       <img className="home-image" src={hit.defaultPic} />
       <div className="price1234">

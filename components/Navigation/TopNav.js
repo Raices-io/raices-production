@@ -61,16 +61,16 @@ const TopNav = ({ inbox = false, fixed = false }) => {
             <div
               className={`${inbox ? "lg:hidden" : ""} hidden md:ml-6 md:flex`}
             >
-              <Link href="/explorar">
+              <Link href="/propiedades">
                 <a
                   href="#"
                   className={`inline-flex items-center px-1 pt-1 border-b-2 ${
-                    router.pathname == "/explorar"
+                    router.pathname == "/propiedades"
                       ? "border-indigo-500"
                       : "border-transparent"
                   } hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out`}
                 >
-                  Explorar
+                  Propiedades
                 </a>
               </Link>
               <Link href="/inbox">

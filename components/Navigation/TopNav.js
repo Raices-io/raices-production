@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import ProfileDropdownMenu from './ProfileDropdownMenu';
 import Link from 'next/link';
-import Logo from '../Logo/Logo';
+import Logo from '../logo/Logo';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../util/auth.js';
 import styled from 'styled-components';
@@ -99,29 +99,6 @@ const TopNav = ({ inbox = false }) => {
 									</a>
 								</Link>
 							)}
-						</div>
-						<div className="relative px-5 py-5 sm:py-0 sm:ml-4 sm:px-0">
-							<div className="flex items-center sm:hidden">
-								<img
-									className="h-10 w-10 object-cover rounded-full border-2 border-gray-600"
-									src="https://res.cloudinary.com/dvqw5uhrr/image/upload/v1586384636/Raices/Scottie%27s%20Photos/Scottie.png"
-									alt=""
-								/>
-								<span className="ml-4 font-semibold text-gray-200 sm:hidden">
-									{/* {displayName} */}
-								</span>
-							</div>
-							<div className="mt-5 sm:hidden">
-								<a href="#account" className="block text-gray-400 hover:text-white">
-									Ajustes
-								</a>
-								<a href="#support" className="mt-3 block text-gray-400 hover:text-white">
-									Apoyo
-								</a>
-								<a href="#sign-out" className="mt-3 block text-gray-400 hover:text-white">
-									Desconectar
-								</a>
-							</div>
 						</div>
 						{/* Dropdown */}
 						<ProfileDropdownMenu user={user} className="hidden sm:ml-6 sm:block" />

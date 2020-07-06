@@ -34,7 +34,7 @@ const ProfileDropdownMenu = ({ user, className = '' }) => {
 			className={`${className} relative`}
 			style={{ cursor: 'pointer' }}>
 			<div className="flex flex-grow justify-between px-2 shadow py-2 items-center rounded-full">
-				<div className="ml-3 font-semibold text-sm text-gray-700">
+				<div className="ml-3 text-sm text-gray-900">
 					{!user ? 'Tú' : user.displayName.substr(0, user.displayName.indexOf(' '))}
 				</div>
 				<div className="ml-4 z-20 relative block rounded-full h-8 w-8 overflow-hidden focus:outline-none border-2 border-gray-600 focus:border-white">

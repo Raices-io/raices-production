@@ -30,7 +30,6 @@ export default props => {
 						props.setHideBottomNav(p => true);
 					}}
 					onBlur={() => props.setHideBottomNav(p => false)}
-					searchAsYouType={false}
 				/>
 				<SearchFilters />
 				<MobileSearchFilters />

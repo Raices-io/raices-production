@@ -80,7 +80,7 @@ const Picture = styled.div`
 	${({ src }) => css`
 		height: 240px;
 		width: 100%;
-		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 70.31%, rgba(0, 0, 0, 0.5) 100%), url(${src});
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 70.31%, rgba(0, 0, 0, 0.5) 100%), url("${src}");
 		background-size: cover;
 		background-position: center;
 		position: relative;

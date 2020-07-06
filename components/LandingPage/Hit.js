@@ -12,20 +12,20 @@ const Hit = connectStateResults(({ hit, searchState }) =>
 				</div>
 				<div className="infos">
 					<h4 className="media-heading">{hit.title}</h4>
-					<p>
-						{hit.bedrooms} hab.- {hit.bathrooms} baños <Highlight attribute="country" hit={hit} />
-					</p>
 					<span>
 						{
 							<NumberFormat
 								thousandSeparator={true}
-								thousandsGroupStyle="wan"
 								displayType="text"
-								prefix={'$'}
+								prefix={'$ '}
 								value={hit.price}
+								className="price"
 							/>
 						}
 					</span>
+					<p>
+						{hit.bedrooms} hab.- {hit.bathrooms} baños <Highlight attribute="country" hit={hit} />
+					</p>
 				</div>
 			</StyledHit>
 		</Link>
@@ -34,10 +34,22 @@ const Hit = connectStateResults(({ hit, searchState }) =>
 
 const StyledHit = styled.div`
 	display: flex;
-	flex: 1;
 	width: 100%;
-	margin-top: 1rem;
-	padding: 0 1rem;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+
+	&:last-child {
+		padding-bottom: 1rem;
+	}
+
+	&:first-child {
+		padding-top: 1rem;
+	}
+
+	&:hover {
+		background-color: #F2F5F9;
+	}
+
 	.media-heading {
 		display: block;
 		text-overflow: ellipsis;
@@ -45,12 +57,18 @@ const StyledHit = styled.div`
 		/* Required for text-overflow to do anything */
 		white-space: nowrap;
 		overflow: hidden;
+		font-weight: 600;
 	}
 	.infos {
 		margin-left: 1rem;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
+		justify-content: space-between;
+
+		p {
+			font-size: 1rem;
+		}
 	}
 	.picture {
 		background-image: url(${props => props.homeImage});
@@ -58,20 +76,12 @@ const StyledHit = styled.div`
 		background-repeat: no-repeat;
 		background-position: center center;
 		min-width: 100%;
-		height: 90%;
-		min-height: 70px;
+		min-height: 80px;
 		border-radius: 5px;
 	}
-	.profile {
-		width: 25px;
-		height: 25px;
-		border-radius: 100%;
-		position: absolute;
-		right: 0.3rem;
-		bottom: 0.3rem;
-	}
+
 	.pictures-wrapper {
-		min-width: 100px;
+		min-width: 130px;
 		position: relative;
 		display: flex;
 		flex-direction: column;

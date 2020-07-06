@@ -1,19 +1,14 @@
-import React from 'react';
+import colors from '../../util/colors';
+import styled from 'styled-components';
 
 const Features = () => {
 	return (
-		<div className="pb-12 mt-12 mb-6 bg-white">
+		<FeaturesContainer className="pb-12 mt-12 mb-6 bg-white">
 			<div className="max-w-screen-xl mx-auto">
 				<div className="lg:text-center flex flex-col items-start sm:items-center">
-					<p className="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">
-						Raíces
-					</p>
-					<h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-						Una mejor forma de comprar una casa
-					</h3>
-					<p className="mt-4 sm:text-center max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">
-						Encuentra tu próxima casa. Conecta directamente con agentes. Sin contratiempos.
-					</p>
+					<HeadingThree className="mt-2 mb-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+						Encuentra tu próximo hogar. Conecta directamente con agentes. Sin&nbsp;contratiempos.
+					</HeadingThree>
 				</div>
 
 				<div className="mt-10">
@@ -21,10 +16,10 @@ const Features = () => {
 						<li className="">
 							<div className="flex">
 								<div className="flex-shrink-0">
-									<div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+									<div className="svg-container flex items-center justify-center h-12 w-12 rounded-md text-white">
 										<svg
 											className="h-6 w-6"
-											stroke="currentColor"
+											stroke={colors('text.white')}
 											fill="none"
 											viewBox="0 0 24 24">
 											<path
@@ -49,10 +44,10 @@ const Features = () => {
 						<li className="mt-10 md:mt-0">
 							<div className="flex">
 								<div className="flex-shrink-0">
-									<div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+									<div className="svg-container flex items-center justify-center h-12 w-12 rounded-md text-white">
 										<svg
 											className="h-6 w-6"
-											stroke="currentColor"
+											stroke={colors('text.white')}
 											fill="none"
 											viewBox="0 0 24 24">
 											<path
@@ -77,10 +72,10 @@ const Features = () => {
 						<li className="mt-10 md:mt-0">
 							<div className="flex">
 								<div className="flex-shrink-0">
-									<div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+									<div className="svg-container flex items-center justify-center h-12 w-12 rounded-md text-white">
 										<svg
 											className="h-6 w-6"
-											stroke="currentColor"
+											stroke={colors('text.white')}
 											fill="none"
 											viewBox="0 0 24 24">
 											<path
@@ -106,10 +101,10 @@ const Features = () => {
 						<li className="mt-10 md:mt-0">
 							<div className="flex">
 								<div className="flex-shrink-0">
-									<div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
+									<div className="svg-container flex items-center justify-center h-12 w-12 rounded-md text-white">
 										<svg
 											className="h-6 w-6"
-											stroke="currentColor"
+											stroke={colors('text.white')}
 											fill="none"
 											viewBox="0 0 24 24">
 											<path
@@ -135,8 +130,16 @@ const Features = () => {
 					</ul>
 				</div>
 			</div>
-		</div>
+		</FeaturesContainer>
 	);
 };
+
+const FeaturesContainer = styled.div`
+	.svg-container {
+		background-color: ${colors('indigo.500')};
+	}
+`;
+
+const HeadingThree = styled.h3``;
 
 export default Features;

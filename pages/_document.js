@@ -32,7 +32,21 @@ export default class Document extends NextDocument {
 		return (
 			<Html>
 				<Head>
-					<link rel="stylesheet" href="https://use.typekit.net/hcg0pwq.css" />
+					<link
+						href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@500;600&family=Roboto:wght@400;500&display=swap"
+						rel="stylesheet"
+					/>
+					{/* Dev gtm: GTM-TXBVQV6 */}
+					<script
+						dangerouslySetInnerHTML={{
+							__html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${
+					process.env.ENV == 'production' ? 'GTM-WGRFWGT' : 'GTM-TXBVQV6'
+				}');`,
+						}}
+					/>
 				</Head>
 				<body>
 					<Main />

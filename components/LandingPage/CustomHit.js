@@ -15,9 +15,9 @@ const Hits = connectStateResults(({ searchState, hits, input, setInput }) => {
 
 	return searchState.query && input ? (
 		<SearchDropdown onClick={e => e.stopPropagation()} input={input}>
-			{hits.map(hit => (
-				<Hit hit={hit} />
-			))}
+			{hits.map(hit => {
+				return <Hit hit={hit} key={hit.id} />;
+			})}
 		</SearchDropdown>
 	) : null;
 });
@@ -27,7 +27,7 @@ const SearchDropdown = styled.ol`
 	position: absolute;
 	top: 5;
 	overflow-y: scroll;
-	height: min(35vh,400px);
+	height: min(35vh, 400px);
 	z-index: 20;
 	width: 100%;
 	display: flex;
@@ -36,17 +36,6 @@ const SearchDropdown = styled.ol`
 	margin-top: 0.5rem;
 	border-radius: 0.25rem;
 	box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-	.hit:first-child {
-		padding-top: 0.2rem;
-	}
-
-	.hit {
-		/* flex: 1 1 auto; formerly flex: 1 0 auto; */
-		width: 97%;
-		overflow: hidden; /* new */
-		min-height: min-content;
-	}
 
 	${props =>
 		props.input &&

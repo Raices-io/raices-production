@@ -12,7 +12,7 @@ const RoomType = connectRefinementList(({ items, refine, currentRefinement, inpu
 			<div
 				className={`${itemClassName}`}
 				key={item.label}
-				style={{ marginBottom: '5px', cursor: 'pointer' }}>
+				style={{ cursor: 'pointer' }}>
 				<StyledTab
 					selected={currentRefinement.includes(item.label)}
 					className={`ais-refinement-list--label ${index === 0 ? 'left' : 'right'} ${
@@ -70,6 +70,7 @@ const StyledTabs = styled.div`
 	width: fit-content;
 	border-radius: 5px;
 	justify-content: space-between;
+	margin-bottom: 3px;
 
 	${props =>
 		props.input &&

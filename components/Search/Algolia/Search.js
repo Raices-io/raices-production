@@ -1,92 +1,111 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { SearchBox, Highlight, InstantSearch } from "react-instantsearch-dom";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import { SearchBox, InstantSearch } from 'react-instantsearch-dom';
 
-import Container from "../Styles/Container";
-import FiltersModalStyles from "../Styles/FiltersModalStyles";
-import FiltersModal from "../Other/FiltersModal";
-import FiltersButton from "../Styles/FiltersButton";
-import InfiniteHits from "../Algolia/InfiniteHits";
+import InfiniteHits from '../Algolia/InfiniteHits';
+import SearchFilters from '../SearchFilters';
+import colors from '../../../util/colors';
+import MobileSearchFilters from '../MobileSearchFilters';
+import { useStateNavigation } from '../../../context/navigation/NavigationProvider';
 
-const HitComponent = ({ hit }) => (
-  <div className="hit">
-    <div>
-      <div className="hit-picture">
-        <img src={`${hit.image}`} />
-      </div>
-    </div>
-    <div className="hit-content">
-      <div>
-        <Highlight attribute="name" hit={hit} />
-        <span> - ${hit.price}</span>
-        <span> - {hit.rating} stars</span>
-      </div>
-      <div className="hit-type">
-        <Highlight attribute="type" hit={hit} />
-      </div>
-      <div className="hit-description">
-        <Highlight attribute="description" hit={hit} />
-      </div>
-    </div>
-  </div>
-);
-
-HitComponent.propTypes = {
-  hit: PropTypes.object,
+export default props => {
+	return (
+		<Container>
+			<InstantSearch
+				searchClient={props.searchClient}
+				resultsState={props.resultsState}
+				onSearchStateChange={props.onSearchStateChange}
+				searchState={props.searchState}
+				createURL={props.createURL}
+				indexName={props.indexName}
+				onSearchParameters={props.onSearchParameters}
+				{...props}>
+				<Heading>Propiedades</Heading>
+				<StyledSearchBox
+					translations={{
+						placeholder: 'Medellin, Antioquia',
+					}}
+					onClick={e => {
+						e.stopPropagation();
+						props.setHideBottomNav(p => true);
+					}}
+					onBlur={() => props.setHideBottomNav(p => false)}
+				/>
+				<SearchFilters />
+				<MobileSearchFilters />
+				<InfiniteHits minHitsPerPage={10} />
+				{/* bottom nav */}
+			</InstantSearch>
+		</Container>
+	);
 };
 
-export default class extends React.Component {
-  static propTypes = {
-    searchState: PropTypes.object,
-    resultsState: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-    onSearchStateChange: PropTypes.func,
-    createURL: PropTypes.func,
-    indexName: PropTypes.string,
-    searchClient: PropTypes.object,
-  };
+const Container = styled.div`
+	@media (max-width: 768px) {
+		padding: 0 1rem;
+	}
+`;
 
-  render() {
-    return (
-      <Container hideNav={this.props.hideBottomNav}>
-        <InstantSearch
-          searchClient={this.props.searchClient}
-          resultsState={this.props.resultsState}
-          onSearchStateChange={this.props.onSearchStateChange}
-          searchState={this.props.searchState}
-          createURL={this.props.createURL}
-          indexName={this.props.indexName}
-          onSearchParameters={this.props.onSearchParameters}
-          {...this.props}
-        >
-          <FiltersModalStyles fadeIn={this.props.modal}>
-            <FiltersModal toggleModal={this.props.toggleModal} />
-          </FiltersModalStyles>
-          <div className="search">
-            {" "}
-            <SearchBox
-              translations={{
-                placeholder: "Medellin, Antioquia",
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                this.props.setHideBottomNav((p) => true);
-              }}
-              onBlur={() => this.props.setHideBottomNav((p) => false)}
-            />
-            <FiltersButton
-              onClick={() => {
-                this.props.toggleModal();
-              }}
-            >
-              Filtros
-            </FiltersButton>{" "}
-          </div>
-          <div className="results">
-            <InfiniteHits minHitsPerPage={16} />
-          </div>
-          {/* bottom nav */}
-        </InstantSearch>
-      </Container>
-    );
-  }
-}
+const Heading = styled.h1`
+	font-size: 48px;
+	margin-bottom: 1rem;
+
+	@media (max-width: 768px) {
+		font-size: 36px;
+		margin-bottom: 0.5rem;
+	}
+`;
+
+const StyledSearchBox = styled(SearchBox)`
+	position: relative;
+	z-index: 0;
+
+	.ais-SearchBox-reset {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		margin-right: 1rem;
+		fill: #a0aec0;
+
+		svg {
+			width: 10px;
+			height: 10px;
+		}
+	}
+
+	.ais-SearchBox-form {
+		height: 100%;
+		width: 100%;
+		margin-bottom: 1rem;
+
+		@media (max-width: 1025px) {
+			margin-bottom: 0.5rem;
+		}
+	}
+	.ais-SearchBox-input {
+		padding: 0.25rem 2.5rem;
+		border-radius: 5px;
+		width: 100%;
+		color: #4d4d4d;
+		font-size: 0.9rem;
+		border: 1px solid ${colors('text.light')};
+		&:focus {
+			outline: none;
+		}
+	}
+	.ais-SearchBox-submit {
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		margin-left: 1rem;
+		fill: #a0aec0;
+		border: none;
+		outline: none;
+	}
+	.ais-SearchBox-submitIcon {
+		width: 15px;
+		height: 15px;
+	}
+`;

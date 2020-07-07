@@ -46,14 +46,14 @@ const MediumImageHeader = ({ images, setShowImageModal }) => {
         <div className="h-full w-full bg-gray-100"></div>
       )}
       {images[1] ? (
-        <div class="small">
+        <div className="small">
           <BackgroundImage image={images[1]} />
         </div>
       ) : (
         <div className="h-full w-full bg-gray-100"></div>
       )}
       {images[2] ? (
-        <div class="small">
+        <div className="small">
           <BackgroundImage image={images[2]} />
         </div>
       ) : (

@@ -6,8 +6,23 @@ import Link from 'next/link';
 import colors from '../../../util/colors';
 
 const Hit = ({ hit }) => {
+	// adjusting hit object
+	const hitObj = {
+		...hit,
+		...hit.agent,
+		token: '',
+		agent: '',
+		createdAtNanoSecs: hit.createdAt._nanoseconds,
+		createdAtSecs: hit.createdAt._seconds,
+	};
+
+	// turns hitObj to encoded query string
+	const queryString = Object.keys(hitObj)
+		.map(key => encodeURIComponent(key) + '=' + encodeURIComponent(hitObj[key]))
+		.join('&');
+
 	return (
-		<Link href={`/propiedades/${hit.objectID}`}>
+		<Link href={`/propiedades/${hit.objectID}?${queryString}`}>
 			<StyledHit>
 				<div style={{ overflow: 'hidden', borderRadius: '10px', position: 'relative' }}>
 					<Picture className="home-image" src={hit.defaultPic}></Picture>

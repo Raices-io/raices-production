@@ -52,21 +52,21 @@ const LargeImageHeader = ({ images, setShowImageModal }) => {
       )}
 
       {images[2] ? (
-        <div class="h-48 bg-cover bg-no-repeat bg-center">
+        <div className="h-48 bg-cover bg-no-repeat bg-center">
           <BackgroundImage image={images[2]} />
         </div>
       ) : (
         <div className="h-full w-full bg-gray-100"></div>
       )}
       {images[3] ? (
-        <div class="h-48 bg-cover bg-no-repeat bg-center">
+        <div className="h-48 bg-cover bg-no-repeat bg-center">
           <BackgroundImage image={images[3]} />
         </div>
       ) : (
         <div className="h-full w-full bg-gray-100"></div>
       )}
       {images[4] ? (
-        <div class="h-48 bg-cover bg-no-repeat bg-center">
+        <div className="h-48 bg-cover bg-no-repeat bg-center">
           <BackgroundImage image={images[4]} />
         </div>
       ) : (

@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import ProfileDropdownMenu from './ProfileDropdownMenu';
 import Link from 'next/link';
-import Logo from '../logo/Logo';
+import Logo from '../Logo/Logo';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../util/auth.js';
 import styled from 'styled-components';
@@ -87,7 +87,7 @@ const TopNav = ({ inbox = false }) => {
 								</a>
 							</Link>
 							{auth.isAgent && (
-								<Link href="/agent/property-list">
+								<Link href="/agent/property_list">
 									<a
 										href="#"
 										className={`inline-flex items-center px-1 pt-1 border-b-2 ${

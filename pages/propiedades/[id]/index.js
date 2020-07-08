@@ -1,77 +1,109 @@
-import HomeComponent from '../../../components/Home/HomeComponent';
 import { firestore } from '../../../util/firebase';
-import Router from 'next/router';
-import { useAuth } from '../../../util/auth';
+import styled, { css } from 'styled-components';
+import { useState } from 'react';
 import { isEmpty } from 'lodash';
+import Router from 'next/router';
 
-const Home = ({ home }) => {
-	const auth = useAuth();
-	const user = auth.user;
+import Home from '../../../components/Home/Home';
+import Layout from '../../../components/Layout';
+import colors from '../../../util/colors';
+import ImageGalleryModal from '../../../components/Gallery/ImageGalleryModal';
+import TourModal from '../../../components/Tour/TourModal';
+import ImageGallery from '../../../components/Gallery/ImageGallery';
 
-	// if (isEmpty(home)) {
-	// 	return (
-	// 		<div className=" flex flex-col flex-grow flex-shrink-0 h-full bg-white antialiased">
-	// 			<div className="flex flex-grow justify-center items-center">
-	// 				<div className="flex flex-col items-center">
-	// 					<span>Hmm - we didn't find a home.</span>
-	// 					<div className="w-40 mt-6 bg-indigo-500 inline-flex justify-center items-center hover:bg-indigo-600 focus:bg-indigo-700 focus:outline-none focus:shadow-outline rounded-lg shadow pl-3 pr-4 py-3 text-white">
-	// 						<svg
-	// 							className="h-4 w-4 fill-current"
-	// 							xmlns="http://www.w3.org/2000/svg"
-	// 							viewBox="0 0 20 20">
-	// 							<path d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z" />
-	// 						</svg>
-	// 						<span onClick={() => Router.back()} className="ml-2">
-	// 							Go back
-	// 						</span>
-	// 					</div>
-	// 				</div>
-	// 			</div>
-	// 		</div>
-	// 	);
-	// }
+const HomePage = ({ home }) => {
+	const [showImageModal, setShowImageModal] = useState(false);
+	const [showTourModal, setShowTourModal] = useState(false);
+
+	let images = [];
+	home.images.forEach(obj => images.push(obj.downloadURL));
+
+	while (images.length < 5) {
+		images.push('');
+	}
+
+	console.log(images)
+
+	if (isEmpty(home)) {
+		return (
+			<Layout>
+				<Container>
+					<h1>Oops, no encontramos la propiedad que busca.</h1>
+					<Button onClick={() => Router.back()}>Atras</Button>
+				</Container>
+			</Layout>
+		);
+	}
+
 	return (
-		<div className=" flex flex-col flex-grow flex-shrink-0 h-full bg-white antialiased">
-			{home && <HomeComponent home={home} user={user} />}
-		</div>
+		home && (
+			<Layout>
+				{showImageModal && (
+					<ImageGalleryModal setShowImageModal={setShowImageModal} images={images} />
+				)}
+				{showTourModal && <TourModal setShowTourModal={setShowTourModal} tourSrc={home.tour_src} />}
+				<ImageGallery images={images} setShowImageModal={setShowImageModal} />
+				<Home home={home} setShowTourModal={setShowTourModal} />
+			</Layout>
+		)
 	);
 };
 
-Home.getInitialProps = async ctx => {
-	let home = ctx.query;
+HomePage.getInitialProps = async ctx => {
 	const { id } = ctx.query;
-
+	const homeRef = firestore.collection('homes').doc(id);
 	const imagesRef = firestore.collection('images').where('homeId', '==', id);
 
-	if (home.objectID) {
-		const imagesData = await imagesRef.get();
+	let home = {};
+	const [homeData, imagesData] = await Promise.all([homeRef.get(), imagesRef.get()]);
+	if (homeData.exists) {
+		home = homeData.data();
+		home.id = homeData.id;
+	}
+	if (!imagesData.empty) {
 		let images = [];
-		if (!images.empty) imagesData.forEach(image => images.push({ id: image.id, ...image.data() }));
-
+		imagesData.forEach(image => {
+			images.push({ id: image.id, ...image.data() });
+		});
 		home.images = images;
-		home.agent = { displayName: home.displayName, profilePic: home.profilePic, uid: home.uid };
-
-		console.log('Using url data');
-	} else {
-		const homeRef = firestore.collection('homes').doc(id);
-		const [homeData, imagesData] = await Promise.all([homeRef.get(), imagesRef.get()]);
-
-		if (homeData.exists) {
-			home = homeData.data();
-			home.id = homeData.id;
-		}
-
-		if (!imagesData.empty) {
-			let images = [];
-			imagesData.forEach(image => {
-				images.push({ id: image.id, ...image.data() });
-			});
-
-			home.images = images;
-		}
 	}
 
 	return { home };
 };
 
-export default Home;
+const Container = styled.div`
+	height: 500px;
+	width: min(600px, 90vw);
+	margin: 0 auto;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	h1 {
+		font-size: 1.5rem;
+	}
+`;
+
+const Button = styled.button`
+	padding: 0.5rem 2rem;
+	color: ${colors('bg.white')};
+	background-color: ${colors('primary')};
+	border-radius: 5px;
+	font-size: 1rem;
+	margin-top: 1rem;
+	height: fit-content;
+	width: fit-content;
+
+	transition: ${props => props.theme.transitions.bg_hover};
+
+	&:focus {
+		outline: none;
+	}
+
+	&:hover {
+		background-color: ${colors('button.hover')};
+	}
+`;
+
+export default HomePage;

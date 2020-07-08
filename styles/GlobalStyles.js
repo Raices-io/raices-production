@@ -27,6 +27,15 @@ const GlobalStyle = createGlobalStyle`
 		}
 
 		font-family: 'Open Sans', sans-serif;
+
+		@media (max-width: 768px) {
+			scrollbar-width: none;
+			--ms-overflow-style: none;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
 	}
 
 	*:focus, *:active, *::selection {
@@ -36,11 +45,12 @@ const GlobalStyle = createGlobalStyle`
 	html, body {
 		margin: 0; 
 		height: 100%; 
+		color: ${colors('text.primary')}
 	}
 
 	h1, h2, h3, h4, h5, h6 {
 		font-family: 'Poppins', sans-serif;
-		font-weight: 600;
+		font-weight: 500;
 		color: ${colors('text.primary')}
 	}
 

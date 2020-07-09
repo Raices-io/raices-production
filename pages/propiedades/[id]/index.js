@@ -125,7 +125,7 @@ const Button = styled.button`
 `;
 
 const Back = styled.div`
-	width: calc(100vw - 2rem);
+	width: min(1440px, 90vw);
 	margin: 0.5rem auto;
 
 	a {

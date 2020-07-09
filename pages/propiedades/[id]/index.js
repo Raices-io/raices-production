@@ -1,8 +1,8 @@
 import { firestore } from '../../../util/firebase';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { useState } from 'react';
 import { isEmpty } from 'lodash';
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 
 import Home from '../../../components/Home/Home';
 import Layout from '../../../components/Layout';
@@ -14,6 +14,7 @@ import ImageGallery from '../../../components/Gallery/ImageGallery';
 const HomePage = ({ home }) => {
 	const [showImageModal, setShowImageModal] = useState(false);
 	const [showTourModal, setShowTourModal] = useState(false);
+	const router = useRouter();
 
 	let images = [];
 	home.images.forEach(obj => images.push(obj.downloadURL));
@@ -21,8 +22,6 @@ const HomePage = ({ home }) => {
 	while (images.length < 5) {
 		images.push('');
 	}
-
-	console.log(images)
 
 	if (isEmpty(home)) {
 		return (
@@ -38,6 +37,25 @@ const HomePage = ({ home }) => {
 	return (
 		home && (
 			<Layout>
+				<Back>
+					<a onClick={() => router.back()}>
+						<svg
+							width="29"
+							height="14"
+							viewBox="0 0 29 14"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M1 7H28M7 13L1 7L7 13ZM1 7L7 1L1 7Z"
+								stroke="#327B87"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							/>
+						</svg>
+						<span>Regresar</span>
+					</a>
+				</Back>
 				{showImageModal && (
 					<ImageGalleryModal setShowImageModal={setShowImageModal} images={images} />
 				)}
@@ -103,6 +121,30 @@ const Button = styled.button`
 
 	&:hover {
 		background-color: ${colors('button.hover')};
+	}
+`;
+
+const Back = styled.div`
+	width: calc(100vw - 2rem);
+	margin: 0.5rem auto;
+
+	a {
+		display: flex;
+		align-items: center;
+		color: ${colors('text.lighter')};
+		width: fit-content;
+
+		cursor: pointer;
+
+		span {
+			margin-left: 1rem;
+		}
+
+		&:hover {
+			span {
+				color: ${colors('primary')};
+			}
+		}
 	}
 `;
 

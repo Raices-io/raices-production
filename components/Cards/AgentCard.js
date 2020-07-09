@@ -11,17 +11,15 @@ const AgentCard = ({ home }) => {
 	return (
 		<Container>
 			<h2>Agente Inmobiliario</h2>
+			<h3>{home.agent.displayName}</h3>
 			<Image image={home.agent.profilePic}></Image>
-			<div className="info-container">
-				<Info>
-					<h3>{home.agent.displayName}</h3>
-					<ul>
-						<li>Vive en Medellín</li>
-						<li>Habla Inglés y Español</li>
-						<li>Puede recogerte si lo deseas</li>
-					</ul>
-				</Info>
-			</div>
+			<Info>
+				<ul>
+					<li>Vive en Medellín</li>
+					<li>Habla Inglés y Español</li>
+					<li>Puede recogerte si lo deseas</li>
+				</ul>
+			</Info>
 			<button onClick={() => messageAgent(user, home.agent, home.title)}>Planea una visita</button>
 		</Container>
 	);
@@ -35,30 +33,37 @@ const Container = styled.div`
 
 	display: grid;
 	grid-template-columns: 1fr 1.7fr;
-	grid-template-rows: fit-content fit-content fit-content;
-	grid-gap: 1rem 2rem;
+	grid-template-rows: fit-content fit-content fit-content fit-content;
+	grid-gap: 0 1rem;
 	grid-template-areas:
+		'title title'
 		'name name'
 		'image info'
 		'button button';
 
-	.info-container {
-		grid-area: info;
-	}
-
 	h2,
 	h3 {
 		font-size: 1.5rem;
-		color: ${colors('primary')};
+
+		@media (max-width: 1105px) {
+			font-size: 1.25rem;
+		}
 	}
 
 	h2 {
-		grid-area: name;
+		grid-area: title;
+		margin-bottom: 1rem;
 	}
 
 	h3 {
+		color: ${colors('primary')};
 		font-size: 1.2rem;
+		grid-area: name;
 		margin-bottom: 0.5rem;
+
+		@media (max-width: 1105px) {
+			font-size: 1.1rem;
+		}
 	}
 
 	button {
@@ -67,16 +72,17 @@ const Container = styled.div`
 		background-color: ${colors('primary')};
 		color: ${colors('text.white')};
 		border-radius: 5px;
+		margin-top: 1.5rem;
 	}
 
 	ul {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: space-around;
+		min-height: 100px;
 
 		li {
 			font-size: 0.9rem;
-			margin-bottom: 0.5rem;
 		}
 	}
 `;
@@ -88,8 +94,10 @@ const Image = styled.div`
 	background-position: center;
 	border-radius: 10px;
 	grid-area: image;
-	/* align-self: center; */
+	align-self: center;
 `;
-const Info = styled.div``;
+const Info = styled.div`
+	grid-area: info;
+`;
 
 export default AgentCard;

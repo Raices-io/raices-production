@@ -4,6 +4,7 @@ const theme = {
 		text: {
 			primary: '#04004D',
 			light: '#A0AEC0',
+			lighter: '#7F98B3',
 			white: '#FFFFFF',
 		},
 		indigo: {

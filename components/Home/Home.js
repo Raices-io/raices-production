@@ -5,6 +5,7 @@ import NumberFormat from 'react-number-format';
 import LocalInformation from './LocalInformation';
 import AgentCard from '../Cards/AgentCard';
 import colors from '../../util/colors';
+import Description from './Description';
 
 const Home = ({ home, setShowTourModal }) => {
 	return (
@@ -36,13 +37,12 @@ const Home = ({ home, setShowTourModal }) => {
 								thousandSeparator={true}
 								thousandsGroupStyle="thousand"
 								displayType="text"
-								prefix={'$ '}
+								prefix={'$'}
 								value={home.price}
 							/>
 						</SummaryHeader>
 						<Info>
 							<div className="sub-header">
-								<p>{`${home.addressLineOne} ${home.addressLineTwo}, ${home.city}, ${home.state}, ${home.zip}`}</p>
 								<div className="bed-bath">
 									<svg
 										width="30"
@@ -55,7 +55,8 @@ const Home = ({ home, setShowTourModal }) => {
 											fill={colors('bg.primary_gray')}
 										/>
 									</svg>
-									<span>{`${home.bedrooms} Habitaciones`}</span>
+									<span className="desktopStats">{`${home.bedrooms} Habitaciones`}</span>
+									<span className="mobileStats">{`${home.bedrooms}`}</span>
 									<svg
 										width="23"
 										height="23"
@@ -67,7 +68,8 @@ const Home = ({ home, setShowTourModal }) => {
 											fill={colors('bg.primary_gray')}
 										/>
 									</svg>
-									<span>{`${home.bathrooms} Baños`}</span>
+									<span className="desktopStats">{`${home.bathrooms} Baños`}</span>
+									<span className="mobileStats">{`${home.bathrooms}`}</span>
 								</div>
 							</div>
 							{home.tour_src && (
@@ -76,7 +78,9 @@ const Home = ({ home, setShowTourModal }) => {
 									height="45"
 									viewBox="0 0 60 45"
 									fill="none"
-									xmlns="http://www.w3.org/2000/svg">
+									xmlns="http://www.w3.org/2000/svg"
+									className="tour"
+									onClick={setShowTourModal}>
 									<path
 										d="M37.7677 39.3336C36.8957 39.3336 36.139 38.6854 36.0259 37.7978C35.9037 36.8347 36.5848 35.9549 37.5475 35.8322C43.102 35.1245 48.0761 33.6194 51.5533 31.5933C54.7334 29.7407 56.4843 27.5627 56.4843 25.4606C56.4843 23.1439 54.4354 21.2483 52.716 20.0654C51.9163 19.5152 51.7139 18.4211 52.2642 17.621C52.8144 16.8212 53.9089 16.6189 54.7086 17.1691C58.1703 19.5504 59.9999 22.4174 59.9999 25.4611C59.9999 28.9154 57.6914 32.0863 53.3234 34.631C49.3917 36.9217 44.0903 38.5431 37.992 39.3199C37.9165 39.3291 37.8414 39.3336 37.7677 39.3336Z"
 										fill="#327B87"
@@ -109,7 +113,9 @@ const Home = ({ home, setShowTourModal }) => {
 							)}
 						</Info>
 					</HomeSummary>
+					<Button>Planea una visita</Button>
 					<LocalInformation home={home} />
+					<Description home={home} />
 				</HomeContent>
 				<RightPanel>
 					<AgentCard home={home} />
@@ -121,26 +127,51 @@ const Home = ({ home, setShowTourModal }) => {
 
 const Container = styled.div`
 	display: grid;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: 1fr 400px;
 	grid-template-areas: 'home panel';
 	grid-gap: 2rem;
-
 	margin: 2rem 0;
+
+	@media (max-width: 1105px) {
+		grid-template-columns: 1fr 330px;
+	}
+	@media (max-width: 1024px) {
+		grid-template-columns: 1fr;
+		grid-template-areas: 'home';
+		grid-gap: 0;
+	}
+
+	@media (max-width: 768px) {
+		padding: 0 1rem;
+		margin-top: 1rem;
+	}
 `;
 
 const HomeSummary = styled.div``;
 
 const HomeContent = styled.div`
 	grid-area: home;
+	width: 100%;
 `;
 
 const RightPanel = styled.div`
 	grid-area: panel;
+	@media (max-width: 1024px) {
+		display: none;
+	}
 `;
 
 const Title = styled.h2`
 	font-size: 1.75rem;
 	font-weight: 500;
+
+	@media (max-width: 1105px) {
+		font-size: 1.5rem;
+	}
+
+	@media (max-width: 768px) {
+		margin-bottom: 1rem;
+	}
 `;
 
 const Info = styled.div`
@@ -148,6 +179,10 @@ const Info = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 0.5rem;
+
+	.tour {
+		cursor: pointer;
+	}
 
 	.sub-header {
 		p {
@@ -163,9 +198,6 @@ const Info = styled.div`
 
 		svg {
 			margin-right: 1rem;
-			&.360 {
-				cursor: pointer;
-			}
 		}
 
 		span {
@@ -174,17 +206,74 @@ const Info = styled.div`
 			font-size: 1.1rem;
 		}
 	}
+
+	.mobileStats {
+		display: none;
+	}
+
+	@media (max-width: 768px) {
+		.mobileStats {
+			display: block;
+		}
+
+		.desktopStats {
+			display: none;
+		}
+	}
 `;
 
 const SummaryHeader = styled.div`
-	display: grid;
-	grid-template-columns: 2.25fr 1fr;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 
 	span {
 		display: block;
 		font-size: 1.75rem;
 		font-family: 'Roboto', sans-serif;
 		text-align: end;
+		width: fit-content;
+		margin-left: 3rem;
+
+		@media (max-width: 1105px) {
+			font-size: 1.5rem;
+		}
+
+		@media (max-width: 1024px) {
+			margin-left: 5rem;
+		}
+
+		@media (max-width: 768px) {
+			margin-left: 0;
+			font-size: 2.5rem;
+			margin-bottom: 0.5rem;
+		}
+	}
+`;
+
+const Button = styled.button`
+	display: none;
+
+	@media (max-width: 768px) {
+		padding: 0.75rem;
+		background-color: ${colors('primary')};
+		color: ${colors('text.white')};
+		border-radius: 5px;
+		margin-top: 3rem;
+		width: 100%;
+		transition: ${props => props.theme.transitions.bg_hover};
+
+		&:focus {
+			outline: none;
+		}
+
+		&:hover {
+			background-color: ${colors('button.hover')};
+		}
 	}
 `;
 

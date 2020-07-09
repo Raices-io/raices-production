@@ -6,8 +6,12 @@ import LocalInformation from './LocalInformation';
 import AgentCard from '../Cards/AgentCard';
 import colors from '../../util/colors';
 import Description from './Description';
+import messageAgent from '../../services/messageAgent';
+import { useAuth } from '../../util/auth';
 
 const Home = ({ home, setShowTourModal }) => {
+	const { user } = useAuth();
+
 	return (
 		<>
 			<NextSeo
@@ -113,7 +117,9 @@ const Home = ({ home, setShowTourModal }) => {
 							)}
 						</Info>
 					</HomeSummary>
-					<Button>Planea una visita</Button>
+					<Button onClick={() => messageAgent(user, home.agent, home.title)}>
+						Planea una visita
+					</Button>
 					<LocalInformation home={home} />
 					<Description home={home} />
 				</HomeContent>
@@ -258,12 +264,13 @@ const SummaryHeader = styled.div`
 const Button = styled.button`
 	display: none;
 
-	@media (max-width: 768px) {
+	@media (max-width: 1024px) {
+		display: block;
 		padding: 0.75rem;
 		background-color: ${colors('primary')};
 		color: ${colors('text.white')};
 		border-radius: 5px;
-		margin-top: 3rem;
+		margin-top: 1.5rem;
 		width: 100%;
 		transition: ${props => props.theme.transitions.bg_hover};
 

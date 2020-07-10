@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import TopNav from '../components/Navigation/TopNav';
-import BottomNav from '../components/Navigation/BottomNav';
 import Features from '../components/LandingPage/Features';
 import styled, { css } from 'styled-components';
 import HeroContent from '../components/LandingPage/HeroContent';

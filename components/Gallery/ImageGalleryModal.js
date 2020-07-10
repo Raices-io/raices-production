@@ -11,8 +11,6 @@ const ImageGalleryModal = ({ images = [], home }) => {
 	const { showImagesModal, showTourModal, closeImagesTourModal } = useSetNavigation();
 	const { imagesModal, tourModal } = useStateNavigation();
 
-	console.log('IMAGES MODAL', images[position - 1]);
-
 	return (
 		<>
 			<ModalBg onClick={closeImagesTourModal} />

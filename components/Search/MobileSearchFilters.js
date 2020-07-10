@@ -15,8 +15,6 @@ const MobileSearchFilters = () => {
 	const filterState = useStateNavigation();
 	const setFilters = useSetNavigation();
 
-	console.log('FILTERS STATE: ', { ...filterState });
-
 	return (
 		<Container>
 			<ButtonContainer>

@@ -4,7 +4,6 @@ import colors from '../../util/colors';
 
 const LocalInformation = ({ home }) => {
 	const hasLocalInfo = home.nearby_restaurants || home.nearby_hospitals || home.nearby_schools;
-	console.log(hasLocalInfo);
 
 	return (
 		<Container>

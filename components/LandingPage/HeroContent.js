@@ -12,7 +12,7 @@ const HeroContent = ({ input, setInput }) => {
 		<InstantSearch indexName="prod_HOMES" searchClient={searchClient}>
 			<Configure hitsPerPage={8} />
 			<ContentContainer input={input}>
-				<Heading>Una mejor forma de comprar una propiedad</Heading>
+				
 				<RoomType attribute="sale_type" operator="or" limit={2} input={input} />
 				<StyledSearchBox
 					translations={{
@@ -51,7 +51,6 @@ const HeroContent = ({ input, setInput }) => {
 
 const ContentContainer = styled.div`
 	position: relative;
-	margin-top: -5rem;
 
 	@media (max-width: 768px) {
 		margin-top: 0;
@@ -102,16 +101,7 @@ const ContentContainer = styled.div`
 		`}
 `;
 
-const Heading = styled.h1`
-	color: white;
-	font-style: normal;
-	font-size: 44px;
-	width: min(550px, 85vw);
-	line-height: 44px;
-	margin-bottom: 3rem;
 
-	text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-`;
 
 const StyledSearchBox = styled(SearchBox)`
 	position: relative;

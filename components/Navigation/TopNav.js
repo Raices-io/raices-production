@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import ProfileDropdownMenu from './ProfileDropdownMenu';
 import Link from 'next/link';
-import Logo from '../logo/Logo';
+import Logo from '../Logo/Logo';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../util/auth.js';
 import styled from 'styled-components';
@@ -58,9 +58,9 @@ const TopNav = ({ inbox = false }) => {
 									href="#"
 									className={`inline-flex items-center px-1 pt-1 border-b-2 ${
 										router.pathname == '/propiedades'
-											? 'border-indigo-500'
+											? 'border-teal-700'
 											: 'border-transparent'
-									} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out`}>
+									} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-teal-700 transition duration-150 ease-in-out`}>
 									Propiedades
 								</a>
 							</Link>
@@ -69,9 +69,9 @@ const TopNav = ({ inbox = false }) => {
 									href="#"
 									className={`ml-8 inline-flex items-center px-1 pt-1 border-b-2 ${
 										router.pathname == '/inbox'
-											? 'border-indigo-500'
+											? 'border-teal-700'
 											: 'border-transparent'
-									} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out`}>
+									} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-teal-700 transition duration-150 ease-in-out`}>
 									Correo
 								</a>
 							</Link>
@@ -80,21 +80,21 @@ const TopNav = ({ inbox = false }) => {
 									href="#"
 									className={`ml-8 mr-8 inline-flex items-center px-1 pt-1 border-b-2 ${
 										router.pathname == '/add-home'
-											? 'border-indigo-500'
+											? 'border-teal-700'
 											: 'border-transparent'
-									} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out`}>
+									} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-teal-700 transition duration-150 ease-in-out`}>
 									Agregar casa
 								</a>
 							</Link>
 							{auth.isAgent && (
-								<Link href="/agent/property-list">
+								<Link href="/agent/property_list">
 									<a
 										href="#"
 										className={`inline-flex items-center px-1 pt-1 border-b-2 ${
 											router.pathname == '/agent/property-list'
-												? 'border-indigo-500'
+												? 'border-teal-700'
 												: 'border-transparent'
-										} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-indigo-700 transition duration-150 ease-in-out`}>
+										} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-teal-700 transition duration-150 ease-in-out`}>
 										Mis propiedades
 									</a>
 								</Link>
@@ -117,6 +117,24 @@ const Header = styled.header`
 	justify-content: space-between;
 	width: min(1920px, 90vw);
 	margin: 1rem auto;
+
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		svg {
+			width: 130px;
+			height: auto;
+		}
+	}
+
+	@media (max-width: 834px) {
+		a {
+			svg {
+				width: 100px;
+			}
+		}
+	}
 `;
 
 export default TopNav;

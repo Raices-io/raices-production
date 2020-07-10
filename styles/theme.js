@@ -2,9 +2,11 @@ const theme = {
 	colors: {
 		primary: '#327B87',
 		text: {
-			primary: '#1A202C',
-			light: '#AFBECF',
+			primary: '#04004D',
+			light: '#A0AEC0',
+			lighter: '#7F98B3',
 			white: '#FFFFFF',
+			light_gray: '#4D4D4D',
 		},
 		indigo: {
 			'100': '#EBF4FF',
@@ -19,10 +21,18 @@ const theme = {
 		},
 		bg: {
 			white: '#FFFFFF',
+			primary_gray: '#4D7E86',
+			divider: '#E5E4ED',
 		},
 		border: {
 			light: '#CBD5E0',
 		},
+		button: {
+			hover: '#275F68',
+		},
+	},
+	transitions: {
+		bg_hover: 'background-color 150ms ease-in-out',
 	},
 };
 

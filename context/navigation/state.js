@@ -28,9 +28,6 @@ export const initialState = {
 };
 
 export const navigationReducer = (state, action) => {
-	console.log('state: ', state);
-	console.log('action: ', action);
-
 	return action.type === types.SHOW_BOT_NAV
 		? { ...state, bottomNav: true }
 		: action.type === types.HIDE_BOT_NAV

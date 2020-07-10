@@ -6,8 +6,6 @@ const Description = ({ home }) => {
 	const [showMore, setShowMore] = useState(false);
 	const hasTooManyChars = home.description.length > 900;
 
-	console.log(hasTooManyChars);
-
 	return (
 		<Container>
 			<h1>Description</h1>

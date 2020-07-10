@@ -7,7 +7,6 @@ import colors from '../util/colors';
 
 const Explore = () => {
 	const [input, setInput] = useState(false);
-	console.log('/ RE-RENDERING');
 
 	return (
 		<Layout input={input}>

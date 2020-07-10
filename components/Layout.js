@@ -13,9 +13,11 @@ const Layout = ({ children, input, modal, hideBottomNav }) => {
 				<TopNav />
 			</TopNavContainer>
 			<ContentContainer>{children}</ContentContainer>
-			<BotNavContainer input={input} modal={modal} hideBottomNav={hideBottomNav}>
-				<BottomNav />
-			</BotNavContainer>
+			{filterState.bottomNav && (
+				<BotNavContainer input={input} modal={modal} hideBottomNav={hideBottomNav}>
+					<BottomNav />
+				</BotNavContainer>
+			)}
 		</Container>
 	);
 };

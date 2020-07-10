@@ -6,6 +6,7 @@ const theme = {
 			light: '#A0AEC0',
 			lighter: '#7F98B3',
 			white: '#FFFFFF',
+			light_gray: '#4D4D4D',
 		},
 		indigo: {
 			'100': '#EBF4FF',
@@ -21,6 +22,7 @@ const theme = {
 		bg: {
 			white: '#FFFFFF',
 			primary_gray: '#4D7E86',
+			divider: '#E5E4ED',
 		},
 		border: {
 			light: '#CBD5E0',

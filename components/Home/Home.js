@@ -8,9 +8,11 @@ import colors from '../../util/colors';
 import Description from './Description';
 import messageAgent from '../../services/messageAgent';
 import { useAuth } from '../../util/auth';
+import { useSetNavigation } from '../../context/navigation/NavigationProvider';
 
-const Home = ({ home, setShowTourModal }) => {
+const Home = ({ home }) => {
 	const { user } = useAuth();
+	const { showTourModal } = useSetNavigation();
 
 	return (
 		<>
@@ -84,7 +86,7 @@ const Home = ({ home, setShowTourModal }) => {
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
 									className="tour"
-									onClick={setShowTourModal}>
+									onClick={showTourModal}>
 									<path
 										d="M37.7677 39.3336C36.8957 39.3336 36.139 38.6854 36.0259 37.7978C35.9037 36.8347 36.5848 35.9549 37.5475 35.8322C43.102 35.1245 48.0761 33.6194 51.5533 31.5933C54.7334 29.7407 56.4843 27.5627 56.4843 25.4606C56.4843 23.1439 54.4354 21.2483 52.716 20.0654C51.9163 19.5152 51.7139 18.4211 52.2642 17.621C52.8144 16.8212 53.9089 16.6189 54.7086 17.1691C58.1703 19.5504 59.9999 22.4174 59.9999 25.4611C59.9999 28.9154 57.6914 32.0863 53.3234 34.631C49.3917 36.9217 44.0903 38.5431 37.992 39.3199C37.9165 39.3291 37.8414 39.3336 37.7677 39.3336Z"
 										fill="#327B87"
@@ -124,7 +126,7 @@ const Home = ({ home, setShowTourModal }) => {
 					<Description home={home} />
 				</HomeContent>
 				<RightPanel>
-					<AgentCard home={home} />
+					<AgentCard home={home} border={true} />
 				</RightPanel>
 			</Container>
 		</>

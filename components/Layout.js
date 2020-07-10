@@ -13,9 +13,11 @@ const Layout = ({ children, input, modal, hideBottomNav }) => {
 				<TopNav />
 			</TopNavContainer>
 			<ContentContainer>{children}</ContentContainer>
-			<BotNavContainer input={input} modal={modal} hideBottomNav={hideBottomNav}>
-				<BottomNav />
-			</BotNavContainer>
+			{filterState.bottomNav && (
+				<BotNavContainer input={input} modal={modal} hideBottomNav={hideBottomNav}>
+					<BottomNav />
+				</BotNavContainer>
+			)}
 		</Container>
 	);
 };
@@ -49,6 +51,7 @@ const ContentContainer = styled.div`
 	width: min(1440px, 90vw);
 	margin: 0 auto;
 	padding-top: 96px;
+	height: 100%;
 
 	@media (max-width: 768px) {
 		border-radius: 0;

@@ -9,6 +9,10 @@ export const types = {
 
 	CLOSE_FILTERS: 'CLOSE_FILTERS',
 	TOGGLE_MOBILE_FILTERS: 'TOGGLE_MOBILE_FILTERS',
+
+	CLOSE_IMAGES_TOUR_MODAL: 'CLOSE_IMAGES_TOUR_MODAL',
+	SHOW_IMAGES_MODAL: 'SHOW_IMAGES_MODAL',
+	SHOW_TOUR_MODAL: 'SHOW_TOUR_MODAL',
 };
 
 export const initialState = {
@@ -18,6 +22,9 @@ export const initialState = {
 	bedBathFilter: false,
 	priceFilter: false,
 	showMobileFilters: false,
+	showImagesTourModal: false,
+	imagesModal: false,
+	tourModal: false,
 };
 
 export const navigationReducer = (state, action) => {
@@ -64,5 +71,11 @@ export const navigationReducer = (state, action) => {
 		? { ...state, propertyTypeFilter: false, cityFilter: false, bedBathFilter: false, priceFilter: false }
 		: action.type === types.TOGGLE_MOBILE_FILTERS
 		? { ...state, showMobileFilters: !state.showMobileFilters }
+		: action.type === types.CLOSE_IMAGES_TOUR_MODAL
+		? { ...state, showImagesTourModal: false, bottomNav: true }
+		: action.type === types.SHOW_IMAGES_MODAL
+		? { ...state, showImagesTourModal: true, imagesModal: true, tourModal: false, bottomNav: false }
+		: action.type === types.SHOW_TOUR_MODAL
+		? { ...state, showImagesTourModal: true, tourModal: true, imagesModal: false, bottomNav: false }
 		: state;
 };

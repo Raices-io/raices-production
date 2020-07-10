@@ -12,8 +12,6 @@ const SearchFilters = () => {
 	const filterState = useStateNavigation();
 	const setFilters = useSetNavigation();
 
-	console.log('FILTERS STATE: ', { ...filterState });
-
 	return (
 		<Container>
 			<FiltersContainer>

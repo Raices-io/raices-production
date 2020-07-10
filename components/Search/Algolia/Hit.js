@@ -22,7 +22,7 @@ const Hit = ({ hit }) => {
 					</div>
 				</div>
 				<Details>
-					<Heading>{`${hit.title.split('').slice(0, 22).join('')}...`}</Heading>
+					<Heading>{hit.title}</Heading>
 					<Stats>
 						<svg
 							width="30"
@@ -107,6 +107,13 @@ const Details = styled.div`
 const Heading = styled.h3`
 	font-family: 'Poppins', sans-serif;
 	font-size: 1.25rem;
+
+	display: block;
+	text-overflow: ellipsis;
+	min-width: 0;
+	/* Required for text-overflow to do anything */
+	white-space: nowrap;
+	overflow: hidden;
 `;
 
 const Stats = styled.div`

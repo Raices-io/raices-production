@@ -6,6 +6,8 @@ import { useSetNavigation } from '../../context/navigation/NavigationProvider';
 const ImageGallery = ({ images }) => {
 	const { showImagesModal } = useSetNavigation();
 
+	console.log(images);
+
 	return (
 		<Container>
 			<GridGallery>

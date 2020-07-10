@@ -1,15 +1,15 @@
 import React from 'react';
 import messageAgent from '../../services/messageAgent';
 import { useAuth } from '../../util/auth';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import colors from '../../util/colors';
 
-const AgentCard = ({ home }) => {
+const AgentCard = ({ home, border }) => {
 	const auth = useAuth();
 	const user = auth.user;
 
 	return (
-		<Container>
+		<Container border={border}>
 			<h2>Agente Inmobiliario</h2>
 			<h3>{home.agent.displayName}</h3>
 			<Image image={home.agent.profilePic}></Image>
@@ -27,9 +27,14 @@ const AgentCard = ({ home }) => {
 
 const Container = styled.div`
 	width: 100%;
-	border: 1px solid ${colors('border.light')};
 	padding: 1.25rem;
 	border-radius: 10px;
+
+	${props =>
+		props.border &&
+		css`
+			border: 1px solid ${colors('border.light')};
+		`}
 
 	display: grid;
 	grid-template-columns: 1fr 1.7fr;

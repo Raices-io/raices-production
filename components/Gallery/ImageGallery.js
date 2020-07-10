@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import colors from '../../util/colors';
+import { useSetNavigation } from '../../context/navigation/NavigationProvider';
 
-const ImageGallery = ({ images, setShowImageModal }) => {
+const ImageGallery = ({ images }) => {
+	const { showImagesModal } = useSetNavigation();
+
 	return (
 		<Container>
 			<GridGallery>
@@ -20,7 +23,7 @@ const ImageGallery = ({ images, setShowImageModal }) => {
 					}
 				})}
 			</GridGallery>
-			<button onClick={setShowImageModal} className="button">
+			<button onClick={showImagesModal} className="button">
 				Mostrar Fotos
 			</button>
 		</Container>

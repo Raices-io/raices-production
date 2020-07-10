@@ -8,13 +8,13 @@ import Home from '../../../components/Home/Home';
 import Layout from '../../../components/Layout';
 import colors from '../../../util/colors';
 import ImageGalleryModal from '../../../components/Gallery/ImageGalleryModal';
-import TourModal from '../../../components/Tour/TourModal';
 import ImageGallery from '../../../components/Gallery/ImageGallery';
+import { useStateNavigation } from '../../../context/navigation/NavigationProvider';
 
 const HomePage = ({ home }) => {
-	const [showImageModal, setShowImageModal] = useState(false);
-	const [showTourModal, setShowTourModal] = useState(false);
 	const router = useRouter();
+
+	const { showImagesTourModal } = useStateNavigation();
 
 	let images = [];
 	home.images.forEach(obj => images.push(obj.downloadURL));
@@ -37,31 +37,30 @@ const HomePage = ({ home }) => {
 	return (
 		home && (
 			<Layout>
-				<Back>
-					<a onClick={() => router.back()}>
-						<svg
-							width="29"
-							height="14"
-							viewBox="0 0 29 14"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M1 7H28M7 13L1 7L7 13ZM1 7L7 1L1 7Z"
-								stroke="#327B87"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							/>
-						</svg>
-						<span>Regresar</span>
-					</a>
-				</Back>
-				{showImageModal && (
-					<ImageGalleryModal setShowImageModal={setShowImageModal} images={images} />
-				)}
-				{showTourModal && <TourModal setShowTourModal={setShowTourModal} tourSrc={home.tour_src} />}
-				<ImageGallery images={images} setShowImageModal={setShowImageModal} />
-				<Home home={home} setShowTourModal={setShowTourModal} />
+				<PageContainer onClick={e => e.stopPropagation()}>
+					<Back>
+						<a onClick={() => router.back()}>
+							<svg
+								width="29"
+								height="14"
+								viewBox="0 0 29 14"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M1 7H28M7 13L1 7L7 13ZM1 7L7 1L1 7Z"
+									stroke="#327B87"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+							<span>Regresar</span>
+						</a>
+					</Back>
+					{showImagesTourModal && <ImageGalleryModal images={images} home={home} />}
+					<ImageGallery images={images} />
+					<Home home={home} />
+				</PageContainer>
 			</Layout>
 		)
 	);
@@ -88,6 +87,8 @@ HomePage.getInitialProps = async ctx => {
 
 	return { home };
 };
+
+const PageContainer = styled.div``;
 
 const Container = styled.div`
 	height: 500px;

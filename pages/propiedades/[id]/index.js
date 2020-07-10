@@ -57,7 +57,7 @@ const HomePage = ({ home }) => {
 							<span>Regresar</span>
 						</a>
 					</Back>
-					{showImagesTourModal && <ImageGalleryModal images={images} home={home} />}
+					{showImagesTourModal && <ImageGalleryModal images={home.images} home={home} />}
 					<ImageGallery images={images} />
 					<Home home={home} />
 				</PageContainer>

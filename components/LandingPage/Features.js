@@ -1,142 +1,145 @@
-import React from 'react';
+import colors from '../../util/colors';
+import styled from 'styled-components';
 
 const Features = () => {
 	return (
-		<div className="pb-12 mt-12 mb-6 bg-white">
-			<div className="max-w-screen-xl mx-auto">
-				<div className="lg:text-center flex flex-col items-start sm:items-center">
-					<p className="text-base leading-6 text-indigo-600 font-semibold tracking-wide uppercase">
-						Raíces
-					</p>
-					<h3 className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
-						Una mejor forma de comprar una casa
-					</h3>
-					<p className="mt-4 sm:text-center max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">
-						Encuentra tu próxima casa. Conecta directamente con agentes. Sin contratiempos.
-					</p>
-				</div>
-
-				<div className="mt-10">
-					<ul className="md:grid md:grid-cols-2 md:col-gap-8 md:row-gap-10">
-						<li className="">
-							<div className="flex">
-								<div className="flex-shrink-0">
-									<div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-										<svg
-											className="h-6 w-6"
-											stroke="currentColor"
-											fill="none"
-											viewBox="0 0 24 24">
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-											/>
-										</svg>
-									</div>
-								</div>
-								<div className="ml-4">
-									<h5 className="text-lg leading-6 font-medium text-gray-900">
-										Encuentra tu próxima casa
-									</h5>
-									<p className="mt-2 text-base leading-6 text-gray-500">
-										Recibe la información que necesitas, en cualquier ciudad.
-									</p>
-								</div>
-							</div>
-						</li>
-						<li className="mt-10 md:mt-0">
-							<div className="flex">
-								<div className="flex-shrink-0">
-									<div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-										<svg
-											className="h-6 w-6"
-											stroke="currentColor"
-											fill="none"
-											viewBox="0 0 24 24">
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
-											/>
-										</svg>
-									</div>
-								</div>
-								<div className="ml-4">
-									<h5 className="text-lg leading-6 font-medium text-gray-900">
-										Sin intermediarios
-									</h5>
-									<p className="mt-2 text-base leading-6 text-gray-500">
-										Conecta con solo un agente por propiedad, directamente.
-									</p>
-								</div>
-							</div>
-						</li>
-						<li className="mt-10 md:mt-0">
-							<div className="flex">
-								<div className="flex-shrink-0">
-									<div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-										<svg
-											className="h-6 w-6"
-											stroke="currentColor"
-											fill="none"
-											viewBox="0 0 24 24">
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M13 10V3L4 14h7v7l9-11h-7z"
-											/>
-										</svg>
-									</div>
-								</div>
-								<div className="ml-4">
-									<h5 className="text-lg leading-6 font-medium text-gray-900">
-										Información actualizada
-									</h5>
-									<p className="mt-2 text-base leading-6 text-gray-500">
-										Nos aseguramos de que las propiedades en nuestra página estén
-										realmente a la venta.
-									</p>
-								</div>
-							</div>
-						</li>
-						<li className="mt-10 md:mt-0">
-							<div className="flex">
-								<div className="flex-shrink-0">
-									<div className="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white">
-										<svg
-											className="h-6 w-6"
-											stroke="currentColor"
-											fill="none"
-											viewBox="0 0 24 24">
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-											/>
-										</svg>
-									</div>
-								</div>
-								<div className="ml-4">
-									<h5 className="text-lg leading-6 font-medium text-gray-900">
-										Envía mensajes directamente a los agentes
-									</h5>
-									<p className="mt-2 text-base leading-6 text-gray-500">
-										No es necesario compartir tu información personal – mantén todas tus
-										comunicaciones en un mismo lugar.
-									</p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<FeaturesContainer>
+			<HeadingTwo>
+				Encuentra&nbsp;tu <span>próxima</span> propiedad. Conecta <span>directamente</span>{' '}
+				con&nbsp;agentes. <span>Sin&nbsp;contratiempos.</span>
+			</HeadingTwo>
+			<List>
+				<ListItem>
+					<HeadingThree>Encuentra tu próxima casa</HeadingThree>
+					<TextContainer>
+						<Square />
+						<Text>Recibe la información que necesitas, en cualquier ciudad.</Text>
+					</TextContainer>
+				</ListItem>
+				<ListItem>
+					<HeadingThree>Sin intermediarios</HeadingThree>
+					<TextContainer>
+						<Square />
+						<Text>Conecta con solo un agente por propiedad, directamente.</Text>
+					</TextContainer>
+				</ListItem>
+				<ListItem>
+					<HeadingThree>Información actualizada</HeadingThree>
+					<TextContainer>
+						<Square />
+						<Text>
+							Nos aseguramos de que las propiedades en nuestra página estén realmente a la
+							venta.
+						</Text>
+					</TextContainer>
+				</ListItem>
+				<ListItem>
+					<HeadingThree>Envía mensajes directamente a los agentes</HeadingThree>
+					<TextContainer>
+						<Square />
+						<Text>
+							No es necesario compartir tu información personal – mantén todas tus
+							comunicaciones en un mismo lugar.
+						</Text>
+					</TextContainer>
+				</ListItem>
+				<Image />
+			</List>
+		</FeaturesContainer>
 	);
 };
+
+const FeaturesContainer = styled.div`
+	@media (max-width: 768px) {
+		padding: 0 1rem;
+	}
+`;
+
+const HeadingTwo = styled.h2`
+	margin-bottom: 4rem;
+	font-size: clamp(1.75rem, 3vw, 3rem);
+
+	span {
+		font-weight: 500;
+		font-family: 'Poppins', sans-serif;
+		color: ${colors('primary')};
+	}
+`;
+
+const HeadingThree = styled.h3`
+	font-size: 1.75rem;
+
+	font-size: clamp(1.4rem, 1.75vw, 1.75rem);
+`;
+
+const List = styled.ul`
+	display: grid;
+	grid-gap: 5rem;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-template-areas:
+		'..... image'
+		'..... image'
+		'..... .....';
+
+	@media (max-width: 1205px) {
+		grid-gap: 3rem;
+	}
+
+	@media (max-width: 1024px) {
+		grid-gap: 2rem;
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(4, fit-content);
+		grid-template-areas:
+			'.....'
+			'.....'
+			'.....'
+			'.....';
+	}
+`;
+
+const Square = styled.div`
+	height: 25px;
+	min-width: 25px;
+	border-radius: 5px;
+	margin-top: 0.4rem;
+	background-color: ${colors('primary')};
+
+	@media (max-width: 550px) {
+		display: none;
+	}
+`;
+
+const ListItem = styled.li``;
+
+const Image = styled.div`
+	height: 100%;
+	width: 100%;
+	grid-area: image;
+	background-image: url('/homePage/chris-ross-harris-bJqeJxeyiJE-unsplash.jpg');
+	background-size: cover;
+	background-position: center;
+	border-radius: 10px;
+
+	@media (max-width: 1024px) {
+		display: none;
+	}
+`;
+
+const TextContainer = styled.div`
+	display: flex;
+	align-items: flex-start;
+	margin-top: 1rem;
+`;
+const Text = styled.p`
+	margin-left: 2rem;
+	font-size: 1.5rem;
+	font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+	color: ${colors('text.light_gray')};
+
+	@media (max-width: 550px) {
+		margin-left: 0;
+	}
+`;
 
 export default Features;

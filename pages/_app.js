@@ -1,63 +1,57 @@
-import React, { useEffect } from 'react';
 import '../styles/index.css';
-import '../util/analytics';
-import Head from 'next/head';
-import Router from 'next/router';
-import { ProvideAuth } from '../util/auth.js';
-import '../styles/imageUploader.css';
 // Div100vh helps solve the height issues I faced when developing across devices and screen sizes
-import Div100vh from "react-div-100vh";
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import Layout from '../components/Layout';
+import Div100vh from 'react-div-100vh';
+import '../util/analytics';
+import '../styles/imageUploader.css';
 
+import { ProvideAuth } from '../util/auth.js';
+import { ThemeProvider } from 'styled-components';
+
+import GlobalStyle from '../styles/GlobalStyles';
+import theme from '../styles/theme';
+import NavigationProvider from '../context/navigation/NavigationProvider';
+
+import { DefaultSeo } from 'next-seo';
 // Global style to prevent page scrolling while modal open
-const GlobalStyle = createGlobalStyle`
-	html, body {
-		margin: 0; 
-		height: 100%; 
-	}
-	/* Hide those nasty nasty scrollbars */
-
-	/* ::-webkit-scrollbar {
-		display: none;
-	} */
-`;
-const theme = {
-  color100: "#EBF4FF",
-  color200: "#C3DAFE",
-  color300: "#A3BFFA",
-  color400: "#7F9CF5",
-  color500: "#667EEA",
-  color600: "#5A67D8",
-  color700: "#4C51BF",
-  color800: "#434190",
-  color900: "#3C366B",
-};
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <ThemeProvider theme={theme}>
-      <ProvideAuth>
-        <Head>
-          {/* Dev gtm: GTM-TXBVQV6 */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','${
-                process.env.ENV == "production" ? "GTM-WGRFWGT" : "GTM-TXBVQV6"
-              }');`,
-            }}
-          />
-        </Head>
-        <GlobalStyle />
-        <Div100vh>
-          <Component {...pageProps} />
-        </Div100vh>
-      </ProvideAuth>
-    </ThemeProvider>
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<DefaultSeo
+				openGraph={{
+					title: 'Raíces - Una mejor forma de comprar una propiedad',
+					description:
+						'Encuentra tu próximo hogar. Conecta directamente con agentes. Sin contratiempos.',
+					type: 'website',
+					locale: 'es_CO',
+					url: 'https://www.raices.io/',
+					site_name: 'Raíces',
+					images: [
+						{
+							url:
+								'https://firebasestorage.googleapis.com/v0/b/raices-production.appspot.com/o/images%2FhomeImages%2FxwZEFnJHe5tdSo2PMCIU%2F4-4.JPG?alt=media&token=7915f82d-9610-4a12-bc8b-a5d2ed84862d',
+							width: 800,
+							height: 600,
+							alt: 'Apto en El Retiro',
+						},
+					],
+				}}
+				// twitter={{
+				// 	handle: '@handle',
+				// 	site: '@site',
+				// 	cardType: 'summary_large_image',
+				// }}
+			/>
+			<ProvideAuth>
+				<NavigationProvider>
+					<GlobalStyle />
+					<Div100vh>
+						<Component {...pageProps} />
+					</Div100vh>
+				</NavigationProvider>
+			</ProvideAuth>
+		</ThemeProvider>
+	);
 }
 
 export default MyApp;

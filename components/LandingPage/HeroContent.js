@@ -1,18 +1,17 @@
-import { InstantSearch, Configure, SearchBox } from 'react-instantsearch-dom';
-import algoliasearch from 'algoliasearch/lite';
-import RoomType from './RoomType';
-import CustomHits from './CustomHit';
-import styled, { css } from 'styled-components';
-import Link from 'next/link';
+// import { InstantSearch, Configure, SearchBox } from 'react-instantsearch-dom';
+// import algoliasearch from 'algoliasearch/lite';
+// import RoomType from './RoomType';
+// import CustomHits from './CustomHit';
+// import styled, { css } from 'styled-components';
+// import Link from 'next/link';
 
-const searchClient = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_ID);
+// const searchClient = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_ID);
 
 const HeroContent = ({ input, setInput }) => {
 	return (
 		<InstantSearch indexName="prod_HOMES" searchClient={searchClient}>
 			<Configure hitsPerPage={8} />
 			<ContentContainer input={input}>
-				
 				<RoomType attribute="sale_type" operator="or" limit={2} input={input} />
 				<StyledSearchBox
 					translations={{
@@ -100,8 +99,6 @@ const ContentContainer = styled.div`
 			}
 		`}
 `;
-
-
 
 const StyledSearchBox = styled(SearchBox)`
 	position: relative;

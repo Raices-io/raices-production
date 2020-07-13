@@ -4,32 +4,22 @@ import algoliasearch from 'algoliasearch/lite';
 ////
 // ** ATOMS **
 ////
+// 1a - highlighted headline
+const StyledHighlightedHeadline = styled.h1`
+	font-size: clamp(38px, 6vw, 78px);
+	line-height: 1.13;
+	width: 800px;
+	z-index: 5;
 
-////
-// ** MOLECULES **
-////
-import TabButtonAlgolia from '../components/LandingPage/TabButtonAlgolia';
-
-////
-// ** ORGANISMS **
-////
-
-// Organism - Algolia Search Light (smaller cards, display on landing page)
-import AlgoliaSearchLight from '../components/LandingPage/AlgoliaSearchLight';
-// Organism - features and image
-import Features from '../components/LandingPage/Features';
-import styled, { css } from 'styled-components';
-import Link from 'next/link';
-// RaicesLogoLight
-import RaicesLogoLight from '../components/Logo/RaicesLogoLight';
-const searchClient = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_ID);
-
-import Layout from '../components/Layout';
-import colors from '../util/colors';
-
+	.color {
+		font-weight: 500;
+		font-family: 'Poppins', sans-serif;
+		color: ${colors('primary')};
+	}
+`;
 const HighlightedHeadline = ({ children, highlighted }) => {
 	return (
-		<h1>
+		<StyledHighlightedHeadline>
 			{children.split(' ').map(word => {
 				// If word is in colored array
 				if (highlighted.includes(word)) {
@@ -38,15 +28,29 @@ const HighlightedHeadline = ({ children, highlighted }) => {
 					return word + ' ';
 				}
 			})}
-		</h1>
+		</StyledHighlightedHeadline>
 	);
 };
+// 1b - non highlighted (regular) headline
 
-/* Atom - text button */
+// 2 - text button
+const StyledTextButton = styled.div`
+	display: flex;
+	align-items: center;
+	margin-top: 1rem;
+	cursor: pointer;
+	.link {
+		color: white;
+		margin-left: 0.25rem;
+	}
+	svg {
+		margin-left: 1rem;
+	}
+`;
 const TextButton = ({ route, anchor }) => {
 	return (
 		<Link href={`/${route}`}>
-			<div className="container">
+			<StyledTextButton>
 				<a className="link">{anchor}</a>
 				<svg
 					width="29"
@@ -62,65 +66,13 @@ const TextButton = ({ route, anchor }) => {
 						strokeLinejoin="round"
 					/>
 				</svg>
-			</div>
+			</StyledTextButton>
 		</Link>
 	);
 };
-
-// Organism - search bar with tabbed button
-// Needs input boolean
-const ContentContainer = styled.div`
-	position: relative;
-	@media (max-width: 768px) {
-		margin-top: 0;
-	}
-
-	.container {
-		display: flex;
-		align-items: center;
-		margin-top: 1rem;
-		cursor: pointer;
-		.link {
-			color: white;
-			margin-left: 0.25rem;
-		}
-		svg {
-			margin-left: 1rem;
-		}
-	}
-
-	${props =>
-		props.input &&
-		css`
-			@media (max-width: 768px) {
-				h1 {
-					display: none;
-				}
-
-				.ais-SearchBox-input {
-					margin-top: 1rem;
-				}
-
-				svg {
-					margin-top: 15px;
-				}
-
-				.ais-SearchBox-submit {
-					margin-left: 1rem;
-				}
-
-				input {
-					width: 50px;
-				}
-
-				.container {
-					display: none;
-				}
-			}
-		`}
-`;
-
-// Atom - search input
+// 3 - SVG import
+import RaicesLogoLight from '../components/Logo/RaicesLogoLight';
+// 4 - search box
 const StyledSearchBox = styled(SearchBox)`
 	position: relative;
 	z-index: 0;
@@ -167,6 +119,110 @@ const StyledSearchBox = styled(SearchBox)`
 		height: 18px;
 	}
 `;
+////
+// ** MOLECULES **
+////
+// 1 - tab button algolia
+import TabButtonAlgolia from '../components/LandingPage/TabButtonAlgolia';
+// 2 - header with accents and logo
+const StyledMainHeaderWithColorAccentAndLogo = styled.div`
+	display: flex;
+	align-items: center;
+	margin-top: 8rem;
+	position: relative;
+	svg {
+		position: absolute;
+		right: 0;
+		width: clamp(400px, 35vw, 600px);
+		height: auto;
+
+		@media (max-width: 1024px) {
+			display: none;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		margin-top: 5rem;
+	}
+	@media (max-width: 768px) {
+		margin-top: 4rem;
+		padding: 0 1rem;
+	}
+`;
+const MainHeaderWithColorAccent = ({ children, headline, highlighted }) => {
+	return (
+		<StyledMainHeaderWithColorAccentAndLogo>
+			{/* Atom - highlighted headline */}
+			<HighlightedHeadline highlighted={highlighted}>{headline}</HighlightedHeadline>
+			{/* Atom - svg */}
+			{/* This could be literally any SVG */}
+			{/* <RaicesLogoLight /> */}
+			{children}
+		</StyledMainHeaderWithColorAccentAndLogo>
+	);
+};
+
+////
+// ** ORGANISMS **
+////
+// Algolia Search Light (smaller cards, display on landing page)
+import AlgoliaSearchLight from '../components/LandingPage/AlgoliaSearchLight';
+// Features and image
+import Features from '../components/LandingPage/Features';
+//
+// StyledFeaturesContainer
+// Feature
+// Title header
+// Bullet Point
+// Subtitle header
+// FeatureImage
+
+import styled, { css } from 'styled-components';
+import Link from 'next/link';
+
+const searchClient = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_ID);
+
+import Layout from '../components/Layout';
+import colors from '../util/colors';
+
+// Organism - search bar with tabbed button
+// Needs input boolean
+const ContentContainer = styled.div`
+	position: relative;
+	@media (max-width: 768px) {
+		margin-top: 0;
+	}
+
+	${props =>
+		props.input &&
+		css`
+			@media (max-width: 768px) {
+				h1 {
+					display: none;
+				}
+
+				.ais-SearchBox-input {
+					margin-top: 1rem;
+				}
+
+				svg {
+					margin-top: 15px;
+				}
+
+				.ais-SearchBox-submit {
+					margin-left: 1rem;
+				}
+
+				input {
+					width: 50px;
+				}
+
+				.container {
+					display: none;
+				}
+			}
+		`}
+`;
 
 // Organism - hero with search bar
 const HeroContainer = styled.div`
@@ -176,6 +232,7 @@ const HeroContainer = styled.div`
 	align-items: center;
 	justify-content: center;
 	border-radius: 10px;
+	/* Background image, be sure to change the url */
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
 		url('/homePage/alexander-andrews-A3DPhhAL6Zg-Crop3-unsplash.jpg');
 	background-size: cover;
@@ -195,44 +252,6 @@ const HeroContainer = styled.div`
 
 const Container = styled.div`
 	margin-bottom: 8rem;
-`;
-
-// Molecule - header with color accent and responsive logo
-const StyledHeaderWithColorAccentAndLogo = styled.div`
-	display: flex;
-	align-items: center;
-	margin-top: 8rem;
-	position: relative;
-	h1 {
-		font-size: clamp(38px, 6vw, 78px);
-		line-height: 1.13;
-		width: 800px;
-		z-index: 5;
-
-		.color {
-			font-weight: 500;
-			font-family: 'Poppins', sans-serif;
-			color: ${colors('primary')};
-		}
-	}
-	svg {
-		position: absolute;
-		right: 0;
-		width: clamp(400px, 35vw, 600px);
-		height: auto;
-
-		@media (max-width: 1024px) {
-			display: none;
-		}
-	}
-
-	@media (max-width: 1024px) {
-		margin-top: 5rem;
-	}
-	@media (max-width: 768px) {
-		margin-top: 4rem;
-		padding: 0 1rem;
-	}
 `;
 
 // Atom - divider
@@ -283,20 +302,11 @@ const Explore = () => {
 					</InstantSearch>
 				</HeroContainer>
 
-				{/* Molecule - header with color accent and responsive logo */}
-				{/* Take a prop string that's the headline */}
-				{/* 2nd prop is an array with words that should be highlighted */}
-				{/* Component maps over string and applies className="color" if value is in array */}
-				{/* Molecule - styled header with color accent and logo */}
-				<StyledHeaderWithColorAccentAndLogo>
-					{/* Atom - highlighted headline */}
-					<HighlightedHeadline highlighted={['mejor', 'comprar', 'propiedad']}>
-						Una mejor forma de comprar una propiedad
-					</HighlightedHeadline>
-					{/* Atom - svg */}
-					{/* This could be literally any SVG */}
+				<MainHeaderWithColorAccent
+					headline={'Una mejor forma de comprar una propiedad'}
+					highlighted={['mejor', 'comprar', 'propiedad']}>
 					<RaicesLogoLight />
-				</StyledHeaderWithColorAccentAndLogo>
+				</MainHeaderWithColorAccent>
 
 				{/* Atom - divider */}
 				<Divider />

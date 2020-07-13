@@ -1,7 +1,7 @@
 import { connectRefinementList } from 'react-instantsearch-dom';
 import styled, { css } from 'styled-components';
 
-const RoomType = connectRefinementList(({ items, refine, currentRefinement, input }) => {
+const TabButtonAlgolia = connectRefinementList(({ items, refine, currentRefinement, input }) => {
 	const sortedItems = items.sort((i1, i2) => i1.label.localeCompare(i2.label));
 
 	const hitComponents = sortedItems.map((item, index) => {
@@ -9,23 +9,22 @@ const RoomType = connectRefinementList(({ items, refine, currentRefinement, inpu
 		const itemClassName = `ais-refinement-list--item ${selectedClassName}`;
 
 		return (
-			<div
-				className={`${itemClassName}`}
-				key={item.label}
-				style={{ cursor: 'pointer' }}>
+			<div className={`${itemClassName}`} key={item.label} style={{ cursor: 'pointer' }}>
 				<StyledTab
 					selected={currentRefinement.includes(item.label)}
 					className={`ais-refinement-list--label ${index === 0 ? 'left' : 'right'} ${
 						sortedItems.length === 1 ? 'single' : ''
 					}`}>
-					<TabButton
+					<StyledTabButton
 						className="ais-refinement-list--label"
 						onClick={e => {
 							e.preventDefault();
 							refine(item.value);
 						}}>
-						<p>{item.label == 'rent' ? 'Alquilar' : 'Comprar'} </p>
-					</TabButton>
+						{item.label == 'rent' && <p>Alquilar</p>}
+						{item.label == 'sale' && <p>Comprar</p>}
+						{item.label !== 'rent' && item.label !== 'sale' && item.label}
+					</StyledTabButton>
 				</StyledTab>
 			</div>
 		);
@@ -82,10 +81,10 @@ const StyledTabs = styled.div`
 		`}
 `;
 
-const TabButton = styled.div`
+const StyledTabButton = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 `;
 
-export default RoomType;
+export default TabButtonAlgolia;

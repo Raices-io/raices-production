@@ -1,53 +1,69 @@
 import { useState } from 'react';
 import { InstantSearch, Configure, SearchBox } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch/lite';
-// Molecule - tab button type
-import RoomType from '../components/LandingPage/RoomType';
-// Organism - home result hit
-import CustomHits from '../components/LandingPage/CustomHit';
+////
+// ** ATOMS **
+////
+
+////
+// ** MOLECULES **
+////
+import TabButtonAlgolia from '../components/LandingPage/TabButtonAlgolia';
+
+////
+// ** ORGANISMS **
+////
+
+// Organism - Algolia Search Light (smaller cards, display on landing page)
+import AlgoliaSearchLight from '../components/LandingPage/AlgoliaSearchLight';
 // Organism - features and image
 import Features from '../components/LandingPage/Features';
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-
+// RaicesLogoLight
+import RaicesLogoLight from '../components/Logo/RaicesLogoLight';
 const searchClient = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_SEARCH_ID);
 
 import Layout from '../components/Layout';
 import colors from '../util/colors';
 
-const HeaderWithColorAccentAndLogo = ({ headline, colored }) => {
+const HighlightedHeadline = ({ children, highlighted }) => {
 	return (
-		<HeadingContainer>
-			<h1>
-				{headline.split(' ').map(word => {
-					// If word is in colored array
-					if (colored.includes(word)) {
-						return <span className="color">{word + ' '}</span>;
-					} else {
-						return word + ' ';
-					}
-				})}
-			</h1>
-			<svg
-				width="617"
-				height="359"
-				viewBox="0 0 617 359"
-				fill="none"
-				xmlns="http://www.w3.org/2000/svg">
-				<path
-					fillRule="evenodd"
-					clipRule="evenodd"
-					d="M235.255 11.4071C214.833 -3.80235 187.051 -3.80235 166.628 11.4071L235.255 11.4071ZM235.255 11.4071L378.121 117.781C378.123 117.783 378.126 117.785 378.129 117.787C393.073 128.906 401.884 146.592 401.884 165.397V299.974C401.884 332.568 375.883 358.995 343.815 358.995H270.006C259.845 358.995 251.609 350.623 251.609 340.296C251.609 329.97 259.845 321.598 270.006 321.598H343.815C355.562 321.598 365.09 311.914 365.09 299.974V165.397C365.09 158.499 361.86 152.027 356.393 147.961L356.385 147.955L213.512 41.5751C206.035 36.0061 195.851 36.0045 188.374 41.5735L45.5006 147.953C45.4999 147.954 45.5013 147.953 45.5006 147.953C40.03 152.029 36.7936 158.512 36.7936 165.397V299.974C36.7936 311.914 46.3212 321.598 58.0686 321.598H153.757C163.917 321.598 172.154 329.97 172.154 340.296C172.154 350.623 163.917 358.995 153.757 358.995H58.0686C26.0006 358.995 0 332.568 0 299.974V165.397C0 146.576 8.83701 128.897 23.7531 117.788L166.628 11.4071C166.629 11.4065 166.627 11.4076 166.628 11.4071"
-					fill="#D2E3E6"
-				/>
-				<path
-					fillRule="evenodd"
-					clipRule="evenodd"
-					d="M449.699 11.4071C429.276 -3.80235 401.495 -3.80235 381.072 11.4071H449.699ZM449.701 11.4086L592.564 117.781C592.567 117.783 592.57 117.785 592.572 117.787C607.517 128.906 616.327 146.592 616.327 165.397V299.974C616.327 332.568 590.327 358.995 558.259 358.995H447.843C437.683 358.995 429.447 350.623 429.447 340.296C429.447 329.97 437.683 321.598 447.843 321.598H558.259C570.006 321.598 579.534 311.914 579.534 299.974V165.397C579.534 158.499 576.304 152.027 570.837 147.961L570.829 147.955L427.955 41.5751L427.953 41.5735C420.476 36.0045 410.295 36.0045 402.817 41.5735L402.815 41.5751L259.944 147.953C259.943 147.954 259.943 147.954 259.942 147.955C254.472 152.03 251.237 158.512 251.237 165.397V299.974C251.237 311.914 260.765 321.598 272.512 321.598H346.322C356.482 321.598 364.718 329.97 364.718 340.296C364.718 350.623 356.482 358.995 346.322 358.995H272.512C240.444 358.995 214.444 332.568 214.444 299.974V165.397C214.444 146.577 223.28 128.897 238.197 117.788L238.199 117.787L381.07 11.4086C381.07 11.4081 381.071 11.4076 381.072 11.4071"
-					fill="#D2E3E6"
-				/>
-			</svg>
-		</HeadingContainer>
+		<h1>
+			{children.split(' ').map(word => {
+				// If word is in colored array
+				if (highlighted.includes(word)) {
+					return <span className="color">{word + ' '}</span>;
+				} else {
+					return word + ' ';
+				}
+			})}
+		</h1>
+	);
+};
+
+/* Atom - text button */
+const TextButton = ({ route, anchor }) => {
+	return (
+		<Link href={`/${route}`}>
+			<div className="container">
+				<a className="link">{anchor}</a>
+				<svg
+					width="29"
+					height="14"
+					viewBox="0 0 29 14"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg">
+					<path
+						d="M28 7L0.999999 7M22 1L28 7L22 1ZM28 7L22 13L28 7Z"
+						stroke="white"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+					/>
+				</svg>
+			</div>
+		</Link>
 	);
 };
 
@@ -55,7 +71,6 @@ const HeaderWithColorAccentAndLogo = ({ headline, colored }) => {
 // Needs input boolean
 const ContentContainer = styled.div`
 	position: relative;
-
 	@media (max-width: 768px) {
 		margin-top: 0;
 	}
@@ -160,14 +175,11 @@ const HeroContainer = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
 	border-radius: 10px;
-
 	background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
 		url('/homePage/alexander-andrews-A3DPhhAL6Zg-Crop3-unsplash.jpg');
 	background-size: cover;
 	background-position: center;
-
 	@media (max-width: 768px) {
 		border-radius: 0;
 	}
@@ -186,7 +198,7 @@ const Container = styled.div`
 `;
 
 // Molecule - header with color accent and responsive logo
-const HeadingContainer = styled.div`
+const StyledHeaderWithColorAccentAndLogo = styled.div`
 	display: flex;
 	align-items: center;
 	margin-top: 8rem;
@@ -252,7 +264,7 @@ const Explore = () => {
 						{/* Organism - search bar with tabbed button */}
 						<ContentContainer input={input}>
 							{/* Molecule - tab button type */}
-							<RoomType attribute="sale_type" operator="or" limit={2} input={input} />
+							<TabButtonAlgolia attribute="sale_type" operator="or" limit={2} input={input} />
 							{/* Atom - search input */}
 							<StyledSearchBox
 								translations={{
@@ -264,38 +276,28 @@ const Explore = () => {
 								}}
 							/>
 							{/* Atom - text button */}
-							<Link href="/propiedades">
-								<div className="container">
-									<a className="link">Propiedades</a>
-									<svg
-										width="29"
-										height="14"
-										viewBox="0 0 29 14"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg">
-										<path
-											d="M28 7L0.999999 7M22 1L28 7L22 1ZM28 7L22 13L28 7Z"
-											stroke="white"
-											strokeWidth="2"
-											strokeLinecap="round"
-											strokeLinejoin="round"
-										/>
-									</svg>
-								</div>
-							</Link>
-							{/* Organism - home result hit */}
-							<CustomHits input={input} setInput={setInput} />
+							<TextButton route={'propiedades'} anchor={'Propiedades'} />
+							{/* Organism - HomeResultHitLight */}
+							<AlgoliaSearchLight input={input} setInput={setInput} />
 						</ContentContainer>
 					</InstantSearch>
 				</HeroContainer>
+
 				{/* Molecule - header with color accent and responsive logo */}
 				{/* Take a prop string that's the headline */}
 				{/* 2nd prop is an array with words that should be highlighted */}
 				{/* Component maps over string and applies className="color" if value is in array */}
-				<HeaderWithColorAccentAndLogo
-					headline={'Una mejor forma de comprar una propiedad'}
-					colored={['mejor', 'comprar', 'propiedad']}
-				/>
+				{/* Molecule - styled header with color accent and logo */}
+				<StyledHeaderWithColorAccentAndLogo>
+					{/* Atom - highlighted headline */}
+					<HighlightedHeadline highlighted={['mejor', 'comprar', 'propiedad']}>
+						Una mejor forma de comprar una propiedad
+					</HighlightedHeadline>
+					{/* Atom - svg */}
+					{/* This could be literally any SVG */}
+					<RaicesLogoLight />
+				</StyledHeaderWithColorAccentAndLogo>
+
 				{/* Atom - divider */}
 				<Divider />
 				{/* Organism - features and image */}

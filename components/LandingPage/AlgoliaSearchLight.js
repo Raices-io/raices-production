@@ -14,15 +14,16 @@ const Hits = connectStateResults(({ searchState, hits, input, setInput }) => {
 	}, [searchState]);
 
 	return searchState.query && input ? (
-		<SearchDropdown onClick={e => e.stopPropagation()} input={input}>
+		<SearchDropdownLight onClick={e => e.stopPropagation()} input={input}>
 			{hits.map(hit => {
 				return <Hit hit={hit} key={hit.id} />;
 			})}
-		</SearchDropdown>
+		</SearchDropdownLight>
 	) : null;
 });
 
-const SearchDropdown = styled.ol`
+// Organism - landing page
+const SearchDropdownLight = styled.ol`
 	background: white;
 	position: absolute;
 	top: 5;
@@ -46,6 +47,6 @@ const SearchDropdown = styled.ol`
 		`}
 `;
 
-const CustomHits = connectHits(Hits);
+const AlgoliaSearchLight = connectHits(Hits);
 
-export default CustomHits;
+export default AlgoliaSearchLight;

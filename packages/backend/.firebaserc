@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "production": "raices-production",
+    "staging": "raices-staging",
+    "default": "raices-staging"
+  }
+}

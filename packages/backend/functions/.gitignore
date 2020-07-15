@@ -1,0 +1,12 @@
+node_modules/
+
+# Firebase
+.firebase
+.runtimeconfig.js
+.runtimeconfig.json
+firebaseServiceAccount.json
+*.log
+
+raices-staging-firebase-adminsdk-qsy81-728a97bd45.json
+
+config/

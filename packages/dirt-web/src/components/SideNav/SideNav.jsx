@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import Link from "next/link";
-import TableOfContent from "./TableOfContent";
-import formatHref from "../../utilities/formatHref";
+import styled from 'styled-components';
+import Link from 'next/link';
+import TableOfContent from './TableOfContent';
+import formatHref from '../../utilities/formatHref';
 
 const SideNav = ({ directory }) => {
 	return (
@@ -15,17 +15,10 @@ const SideNav = ({ directory }) => {
 								{dir.links.map(link => {
 									return (
 										<SideNavItemContainer key={link.name}>
-											<Link
-												href={`/components/${formatHref(
-													link.name
-												)}`}
-											>
+											<Link href={`/components/${formatHref(link.name)}`}>
 												<a>{link.name}</a>
 											</Link>
-											<TableOfContent
-												link={link}
-												key={link.name}
-											/>
+											<TableOfContent link={link} key={link.name} />
 										</SideNavItemContainer>
 									);
 								})}

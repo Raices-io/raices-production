@@ -1,10 +1,11 @@
-import { ThemeProvider } from "styled-components";
-import { gsap } from "gsap/dist/gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { ThemeProvider } from 'styled-components';
+import { gsap } from 'gsap/dist/gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-import theme from "../styles/theme";
-import GlobalStyle from "../styles/GlobalStyles";
-import SideNavProvider from "../contexts/SideNavContext/SideNavProvider";
+import theme from '../styles/theme';
+import GlobalStyle from '../styles/GlobalStyles';
+import SideNavProvider from '../contexts/SideNavContext/SideNavProvider';
+import '../services/prism/prism.css';
 
 gsap.registerPlugin(ScrollTrigger);
 

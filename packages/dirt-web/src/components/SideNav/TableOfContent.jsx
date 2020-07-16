@@ -1,9 +1,15 @@
-import formatHref from "../../utilities/formatHref";
-import styled from "styled-components";
-import ListItem from "./ListItem";
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import ListItem from './ListItem';
 
 const TableOfContent = ({ link }) => {
-	return link ? (
+	const router = useRouter();
+	console.log(router);
+
+	const isCurrentPath = router.asPath.indexOf(link.name.toLowerCase()) === -1;
+	console.log(isCurrentPath, link.name);
+
+	return link && !isCurrentPath ? (
 		<Container>
 			{link.subDirectory && (
 				<List>
@@ -36,8 +42,8 @@ const Container = styled.div``;
 const List = styled.ul``;
 
 const InnerList = styled.ul`
-    padding-left: 1.75rem;
-    border-left: 1px solid lightgray;
+	padding-left: 1.75rem;
+	border-left: 1px solid lightgray;
 `;
 
 export default TableOfContent;

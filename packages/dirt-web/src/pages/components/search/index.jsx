@@ -3,7 +3,7 @@ import {
 	InstantSearchWrapper,
 	SearchBoxSimple,
 	AlgoliaSearchDropdownHomeList,
-} from "@dirt/design-system";
+} from "@raices/dirt";
 
 import Layout from "../../../components/Layout";
 import directory from "../../directory";

@@ -5,7 +5,7 @@ import directory from "../../directory";
 import {
 	MainHeaderWithColorAccent,
 	RaicesLogoLight,
-} from "@dirt/design-system";
+} from "@raices/dirt";
 
 export default () => {
 	return (

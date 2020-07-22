@@ -17,7 +17,7 @@ const StyledTextButton = styled.div`
 	}
 `;
 
-const TextButtonLink = ({ route, anchor }) => {
+export const TextButtonLink = ({ route, anchor }) => {
 	return (
 		<Link href={`/${route}`}>
 			<StyledTextButton>
@@ -41,5 +41,3 @@ const TextButtonLink = ({ route, anchor }) => {
 		</Link>
 	);
 };
-
-export default TextButtonLink;

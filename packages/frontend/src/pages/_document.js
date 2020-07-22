@@ -47,6 +47,7 @@ export default class Document extends NextDocument {
 				}');`,
 						}}
 					/>
+					<meta name="google-site-verification" content="SyysUUe_lzu_M4wHyUtQrOtILMElduNR-gow1JetZ5E" />
 				</Head>
 				<body>
 					<Main />

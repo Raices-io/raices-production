@@ -1,8 +1,9 @@
-import styled, { css } from "styled-components";
-import formatHref from "../../utilities/formatHref";
+import styled, { css } from 'styled-components';
+import formatHref from '../../util/formatHref';
+import colors from '../../util/colors';
 
-import { useSideNav } from "../../contexts/SideNavContext/SideNavProvider";
-import { useEffect, useState } from "react";
+import { useSideNav } from '../../contexts/SideNavContext/SideNavProvider';
+import { useEffect, useState } from 'react';
 
 const ListItem = ({ name }) => {
 	const [isActive, setIsActive] = useState(false);
@@ -26,23 +27,27 @@ const ListItem = ({ name }) => {
 const Item = styled.p`
 	border-left: 1px solid red;
 	width: 100%;
-	border-left: 1px solid lightgray;
+	border-left: 1px solid #444;
 	padding-left: 1.75rem;
 	margin-bottom: 0;
 	line-height: 2.15rem;
-	color: inherit;
 
 	a {
+		color: #999;
 		margin-bottom: 0;
+
+		&:hover {
+			color: #FFF;
+		}
 	}
 
 	${({ isActive }) => {
 		return (
 			isActive &&
 			css`
-				border-left: 1px solid red;
+				border-left: 1px solid ${colors('primary')};
 				a {
-					color: red;
+					color: white;
 				}
 			`
 		);

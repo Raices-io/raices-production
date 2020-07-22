@@ -14,7 +14,7 @@ const StyledHighlightedHeadline = styled.h1`
 	}
 `;
 
-const HighlightedHeadline = ({ children, highlighted }) => {
+export const HighlightedHeadline = ({ children, highlighted }) => {
 	return (
 		<StyledHighlightedHeadline>
 			{children.split(" ").map(word => {
@@ -28,5 +28,3 @@ const HighlightedHeadline = ({ children, highlighted }) => {
 		</StyledHighlightedHeadline>
 	);
 };
-
-export default HighlightedHeadline;

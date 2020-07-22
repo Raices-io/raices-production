@@ -4,37 +4,37 @@ import { useEffect, useRef } from 'react';
 
 import { useSideNav } from '../../../contexts/SideNavContext/SideNavProvider';
 import Layout from '../../../components/Layout';
-import directory from '../../directory';
+import directory from '../directory';
 import PageContainer from '../../../styles/styled-components/PageContainer';
 import Code from '../../../components/Code';
 
 export default () => {
-	const { setActiveSection } = useSideNav();
+	const { setActiveSection, activeSection } = useSideNav();
 	let propertiesRef = useRef(null);
 	let typesOfButtonsRef = useRef(null);
 	let scrollerRef = useRef(null);
 
 	useEffect(() => {
+		setActiveSection('properties');
+	}, []);
+
+	useEffect(() => {
 		ScrollTrigger.create({
 			trigger: propertiesRef,
 			scroller: scrollerRef,
-			start: 'top',
-			onEnter: self => setActiveSection('properties'),
-			onEnterBack: self => setActiveSection('properties'),
-			onLeave: self => setActiveSection(''),
-			onLeaveBack: self => setActiveSection(''),
-			markers: true,
+			start: '-5',
+			onEnter: () => setActiveSection('properties'),
+			onEnterBack: () => setActiveSection('properties'),
+			onLeave: () => setActiveSection(''),
 		});
 
 		ScrollTrigger.create({
 			trigger: typesOfButtonsRef,
 			scroller: scrollerRef,
-			start: 'top',
-			onEnter: self => setActiveSection('type-of-buttons'),
-			onEnterBack: self => setActiveSection('type-of-buttons'),
-			onLeave: self => setActiveSection(''),
-			onLeaveBack: self => setActiveSection(''),
-			markers: true,
+			start: '-5',
+			onEnter: () => setActiveSection('type-of-buttons'),
+			onEnterBack: () => setActiveSection('type-of-buttons'),
+			onLeave: () => setActiveSection(''),
 		});
 	}, []);
 
@@ -61,8 +61,8 @@ export default () => {
 	return (
 		<Layout directory={directory}>
 			<PageContainer ref={el => (scrollerRef = el)}>
-				<div style={{ height: '50vh' }}>
-					<h1 style={{ marginBottom: '2rem' }}>Button Page</h1>
+				<div>
+					<h1>Button Page</h1>
 					<Button>Primary</Button>
 				</div>
 				<div

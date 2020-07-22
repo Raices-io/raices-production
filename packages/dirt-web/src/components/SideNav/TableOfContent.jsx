@@ -4,10 +4,8 @@ import ListItem from './ListItem';
 
 const TableOfContent = ({ link }) => {
 	const router = useRouter();
-	console.log(router);
 
 	const isCurrentPath = router.asPath.indexOf(link.name.toLowerCase()) === -1;
-	console.log(isCurrentPath, link.name);
 
 	return link && !isCurrentPath ? (
 		<Container>
@@ -43,7 +41,7 @@ const List = styled.ul``;
 
 const InnerList = styled.ul`
 	padding-left: 1.75rem;
-	border-left: 1px solid lightgray;
+	border-left: 1px solid #444;
 `;
 
 export default TableOfContent;

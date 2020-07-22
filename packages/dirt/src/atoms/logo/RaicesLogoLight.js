@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RaicesLogoLight = () => {
+export const RaicesLogoLight = () => {
 	return (
 		<svg width="617" height="359" viewBox="0 0 617 359" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<path
@@ -18,5 +18,3 @@ const RaicesLogoLight = () => {
 		</svg>
 	);
 };
-
-export default RaicesLogoLight;

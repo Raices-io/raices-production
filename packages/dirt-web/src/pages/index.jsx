@@ -1,7 +1,6 @@
-import styled from "styled-components";
-import Layout from "../components/Layout";
-import directory from "./directory";
-import PageContainer from "../styles/styled-components/PageContainer";
+import Layout from '../components/Layout';
+import PageContainer from '../styles/styled-components/PageContainer';
+import directory from './directory';
 
 const HomePage = () => {
 	return (

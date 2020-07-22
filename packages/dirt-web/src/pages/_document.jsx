@@ -1,5 +1,5 @@
-import NextDocument, { Html, Head, Main, NextScript } from "next/document";
-import { ServerStyleSheet } from "styled-components";
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends NextDocument {
 	static async getInitialProps(ctx) {
@@ -9,8 +9,7 @@ export default class MyDocument extends NextDocument {
 		try {
 			ctx.renderPage = () =>
 				originalRenderPage({
-					enhanceApp: App => props =>
-						sheet.collectStyles(<App {...props} />),
+					enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
 				});
 
 			const initialProps = await NextDocument.getInitialProps(ctx);
@@ -33,8 +32,8 @@ export default class MyDocument extends NextDocument {
 			<Html>
 				<Head>
 					<link
+						href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@500;600&family=Roboto:wght@400;500&display=swap"
 						rel="stylesheet"
-						href="https://use.typekit.net/owm5fxr.css"
 					/>
 				</Head>
 				<body>

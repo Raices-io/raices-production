@@ -52,8 +52,8 @@ const InfiniteHitsStyles = styled.div`
 	ul {
 		height: 100%;
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
-		grid-gap: 2.5rem 5rem;
+		grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+		grid-gap: 2.5rem 48px;
 	}
 
 	.ais-InfiniteHits-sentinel {

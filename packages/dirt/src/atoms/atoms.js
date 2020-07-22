@@ -1,6 +1,7 @@
-import Button from "./Buttons/Button";
-import TextButtonLink from "./Buttons/TextButtonLink";
-import RaicesLogoLight from "./Logos/RaicesLogoLight";
-import HighlightedHeadline from "./Headlines/HighlightedHeadline";
+import { Button, TextButtonLink } from './button';
+import { RaicesLogoLight } from './logo';
+import { HighlightedHeadline } from './heading';
+import { Text } from './text';
+import { Box } from './box';
 
-export default { Button, TextButtonLink, RaicesLogoLight, HighlightedHeadline };
+export default { Button, TextButtonLink, RaicesLogoLight, HighlightedHeadline, Text, Box };

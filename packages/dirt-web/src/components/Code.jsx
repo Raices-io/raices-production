@@ -4,9 +4,10 @@ import Editor from 'react-simple-code-editor';
 import { highlight, languages } from '../services/prism/prism';
 import { Button } from '@raices/dirt';
 
-const Code = ({ code, maxHeight }) => {
+const Code = ({ code, maxHeight = 'fit-content' }) => {
 	const [expand, setExpand] = useState(false);
-	console.log(expand);
+	const codeLines = code.split(/\r\n|\r|\n/).length;
+	const isTooHigh = codeLines > 8;
 
 	return (
 		<EditorContainer expand={expand} maxHeight={maxHeight}>
@@ -22,10 +23,12 @@ const Code = ({ code, maxHeight }) => {
 				tabSize={4}
 				insertSpaces={false}
 			/>
-			<Expand>
-				<Button onClick={() => setExpand(!expand)}>{!expand ? 'Expand' : 'Collapse'}</Button>
-			</Expand>
-			{!expand && <div className="bg"></div>}
+			{isTooHigh && (
+				<Expand>
+					<Button onClick={() => setExpand(!expand)}>{!expand ? 'Expand' : 'Collapse'}</Button>
+				</Expand>
+			)}
+			{!expand && isTooHigh && <div className="bg"></div>}
 		</EditorContainer>
 	);
 };
@@ -45,7 +48,7 @@ const EditorContainer = styled.div`
 		width: 100%;
 		top: 0;
 		border-radius: 5px;
-        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40.31%, rgba(25, 25, 25, 0.95) 100%);
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40.31%, rgba(25, 25, 25, 0.95) 100%);
 		${({ expand }) =>
 			expand &&
 			css`

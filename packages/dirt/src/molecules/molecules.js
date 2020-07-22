@@ -1,3 +1,3 @@
-import MainHeaderWithColorAccent from "./Headlines/MainHeaderWithColorAccent";
+import MainHeaderWithColorAccent from "./headlines/MainHeaderWithColorAccent";
 
 export default { MainHeaderWithColorAccent };

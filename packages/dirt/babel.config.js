@@ -1,13 +1,13 @@
 const presets = [
 	[
-		"@babel/env",
+		'@babel/env',
 		{
 			modules: false,
 		},
 	],
-	["@babel/preset-react"],
+	['@babel/preset-react'],
 ];
 
-const plugins = ["babel-plugin-styled-components"];
+const plugins = ['babel-plugin-styled-components', { ssr: true, displayName: true, preprocess: false }];
 
 module.exports = { presets, plugins };

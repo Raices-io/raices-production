@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -7,12 +7,11 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         text-decoration: none;
         list-style: none;
-        color: #333;
 
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+        font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     
         h1, h2, h3, h4, h5, h6 {
-            font-family: futura-pt,sans-serif;
+            font-family: 'Poppins',sans-serif;
             font-weight: 600;
             font-style: normal;
         }
@@ -23,10 +22,9 @@ const GlobalStyle = createGlobalStyle`
             background-color: white;
             font-weight: 400;
             line-height: 1.65;
-            color: #333;
         }
 
-        p, a {margin-bottom: 1.15rem;}
+        p, a {margin-bottom: 1.15rem; line-height: 1.5;}
 
         a {
             display: block;
@@ -36,13 +34,12 @@ const GlobalStyle = createGlobalStyle`
         }
 
         h1, h2, h3, h4, h5 {
-            margin: 2.75rem 0 1.05rem;
-            font-weight: 400;
-            line-height: 1.15;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            line-height: 1.5;
         }
 
         h1 {
-            margin-top: 0;
             font-size: 3.052em;
         }
 

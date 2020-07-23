@@ -89,7 +89,7 @@ const Container = styled.div`
 	width: 100%;
 	justify-content: space-between;
 
-    @media (max-width: 1024px) {
+	@media (max-width: 1024px) {
 		display: none;
 	}
 `;

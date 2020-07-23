@@ -151,7 +151,7 @@ const General = () => {
 			<WizardProgressHeader percentage={25} title={'Información general'} />
 			{loading && <LoadingPage />}
 			{pendingHome && (
-				<div className="mt-15 flex flex-col h-full flex-grow mx-0  overflow-y-scroll flex-grow pt-2">
+				<div className="mt-15 flex flex-col h-full mx-0  overflow-y-scroll flex-grow pt-2">
 					<GeneralInformationForm
 						home={pendingHome}
 						handleFormFieldChange={handleFormFieldChange}

@@ -8,6 +8,8 @@ const RentOrSaleForm = ({
 	formValidationSaleType,
 	formValidationPrice,
 	priceError,
+	formValidationArea,
+	areaError,
 }) => {
 	return (
 		<div className="mt-8 border-t border-gray-200 pt-8 sm:mt-5 sm:pt-10">
@@ -100,6 +102,27 @@ const RentOrSaleForm = ({
 										{priceError && (
 											<span className="text-sm text-red-600">
 												Por favor complete el precio
+											</span>
+										)}
+									</div>
+									<h3 className="text-lg mt-6 leading-6 font-medium text-gray-900">
+										Área (mt2)
+									</h3>
+									<div className="mt-4">
+										<div className="max-w-lg rounded-md shadow-sm">
+											<input
+												id="area"
+												type="number"
+												className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+												onChange={handleFormFieldChange}
+												value={home.area}
+												name="area"
+												onBlur={formValidationArea}
+											/>
+										</div>
+										{areaError && (
+											<span className="text-sm text-red-600">
+												Por favor complete el area
 											</span>
 										)}
 									</div>

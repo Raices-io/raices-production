@@ -18,12 +18,14 @@ const GeneralInformationForm = ({
 	const [addressError, setAddressError] = useState(false);
 	const [titleError, setTitleError] = useState(false);
 	const [cityError, setCityError] = useState(false);
+	const [barrioError, setBarrioError] = useState(false);
 	const [stateError, setStateError] = useState(false);
 	const [zipError, setZipError] = useState(false);
 	const [priceError, setPriceError] = useState(false);
 	const [homeTypeError, setHomeTypeError] = useState(false);
 	const [bedroomsError, setBedroomsError] = useState(false);
 	const [bathroomsError, setBathroomsError] = useState(false);
+	const [areaError, setAreaError] = useState(false);
 	const { owner } = home;
 
 	const formValidationTitle = () => {
@@ -50,11 +52,26 @@ const GeneralInformationForm = ({
 			setPriceError(false);
 		}
 	};
+	const formValidationArea = () => {
+		// Validation for address form
+		if (home.area.length <= 1) {
+			setAreaError(true);
+		} else {
+			setAreaError(false);
+		}
+	};
 	const formValidationCity = () => {
 		if (home.city.length < 1) {
 			setCityError(true);
 		} else {
 			setCityError(false);
+		}
+	};
+	const formValidationBarrio = () => {
+		if (home.barrio.length < 1) {
+			setBarrioError(true);
+		} else {
+			setBarrioError(false);
 		}
 	};
 	const formValidationState = () => {
@@ -189,6 +206,8 @@ const GeneralInformationForm = ({
 					handleFormFieldChange={handleFormFieldChange}
 					formValidationPrice={formValidationPrice}
 					priceError={priceError}
+					areaError={areaError}
+					formValidationArea={formValidationArea}
 				/>
 				<AddressForm
 					home={home}
@@ -198,8 +217,10 @@ const GeneralInformationForm = ({
 					zipError={zipError}
 					stateError={stateError}
 					titleError={titleError}
+					barrioError={barrioError}
 					formValidationAddress={formValidationAddress}
 					formValidationCity={formValidationCity}
+					formValidationBarrio={formValidationBarrio}
 					formValidationState={formValidationState}
 					formValidationZip={formValidationZip}
 					formValidationTitle={formValidationTitle}

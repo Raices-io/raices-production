@@ -8,11 +8,13 @@ const AddressForm = ({
 	stateError,
 	zipError,
 	titleError,
+	barrioError,
 	formValidationAddress,
 	formValidationCity,
 	formValidationState,
 	formValidationZip,
 	formValidationTitle,
+	formValidationBarrio,
 }) => {
 	return (
 		<div className="mt-8">
@@ -109,6 +111,28 @@ const AddressForm = ({
 							/>
 							{cityError && (
 								<span className="text-sm text-red-600">Por favor llene la ciudad</span>
+							)}
+						</div>
+					</div>
+				</div>
+				<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+					<label
+						for="barrio"
+						className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+						Barrio
+					</label>
+					<div className="mt-1 sm:mt-0 sm:col-span-2">
+						<div className="max-w-xs rounded-md shadow-sm">
+							<input
+								id="barrio"
+								className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+								onChange={handleFormFieldChange}
+								value={home.barrio}
+								name="barrio"
+								onBlur={formValidationBarrio}
+							/>
+							{barrioError && (
+								<span className="text-sm text-red-600">Por favor llene el barrio</span>
 							)}
 						</div>
 					</div>

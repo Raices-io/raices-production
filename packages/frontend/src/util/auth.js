@@ -37,15 +37,6 @@ function useProvideAuth() {
 				router.push('/user-type');
 			}
 
-			// Sets role into state
-			if (role === 'admin') {
-				setIsAdmin(true);
-			} else if (role === 'agent') {
-				setIsAgent(true);
-			} else if (role === 'customer') {
-				setIsCustomer(true);
-			}
-
 			// Add or update user in database
 			const authedUser = await createOrFindUser(user.uid, {
 				email: user.email,
@@ -53,7 +44,15 @@ function useProvideAuth() {
 				profilePic: user.photoURL,
 				uid: user.uid,
 			});
-
+			// Sets role into state
+			if (authedUser.userType === 'admin') {
+				setIsAdmin(true);
+				setIsAgent(true);
+			} else if (authedUser.userType === 'agent') {
+				setIsAgent(true);
+			} else if (authedUser.userType === 'customer') {
+				setIsCustomer(true);
+			}
 			setUser(authedUser);
 		} else {
 			setUser(false);

@@ -68,9 +68,7 @@ const TopNav = ({ inbox = false }) => {
 								<a
 									href="#"
 									className={`ml-8 inline-flex items-center px-1 pt-1 border-b-2 ${
-										router.pathname == '/inbox'
-											? 'border-teal-700'
-											: 'border-transparent'
+										router.pathname == '/inbox' ? 'border-teal-700' : 'border-transparent'
 									} hover:border-gray-300 text-sm font-medium leading-5 text-gray-900 focus:outline-none focus:border-teal-700 transition duration-150 ease-in-out`}>
 									Correo
 								</a>

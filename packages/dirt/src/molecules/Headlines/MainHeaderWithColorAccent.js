@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { HighlightedHeadline } from '../../atoms/heading';
+import { Heading } from '../../atoms/heading';
 
 const StyledMainHeaderWithColorAccentAndLogo = styled.div`
 	display: flex;
@@ -30,7 +30,7 @@ const MainHeaderWithColorAccent = ({ children, headline, highlighted }) => {
 	return (
 		<StyledMainHeaderWithColorAccentAndLogo>
 			{/* Atom - highlighted headline */}
-			<HighlightedHeadline highlighted={highlighted}>{headline}</HighlightedHeadline>
+			<Heading highlighted={highlighted}>{headline}</Heading>
 			{/* The child in this case is a SVG */}
 			{children}
 		</StyledMainHeaderWithColorAccentAndLogo>

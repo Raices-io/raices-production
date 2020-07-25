@@ -18,12 +18,29 @@ export const fontSize = token => {
 	`;
 };
 
-export const fontWeight = (token) => {
-	if (!token) return css`font-weight: ${FONT_WEIGHTS[0]};`;
-	return css`font-weight: ${FONT_WEIGHTS[token - 1]};`;
+export const fontWeight = token => {
+	if (!token)
+		return css`
+			font-weight: ${FONT_WEIGHTS[0]};
+		`;
+	return css`
+		font-weight: ${FONT_WEIGHTS[token - 1]};
+	`;
 };
 
 export const sizeToWeight = (size, weight) => css`
 	${fontSize(size)}
 	${fontWeight(weight)}
 `;
+
+export const fontTag = fontSize => {
+	return fontSize === 7
+		? 'h1'
+		: fontSize === 6
+		? 'h2'
+		: fontSize === 5
+		? 'h3'
+		: fontSize === 5
+		? 'h4'
+		: 'h1';
+};

@@ -153,8 +153,8 @@ export const COLORS = {
 		'10': '#542a00',
 		'11': '#2d1a05',
 	},
-	bambuTeal: {
-		'4': '#11a7aa',
+	raicesTeal: {
+		primary: '#327B87',
 		'5': '#078888',
 		'6': '#0f6270',
 		'7': '#0a3f49',

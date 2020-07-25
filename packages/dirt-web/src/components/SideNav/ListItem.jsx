@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 const ListItem = ({ name }) => {
 	const [isActive, setIsActive] = useState(false);
-	const { activeSection } = useSideNav();
+	const { setActiveSection, activeSection } = useSideNav();
 
 	useEffect(() => {
 		if (activeSection === formatHref(name)) {
@@ -19,7 +19,9 @@ const ListItem = ({ name }) => {
 
 	return (
 		<Item isActive={isActive}>
-			<a href={`#${formatHref(name)}`}>{name}</a>
+			<a href={`#${formatHref(name)}`} onClick={() => setActiveSection(formatHref(name))}>
+				{name}
+			</a>
 		</Item>
 	);
 };
@@ -37,7 +39,7 @@ const Item = styled.p`
 		margin-bottom: 0;
 
 		&:hover {
-			color: #FFF;
+			color: #fff;
 		}
 	}
 

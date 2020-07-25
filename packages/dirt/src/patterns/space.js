@@ -1,7 +1,6 @@
 export const SPACE = [0, 2, 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256];
 
 export const toSpace = token => {
-	console.log(token);
 	if (!token) return SPACE[0];
 	if (token.length === 1) return SPACE[token] + 'px';
 	if (token.length === 2) return `${SPACE[token[0]] + 'px'} ${SPACE[token[1]] + 'px'}`;

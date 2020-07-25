@@ -10,11 +10,11 @@ export default () => {
 			<Box py={10} px={9}>
 				<h1>Typography</h1>
 				<Text>This is a test paragraph</Text>
-				<Text size={1}>This is a test paragraph</Text>
-				<Text size={2}>This is a test paragraph</Text>
-				<Text size={3}>This is a test paragraph</Text>
-				<Text size={4}>This is a test paragraph</Text>
-				<Text size={5}>This is a test paragraph</Text>
+				<Text fontSize={1}>This is a test paragraph</Text>
+				<Text fontSize={2}>This is a test paragraph</Text>
+				<Text fontSize={3}>This is a test paragraph</Text>
+				<Text fontSize={4}>This is a test paragraph</Text>
+				<Text fontSize={5}>This is a test paragraph</Text>
 			</Box>
 		</Layout>
 	);

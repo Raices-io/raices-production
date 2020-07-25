@@ -3,6 +3,24 @@ export default [
 		name: 'Components',
 		links: [
 			{
+				name: 'Text',
+				subDirectory: [
+					{
+						name: 'Properties',
+						subDirectory: ['Font Size', 'Ellipsis'],
+					},
+				],
+			},
+			{
+				name: 'Heading',
+				subDirectory: [
+					{
+						name: 'Properties',
+						subDirectory: ['Font Size', 'Ellipsis', 'Highlighted', 'Margin Bottom'],
+					},
+				],
+			},
+			{
 				name: 'Button',
 				subDirectory: [
 					{
@@ -22,22 +40,6 @@ export default [
 					},
 					{
 						name: 'Search with Dropdown List',
-					},
-				],
-			},
-			{
-				name: 'Headings',
-				subDirectory: [
-					{
-						name: 'Types of Headings',
-					},
-					{
-						name: 'Highlighted Headline',
-						subDirectory: ['Without Logo', 'With Logo'],
-					},
-					{
-						name: 'Size',
-						subDirectory: ['Small', 'Medium', 'Large'],
 					},
 				],
 			},

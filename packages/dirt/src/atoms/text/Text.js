@@ -1,15 +1,12 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 import { sizeToWeight } from '../../patterns/typography';
 import { COLORS } from '../../patterns/colors';
 
-const baseStyle = size => css`
-	${sizeToWeight(size)}
+const baseStyle = fontSize => css`
+	${sizeToWeight(fontSize)}
 	color: ${props => props.theme?.global?.colors?.text?.body || COLORS.neutral[10]};
-`;
 
-const styleText = size => styled.p`
-	${baseStyle(size)}
 	${props =>
 		props.ellipsis &&
 		css`
@@ -20,11 +17,15 @@ const styleText = size => styled.p`
 		`}
 `;
 
-export const Text = React.forwardRef(({ children, size, ellipsis }, ref) => {
-	const StyledText = styleText(size);
+const styleText = fontSize => styled.p`
+	${baseStyle(fontSize)}
+`;
+
+export const Text = forwardRef(({ children, fontSize, ellipsis, id }, ref) => {
+	const StyledText = styleText(fontSize);
 
 	return (
-		<StyledText ref={ref} ellipsis={ellipsis}>
+		<StyledText ref={ref} ellipsis={ellipsis} id={id}>
 			{children}
 		</StyledText>
 	);

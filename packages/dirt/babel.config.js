@@ -8,6 +8,6 @@ const presets = [
 	['@babel/preset-react'],
 ];
 
-const plugins = ['babel-plugin-styled-components', { ssr: true, displayName: true, preprocess: false }];
+const plugins = [['babel-plugin-styled-components', { ssr: true, displayName: true, preprocess: false }]];
 
 module.exports = { presets, plugins };

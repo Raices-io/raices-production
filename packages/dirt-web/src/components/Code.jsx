@@ -5,6 +5,7 @@ import { highlight, languages } from '../services/prism/prism';
 import { Button } from '@raices/dirt';
 
 const Code = ({ code, maxHeight = 'fit-content' }) => {
+	if (!code) return null;
 	const [expand, setExpand] = useState(false);
 	const codeLines = code.split(/\r\n|\r|\n/).length;
 	const isTooHigh = codeLines > 8;

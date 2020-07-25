@@ -31,8 +31,13 @@ const BaseBox = styled.div`
 		alignItems,
 		border,
 		position,
+		width,
+		minWidth,
+		maxWidth,
+		height,
+		maxHeight,
+		minHeight,
 	}) => {
-		console.log(px, py);
 		return css`
 			margin: ${setSpace(m, mx, my)};
 			padding: ${setSpace(p, px, py)};
@@ -42,7 +47,19 @@ const BaseBox = styled.div`
 			grid-template-rows: ${gridRow};
 			grid-template-areas: ${gridAreas};
 			grid-area: ${gridArea};
-
+			grid: ${grid};
+			justify-content: ${justifyContent};
+			justify-items: ${justifyItems};
+			align-content: ${alignContent};
+			align-items: ${alignItems};
+			border: ${border};
+			position: ${position};
+			width: ${width};
+			min-width: ${minWidth};
+			max-width: ${maxWidth};
+			height: ${height};
+			min-height: ${minHeight};
+			max-height: ${maxHeight};
 		`;
 	}}
 `;

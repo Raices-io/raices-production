@@ -1,1 +1,1 @@
-export { HighlightedHeadline  } from './HighlightedHeadline';
+export { Heading  } from './Heading';

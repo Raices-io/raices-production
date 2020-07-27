@@ -12,7 +12,7 @@ export default ({ home, index }) => {
 
 	return (
 		<li class={index !== 0 ? 'border-t border-gray-200' : ''}>
-			<Link href={`/home/${home.city}/${home.id}`}>
+			<Link href={`/propiedades/${home.id}`}>
 				<a class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
 					<div class="px-4 py-4 sm:px-6">
 						<div class="flex items-center justify-between">

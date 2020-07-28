@@ -32,6 +32,7 @@ exports.triggerHomeCreated = firestore
 	.document('pendingHomes/{pendingHomeId}')
 	.onDelete(t.pending.homeCreated);
 exports.triggerAgentSignups = firestore.document('users/{userId}').onUpdate(t.signups.agentSignups);
+exports.triggerAgentUpdated = firestore.document('users/{userId}').onUpdate(t.agents.agentUpdated);
 // Scheduled
 const s = require('./scheduled');
 exports.schedSendAgentAddHomeEmail = pubsub.schedule('0 * * * *').onRun(s.onboarding.sendAgentAddHomeEmail);

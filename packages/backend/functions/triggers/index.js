@@ -1,3 +1,5 @@
 const pending = require('./pending');
 const signups = require('./signups');
-module.exports = { pending, signups };
+const agents = require('./agents');
+
+module.exports = { pending, signups, agents };

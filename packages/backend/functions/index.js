@@ -31,6 +31,9 @@ const t = require('./triggers');
 exports.triggerHomeCreated = firestore
 	.document('pendingHomes/{pendingHomeId}')
 	.onDelete(t.pending.homeCreated);
+
+exports.triggerImageResizing = functions.storage.object().onFinalize(t.imageResizing.imageResizing);
+
 exports.triggerAgentSignups = firestore.document('users/{userId}').onUpdate(t.signups.agentSignups);
 exports.triggerAgentUpdated = firestore.document('users/{userId}').onUpdate(t.agents.agentUpdated);
 // Scheduled

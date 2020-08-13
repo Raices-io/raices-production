@@ -26,4 +26,4 @@ export const setSpace = (n, nx, ny) => {
 		: 0;
 };
 
-export const toArray = n => (typeof n === 'number' ? [n] : [...n]);
+export const toArray = n => (typeof n === 'number' ? [n] : n === undefined ? [] : [...n]);

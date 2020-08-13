@@ -17,11 +17,12 @@ const HomePage = ({ home }) => {
 	const { showImagesTourModal } = useStateNavigation();
 
 	let images = [];
-	home.images.forEach(obj => images.push(obj.downloadURL));
+	home && home.images.forEach(obj => images.push(obj.downloadURL));
 
 	while (images.length < 5) {
 		images.push('');
 	}
+
 
 	if (isEmpty(home)) {
 		return (

@@ -1,43 +1,42 @@
-import colors from '../../util/colors';
 import styled from 'styled-components';
+import { Heading, Text, Square } from '@raices/dirt';
 
 const Features = () => {
 	return (
 		<FeaturesContainer>
-			<HeadingTwo>
-				Encuentra&nbsp;tu <span>próxima</span> propiedad. Conecta <span>directamente</span>{' '}
-				con&nbsp;agentes. <span>Sin&nbsp;contratiempos.</span>
-			</HeadingTwo>
+			<Heading fontSize={7} mb={11} highlighted={['próxima', 'directamente', 'Sin', 'contratiempos.']}>
+				Encuentra tu próxima propiedad. Conecta directamente con agentes. Sin contratiempos.
+			</Heading>
 			<List>
 				<ListItem>
-					<HeadingThree>Encuentra tu próxima casa</HeadingThree>
+					<Heading fontSize={6}>Encuentra tu próxima casa</Heading>
 					<TextContainer>
 						<Square />
-						<Text>Recibe la información que necesitas, en cualquier ciudad.</Text>
+						<Text fontSize={5}>Recibe la información que necesitas, en cualquier ciudad.</Text>
 					</TextContainer>
 				</ListItem>
 				<ListItem>
-					<HeadingThree>Sin intermediarios</HeadingThree>
+					<Heading fontSize={6}>Sin intermediarios</Heading>
 					<TextContainer>
 						<Square />
-						<Text>Conecta con solo un agente por propiedad, directamente.</Text>
+						<Text fontSize={5}>Conecta con solo un agente por propiedad, directamente.</Text>
 					</TextContainer>
 				</ListItem>
 				<ListItem>
-					<HeadingThree>Información actualizada</HeadingThree>
+					<Heading fontSize={6}>Información actualizada</Heading>
 					<TextContainer>
 						<Square />
-						<Text>
+						<Text fontSize={5}>
 							Nos aseguramos de que las propiedades en nuestra página estén realmente a la
 							venta.
 						</Text>
 					</TextContainer>
 				</ListItem>
 				<ListItem>
-					<HeadingThree>Envía mensajes directamente a los agentes</HeadingThree>
+					<Heading fontSize={6}>Envía mensajes directamente a los agentes</Heading>
 					<TextContainer>
 						<Square />
-						<Text>
+						<Text fontSize={5}>
 							No es necesario compartir tu información personal – mantén todas tus
 							comunicaciones en un mismo lugar.
 						</Text>
@@ -53,23 +52,6 @@ const FeaturesContainer = styled.div`
 	@media (max-width: 768px) {
 		padding: 0 1rem;
 	}
-`;
-
-const HeadingTwo = styled.h2`
-	margin-bottom: 4rem;
-	font-size: clamp(1.75rem, 3vw, 3rem);
-
-	span {
-		font-weight: 500;
-		font-family: 'Poppins', sans-serif;
-		color: ${colors('primary')};
-	}
-`;
-
-const HeadingThree = styled.h3`
-	font-size: 1.75rem;
-
-	font-size: clamp(1.4rem, 1.75vw, 1.75rem);
 `;
 
 const List = styled.ul`
@@ -98,18 +80,6 @@ const List = styled.ul`
 	}
 `;
 
-const Square = styled.div`
-	height: 25px;
-	min-width: 25px;
-	border-radius: 5px;
-	margin-top: 0.4rem;
-	background-color: ${colors('primary')};
-
-	@media (max-width: 550px) {
-		display: none;
-	}
-`;
-
 const ListItem = styled.li``;
 
 const Image = styled.div`
@@ -129,17 +99,8 @@ const Image = styled.div`
 const TextContainer = styled.div`
 	display: flex;
 	align-items: flex-start;
-	margin-top: 1rem;
-`;
-const Text = styled.p`
-	margin-left: 2rem;
-	font-size: 1.5rem;
-	font-size: clamp(1.2rem, 1.5vw, 1.5rem);
-	color: ${colors('text.light_gray')};
 
-	@media (max-width: 550px) {
-		margin-left: 0;
-	}
+	margin-top: 1rem;
 `;
 
 export default Features;

@@ -34,11 +34,11 @@ export const sizeToWeight = (size, weight) => css`
 `;
 
 export const fontTag = fontSize => {
-	return fontSize === 7
+	return fontSize === 8
 		? 'h1'
-		: fontSize === 6
+		: fontSize === 7
 		? 'h2'
-		: fontSize === 5
+		: fontSize === 6
 		? 'h3'
 		: fontSize === 5
 		? 'h4'

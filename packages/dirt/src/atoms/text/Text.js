@@ -5,7 +5,11 @@ import { COLORS } from '../../patterns/colors';
 
 const baseStyle = fontSize => css`
 	${sizeToWeight(fontSize)}
-	color: ${props => props.theme?.global?.colors?.text?.body || COLORS.neutral[10]};
+	color: ${props => props.theme?.global?.colors?.text?.body || COLORS.neutral[8]};
+
+	@media (max-width: 768px ) {
+		${sizeToWeight(fontSize - 1)};
+	}
 
 	${props =>
 		props.ellipsis &&

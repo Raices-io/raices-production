@@ -3,7 +3,7 @@ import Features from '../components/LandingPage/Features';
 import styled, { css } from 'styled-components';
 import HeroContent from '../components/LandingPage/HeroContent';
 import Layout from '../components/Layout';
-import colors from '../util/colors';
+import { Heading, Divider } from '@raices/dirt';
 
 const Explore = () => {
 	const [input, setInput] = useState(false);
@@ -15,10 +15,11 @@ const Explore = () => {
 					<HeroContent input={input} setInput={setInput} />
 				</HeroContainer>
 				<HeadingContainer>
-					<Heading>
-						Una&nbsp;<span>mejor</span>&nbsp;forma de&nbsp;<span>comprar</span>&nbsp;una{' '}
-						<span>propiedad</span>
-					</Heading>
+					<div>
+						<Heading fontSize={10} as={'h1'} highlighted={['mejor', 'comprar', 'propiedad']}>
+							Una mejor forma de comprar una propiedad
+						</Heading>
+					</div>
 					<svg
 						width="617"
 						height="359"
@@ -75,15 +76,17 @@ const HeroContainer = styled.div`
 		`}
 `;
 
-const Container = styled.div`
-	margin-bottom: 8rem;
-`;
+const Container = styled.div``;
 
 const HeadingContainer = styled.div`
 	display: flex;
 	align-items: center;
 	margin-top: 8rem;
 	position: relative;
+
+	div {
+		width: 60%;
+	}
 
 	svg {
 		position: absolute;
@@ -98,37 +101,13 @@ const HeadingContainer = styled.div`
 
 	@media (max-width: 1024px) {
 		margin-top: 5rem;
+		div {
+			width: 100%;
+		}
 	}
 	@media (max-width: 768px) {
 		margin-top: 4rem;
 		padding: 0 1rem;
-	}
-`;
-const Heading = styled.h1`
-	font-size: clamp(38px, 6vw, 78px);
-	line-height: 1.13;
-	width: 800px;
-	z-index: 5;
-
-	span {
-		font-weight: 500;
-		font-family: 'Poppins', sans-serif;
-		color: ${colors('primary')};
-	}
-`;
-
-const Divider = styled.div`
-	width: 100%;
-	height: 2px;
-	background-color: ${colors('bg.divider')};
-	margin: 8rem 0;
-
-	@media (max-width: 1024px) {
-		margin: 5rem 0;
-	}
-	@media (max-width: 768px) {
-		margin: 4rem auto;
-		width: calc(100% - 2rem);
 	}
 `;
 

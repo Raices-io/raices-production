@@ -1,4 +1,21 @@
 const theme = {
+	global: {
+		colors: {
+			brand: {
+				primary: '#327B87',
+			},
+			text: {
+				heading: '#04004D',
+				body: '#273333',
+				accent: '#327B87',
+			},
+			bg: {
+				white: '#FFFFFF',
+				primary_gray: '#4D7E86',
+				divider: '#E5E4ED',
+			},
+		},
+	},
 	colors: {
 		primary: '#327B87',
 		text: {

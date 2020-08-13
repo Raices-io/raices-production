@@ -1,0 +1,53 @@
+{
+	"name": "@raices/frontend",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start",
+		"lint": "prettier --check **/*.js",
+		"lint-fix": "prettier --write **/*.js",
+		"test": "cypress run",
+		"test-local": "cypress open"
+	},
+	"license": "ISC",
+	"dependencies": {
+		"@analytics/google-analytics": "^0.4.0",
+		"@raices/dirt": "^1.0.0",
+		"@tailwindcss/ui": "^0.1.3",
+		"algoliasearch": "^4.3.0",
+		"analytics": "^0.5.1",
+		"email-validator": "^2.0.4",
+		"firebase": "^7.14.4",
+		"lodash": "^4.17.15",
+		"lodash.debounce": "^4.0.8",
+		"moment": "^2.24.0",
+		"next": "^9.4.4",
+		"next-images": "^1.4.0",
+		"next-seo": "^4.7.1",
+		"nouislider": "^14.5.0",
+		"nouislider-react": "^3.3.8",
+		"react": "^16.7.0",
+		"react-compound-slider": "^2.5.0",
+		"react-div-100vh": "^0.3.8",
+		"react-dom": "^16.7.0",
+		"react-hook-form": "^5.7.2",
+		"react-image": "^2.4.0",
+		"react-images-upload": "^1.2.8",
+		"react-instantsearch": "^6.6.0",
+		"react-instantsearch-dom": "^6.6.0",
+		"react-instantsearch-dom-maps": "^6.6.0",
+		"react-number-format": "^4.4.1",
+		"react-swipeable": "^5.5.1",
+		"styled-components": "^4.4.0",
+		"tailwindcss-pseudo-elements": "^1.1.2"
+	},
+	"devDependencies": {
+		"@fullhuman/postcss-purgecss": "^1.3.0",
+		"@tailwindcss/custom-forms": "^0.2.1",
+		"next-transpile-modules": "^3.3.0",
+		"postcss-preset-env": "^6.7.0",
+		"prettier": "2.0.5",
+		"tailwindcss": "^1.2.0"
+	}
+}

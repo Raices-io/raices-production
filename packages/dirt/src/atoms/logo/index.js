@@ -1,0 +1,1 @@
+export { RaicesLogoLight } from './RaicesLogoLight';

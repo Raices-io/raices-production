@@ -1,0 +1,1 @@
+export { HighlightedHeadline  } from './HighlightedHeadline';

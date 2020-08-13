@@ -1,0 +1,5 @@
+{
+  "presets": ["next/babel"],
+  // This is required to fix classNames did not match Client
+	"plugins": [["babel-plugin-styled-components", { "ssr": true, "displayName": true, "preprocess": false }]]
+}

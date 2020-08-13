@@ -1,0 +1,17 @@
+{
+	"name": "raices",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"start": "lerna bootstrap",
+		"dev": "lerna run --parallel dev"
+	},
+	"version": "1.0.0",
+	"repository": "https://github.com/Raices-io/raices-production.git",
+	"license": "MIT",
+	"devDependencies": {
+		"lerna": "^3.22.1"
+	}
+}

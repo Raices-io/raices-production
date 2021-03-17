@@ -1,5 +1,5 @@
 const withImages = require('next-images');
-const withTM = require('next-transpile-modules')(['@raices/dirt']);
+// const withTM = require('next-transpile-modules')(['@raices/dirt']);
 
 const nextConfig = {
 	env: {
@@ -18,4 +18,5 @@ const nextConfig = {
 	},
 };
 
-module.exports = withTM(withImages(nextConfig));
+// module.exports = withTM(withImages(nextConfig));
+module.exports = withImages(nextConfig);

@@ -49,9 +49,9 @@ const HomePage = ({ home }) => {
 								<path
 									d="M1 7H28M7 13L1 7L7 13ZM1 7L7 1L1 7Z"
 									stroke="#327B87"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
 								/>
 							</svg>
 							<span>Regresar</span>

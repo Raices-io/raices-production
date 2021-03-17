@@ -114,3 +114,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+.git.bfg-report/
+bfg-1.14.0.jar
